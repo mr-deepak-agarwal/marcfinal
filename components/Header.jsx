@@ -2,9 +2,17 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Menu, X, Phone, Mail, Linkedin, Twitter } from 'lucide-react'
+import {
+  Menu,
+  X,
+  Phone,
+  Mail,
+  Linkedin,
+  Twitter,
+  ChevronDown,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useLoading } from '@/components/loading-store'
 
 const companyInfo = {
   phone: '+91 93596 28675',
@@ -16,51 +24,37 @@ const companyInfo = {
 }
 
 const navLinks = [
-  { label: 'About', href: '/about', isPage: true },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Insights', href: '#insights' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/about' },
+  {
+    label: 'Services',
+    href: '/#services',
+    children: [
+      { label: 'S1', href: '/s1' },
+      { label: 'S2', href: '/s2' },
+    ],
+  },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Contact', href: '/contact' },
 ]
 
-const Header = () => {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const { setLoading } = useLoading()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNavClick = (link) => {
+  const handleClick = (href) => {
+    // Prevent loader for same-page hash scroll
+    if (href.startsWith('/#')) return
+    setLoading(true)
     setIsMobileMenuOpen(false)
-    
-    if (!link.isPage) {
-      if (pathname !== '/') {
-        window.location.href = '/' + link.href
-      } else {
-        const element = document.querySelector(link.href)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
-    }
-  }
-
-  const handleContactClick = () => {
-    setIsMobileMenuOpen(false)
-    if (pathname !== '/') {
-      window.location.href = '/#contact'
-    } else {
-      const element = document.querySelector('#contact')
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
   }
 
   return (
@@ -69,144 +63,149 @@ const Header = () => {
       <div className="hidden lg:block bg-emerald-900 text-white py-2">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a
-              href={`tel:${companyInfo.phone}`}
-              className="flex items-center gap-2 hover:text-emerald-300 transition-colors"
-            >
-              <Phone size={14} />
-              {companyInfo.phone}
+            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2">
+              <Phone size={14} /> {companyInfo.phone}
             </a>
-            <a
-              href={`mailto:${companyInfo.email}`}
-              className="flex items-center gap-2 hover:text-emerald-300 transition-colors"
-            >
-              <Mail size={14} />
-              {companyInfo.email}
+            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2">
+              <Mail size={14} /> {companyInfo.email}
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <a
-              href={companyInfo.socialLinks.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-emerald-300 transition-colors"
-              aria-label="LinkedIn"
-            >
+            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noreferrer">
               <Linkedin size={16} />
             </a>
-            <a
-              href={companyInfo.socialLinks.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-emerald-300 transition-colors"
-              aria-label="Twitter"
-            >
+            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noreferrer">
               <Twitter size={16} />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Header */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md'
-            : 'bg-white'
+          isScrolled ? 'bg-white/95 backdrop-blur shadow-md' : 'bg-white'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <img
-                src="/marc_logo.png"
-                alt="MARC Logo"
-                className="h-10 w-auto object-contain"
-              />
+            <Link href="/" onClick={() => handleClick('/')}>
+              <img src="/marc_logo.png" alt="MARC Logo" className="h-10" />
             </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                link.isPage ? (
+              {navLinks.map((link) =>
+                link.children ? (
+                  <div key={link.label} className="relative group">
+                    <Link
+                      href={link.href}
+                      onClick={() => handleClick(link.href)}
+                      className="px-4 py-2 flex items-center gap-1 text-sm font-medium text-gray-800 rounded-lg hover:bg-emerald-50 hover:text-emerald-600"
+                    >
+                      {link.label}
+                      <ChevronDown size={16} />
+                    </Link>
+
+                    <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => handleClick(child.href)}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
+                    onClick={() => handleClick(link.href)}
+                    className="px-4 py-2 text-sm font-medium text-gray-800 rounded-lg hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     {link.label}
                   </Link>
-                ) : (
-                  <button
-                    key={link.label}
-                    onClick={() => handleNavClick(link)}
-                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
-                  >
-                    {link.label}
-                  </button>
                 )
-              ))}
+              )}
 
-              <Button
-                onClick={handleContactClick}
-                className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6 font-medium tracking-tight shadow-sm"
-              >
-                Get in Touch
-              </Button>
+              <Link href="/contact" onClick={() => handleClick('/contact')}>
+                <Button className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6">
+                  Get in Touch
+                </Button>
+              </Link>
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Toggle */}
             <button
+              className="lg:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-800"
-              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-            isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="px-6 py-4 space-y-2">
-            {navLinks.map((link) => (
-              link.isPage ? (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <button
-                  key={link.label}
-                  onClick={() => handleNavClick(link)}
-                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
-                >
-                  {link.label}
-                </button>
-              )
-            ))}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-white shadow-lg">
+            <div className="px-6 py-4 space-y-2">
+              {navLinks.map((link) =>
+                link.children ? (
+                  <div key={link.label}>
+                    <button
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      className="w-full flex justify-between items-center px-4 py-3 font-medium text-gray-800 hover:bg-emerald-50 rounded-lg"
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={`transition-transform ${
+                          isServicesOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
 
-            <Button
-              onClick={handleContactClick}
-              className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium tracking-tight"
-            >
-              Get in Touch
-            </Button>
+                    {isServicesOpen && (
+                      <div className="ml-4 space-y-1">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            onClick={() => handleClick(child.href)}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:text-emerald-600"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => handleClick(link.href)}
+                    className="block px-4 py-3 font-medium text-gray-800 hover:bg-emerald-50 rounded-lg"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+
+              <Link href="/contact" onClick={() => handleClick('/contact')}>
+                <Button className="w-full mt-4 bg-emerald-600 text-white">
+                  Get in Touch
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </header>
     </>
   )
 }
-
-export default Header

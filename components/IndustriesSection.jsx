@@ -32,11 +32,10 @@ const IndustriesSection = () => {
     <section
       id="industries"
       data-testid="industries-section"
-      className="py-24 relative overflow-hidden"
-      style={{ backgroundColor: '#5D9F94' }}
+      className="py-24 relative overflow-hidden bg-[#1D342F]"
     >
-      {/* ================= BACKGROUND PATTERN ================= */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Subtle Pattern */}
+      <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
           style={{
@@ -47,17 +46,20 @@ const IndustriesSection = () => {
         />
       </div>
 
+      {/* Decorative Gradient Orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#4E9141]/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#C2DDB4]/15 rounded-full blur-[100px]" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* ================= HEADER ================= */}
+        {/* Header */}
         <div className="text-center mb-16">
           <div 
             data-testid="industries-badge"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-sm font-semibold mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#4E9141] text-white text-sm font-semibold mb-6"
           >
             Industries We Serve
           </div>
 
-          {/* Heading */}
           <h2 
             data-testid="industries-heading"
             className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
@@ -65,14 +67,14 @@ const IndustriesSection = () => {
             Shaping Better Business Decisions
           </h2>
 
-          <p className="text-lg text-white/85 max-w-2xl mx-auto">
+          <p className="text-lg text-[#C2DDB4] max-w-2xl mx-auto">
             MARC combines strategy management consulting and market research to
             help businesses act with clarity and confidence across diverse
             sectors.
           </p>
         </div>
 
-        {/* ================= INDUSTRIES GRID ================= */}
+        {/* Industries Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {industries.map((industry, index) => {
             const Icon = industryIcons[industry] || Building2
@@ -84,22 +86,22 @@ const IndustriesSection = () => {
                 onClick={() => setActiveIndustry(index)}
                 className={`group p-6 rounded-2xl transition-all duration-500 text-left ${
                   activeIndustry === index
-                    ? 'bg-white text-[#1D342F] shadow-2xl shadow-black/20 scale-105'
-                    : 'bg-white/15 backdrop-blur-sm text-white hover:bg-white/25 border border-white/15'
+                    ? 'bg-white shadow-2xl shadow-black/30 scale-105'
+                    : 'bg-[#2a4a43] hover:bg-[#3a5a53] border border-[#4E9141]/20'
                 }`}
               >
                 {/* Icon */}
                 <div
                   className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
                     activeIndustry === index
-                      ? 'bg-[#C2DDB4]'
-                      : 'bg-white/15 group-hover:bg-white/25'
+                      ? 'bg-[#4E9141]'
+                      : 'bg-[#4E9141]/20 group-hover:bg-[#4E9141]/30'
                   }`}
                 >
                   <Icon
                     className={`w-7 h-7 transition-colors ${
                       activeIndustry === index
-                        ? 'text-[#4E9141]'
+                        ? 'text-white'
                         : 'text-[#C2DDB4]'
                     }`}
                   />
@@ -109,7 +111,7 @@ const IndustriesSection = () => {
                 <h3
                   className={`text-lg font-semibold mb-2 ${
                     activeIndustry === index
-                      ? 'text-[#212427]'
+                      ? 'text-[#1D342F]'
                       : 'text-white'
                   }`}
                 >
@@ -144,10 +146,6 @@ const IndustriesSection = () => {
             )
           })}
         </div>
-
-        {/* ================= DECORATIVE ELEMENTS ================= */}
-        <div className="absolute top-20 left-0 w-96 h-96 bg-[#4E9141]/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-0 w-80 h-80 bg-[#C2DDB4]/15 rounded-full blur-3xl" />
       </div>
     </section>
   )

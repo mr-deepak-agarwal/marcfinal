@@ -56,7 +56,7 @@ const ServicesSection = () => {
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
                     hoveredService === index
-                      ? 'bg-[#5FBB46]/85'
+                      ? 'bg-[#4E9141]/85'
                       : 'bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/50 to-transparent'
                   }`}
                 />
@@ -106,7 +106,7 @@ const ServicesSection = () => {
                   <ArrowUpRight
                     className={`w-5 h-5 transition-all duration-300 ${
                       hoveredService === index
-                        ? 'text-[#5FBB46] rotate-45'
+                        ? 'text-[#4E9141] rotate-45'
                         : 'text-white'
                     }`}
                   />
@@ -120,7 +120,7 @@ const ServicesSection = () => {
         <div className="mt-12 text-center">
           <button 
             data-testid="services-view-all"
-            className="inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
+            className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
           >
             View All Services
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

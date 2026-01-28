@@ -16,7 +16,7 @@ module.exports = {
       colors: {
         // MARC Brand Colors
         marc: {
-          'bright-green': '#5FBB46',
+          'bright-green': '#4E9141',
           'turquoise': '#5D9F94',
           'light-green': '#C2DDB4',
           'deep-turquoise': '#1D342F',

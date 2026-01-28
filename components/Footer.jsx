@@ -68,7 +68,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
               <div className="text-3xl font-bold tracking-tight">
-                <span className="text-[#5FBB46]">M</span>ARC
+                <span className="text-[#4E9141]">M</span>ARC
               </div>
             </Link>
 
@@ -85,7 +85,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid={`footer-social-${index}`}
-                  className="w-10 h-10 rounded-lg bg-[#47635D] flex items-center justify-center text-[#B4DAD3] hover:bg-[#5FBB46] hover:text-white transition-all duration-300"
+                  className="w-10 h-10 rounded-lg bg-[#47635D] flex items-center justify-center text-[#B4DAD3] hover:bg-[#4E9141] hover:text-white transition-all duration-300"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -102,21 +102,21 @@ const Footer = () => {
                   {link.href.startsWith('/') && !link.href.includes('#') ? (
                     <Link
                       href={link.href}
-                      className="text-[#B4DAD3] hover:text-[#5FBB46] transition-colors"
+                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
                     >
                       {link.label}
                     </Link>
                   ) : link.href.includes('#') ? (
                     <button
                       onClick={() => scrollToSection(link.href.replace('/', ''))}
-                      className="text-[#B4DAD3] hover:text-[#5FBB46] transition-colors"
+                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
                     >
                       {link.label}
                     </button>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-[#B4DAD3] hover:text-[#5FBB46] transition-colors"
+                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -134,7 +134,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#B4DAD3] hover:text-[#5FBB46] transition-colors"
+                    className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -145,12 +145,12 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 tracking-tight">Contact Us</h4>
             <ul className="space-y-2 text-[#B4DAD3]">
               <li>
-                <a href={`tel:${companyInfo.phone}`} className="hover:text-[#5FBB46] transition-colors">
+                <a href={`tel:${companyInfo.phone}`} className="hover:text-[#4E9141] transition-colors">
                   {companyInfo.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-[#5FBB46] transition-colors">
+                <a href={`mailto:${companyInfo.email}`} className="hover:text-[#4E9141] transition-colors">
                   {companyInfo.email}
                 </a>
               </li>
@@ -166,10 +166,10 @@ const Footer = () => {
             © {new Date().getFullYear()} Mangal Analytics and Research Consulting (MARC). All Rights Reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="#" className="text-[#5D9F94] hover:text-[#5FBB46] transition-colors">
+            <Link href="#" className="text-[#5D9F94] hover:text-[#4E9141] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-[#5D9F94] hover:text-[#5FBB46] transition-colors">
+            <Link href="#" className="text-[#5D9F94] hover:text-[#4E9141] transition-colors">
               Terms of Service
             </Link>
           </div>
@@ -180,7 +180,7 @@ const Footer = () => {
       <button
         onClick={scrollToTop}
         data-testid="scroll-to-top-btn"
-        className="fixed bottom-8 right-8 w-12 h-12 bg-[#5FBB46] text-white rounded-full shadow-lg shadow-[#5FBB46]/30 flex items-center justify-center hover:bg-[#4E9141] transition-all duration-300 hover:-translate-y-1 z-50"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-[#4E9141] text-white rounded-full shadow-lg shadow-[#4E9141]/30 flex items-center justify-center hover:bg-[#4E9141] transition-all duration-300 hover:-translate-y-1 z-50"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-5 h-5" />

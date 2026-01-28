@@ -126,7 +126,7 @@ const IndustriesSection = () => {
                   <span
                     className={
                       activeIndustry === index
-                        ? 'text-[#5FBB46]'
+                        ? 'text-[#4E9141]'
                         : 'text-[#C2DDB4]'
                     }
                   >
@@ -135,7 +135,7 @@ const IndustriesSection = () => {
                   <ArrowRight
                     className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
                       activeIndustry === index
-                        ? 'text-[#5FBB46]'
+                        ? 'text-[#4E9141]'
                         : 'text-[#C2DDB4]'
                     }`}
                   />
@@ -146,7 +146,7 @@ const IndustriesSection = () => {
         </div>
 
         {/* ================= DECORATIVE ELEMENTS ================= */}
-        <div className="absolute top-20 left-0 w-96 h-96 bg-[#5FBB46]/15 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-0 w-96 h-96 bg-[#4E9141]/15 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-0 w-80 h-80 bg-[#C2DDB4]/15 rounded-full blur-3xl" />
       </div>
     </section>

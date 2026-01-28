@@ -28,10 +28,10 @@ const AboutSection = () => {
             <div
               key={index}
               data-testid={`stat-card-${index}`}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-[#C2DDB4]/30 text-center group hover:shadow-lg hover:border-[#5FBB46]/40 transition-all duration-500 hover:-translate-y-1"
+              className="bg-white rounded-2xl p-6 shadow-sm border border-[#C2DDB4]/30 text-center group hover:shadow-lg hover:border-[#4E9141]/40 transition-all duration-500 hover:-translate-y-1"
             >
               {/* Premium numeric tone */}
-              <div className="text-4xl lg:text-5xl font-bold text-[#5FBB46] mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-4xl lg:text-5xl font-bold text-[#4E9141] mb-2 group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
 
@@ -73,7 +73,7 @@ const AboutSection = () => {
             </div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#5FBB46]/20 rounded-full blur-2xl" />
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#4E9141]/20 rounded-full blur-2xl" />
             <div className="absolute -bottom-4 -left-8 w-32 h-32 bg-[#5D9F94]/20 rounded-full blur-2xl" />
           </div>
 
@@ -99,7 +99,7 @@ const AboutSection = () => {
             </p>
 
             {/* Strategic emphasis line */}
-            <p className="text-[#5FBB46] font-semibold mb-8 text-lg tracking-tight">
+            <p className="text-[#4E9141] font-semibold mb-8 text-lg tracking-tight">
               {aboutSection.commitment}
             </p>
 
@@ -114,7 +114,7 @@ const AboutSection = () => {
                 <div
                   key={index}
                   data-testid={`feature-${index}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#C2DDB4]/30 hover:bg-[#C2DDB4]/20 hover:border-[#5FBB46]/40 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#C2DDB4]/30 hover:bg-[#C2DDB4]/20 hover:border-[#4E9141]/40 transition-colors"
                 >
                   <div className="w-10 h-10 bg-[#C2DDB4] rounded-lg flex items-center justify-center">
                     <item.icon className="w-5 h-5 text-[#4E9141]" />
@@ -129,7 +129,7 @@ const AboutSection = () => {
             <Button
               data-testid="about-cta"
               onClick={() => scrollToSection('#contact')}
-              className="bg-[#5FBB46] hover:bg-[#4E9141] text-white px-8 py-6 text-lg shadow-lg shadow-[#5FBB46]/25 transition-all duration-300 hover:shadow-[#5FBB46]/40 hover:-translate-y-0.5 group"
+              className="bg-[#4E9141] hover:bg-[#4E9141] text-white px-8 py-6 text-lg shadow-lg shadow-[#4E9141]/25 transition-all duration-300 hover:shadow-[#4E9141]/40 hover:-translate-y-0.5 group"
             >
               Work With Us
               <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />

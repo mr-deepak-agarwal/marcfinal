@@ -46,7 +46,7 @@ const ClientsSection = () => {
                 <div
                   key={index}
                   data-testid={`client-tile-${index}`}
-                  className="flex-shrink-0 w-[180px] bg-white border border-[#C2DDB4]/30 rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer hover:border-[#5FBB46] hover:shadow-lg hover:shadow-[#5FBB46]/15 hover:-translate-y-1"
+                  className="flex-shrink-0 w-[180px] bg-white border border-[#C2DDB4]/30 rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer hover:border-[#4E9141] hover:shadow-lg hover:shadow-[#4E9141]/15 hover:-translate-y-1"
                 >
                   <div className="w-full h-[50px] flex items-center justify-center p-1">
                     <img

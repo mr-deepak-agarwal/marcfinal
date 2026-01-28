@@ -55,16 +55,16 @@ const WhyUsSection = () => {
                 <div
                   key={item.id}
                   data-testid={`why-us-card-${index}`}
-                  className="group bg-white rounded-2xl p-6 shadow-sm border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#5FBB46]/40 transition-all duration-500 hover:-translate-y-1"
+                  className="group bg-white rounded-2xl p-6 shadow-sm border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/40 transition-all duration-500 hover:-translate-y-1"
                 >
                   <div className="flex items-start gap-5">
-                    <div className="w-14 h-14 bg-[#C2DDB4] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#5FBB46] transition-colors duration-300">
+                    <div className="w-14 h-14 bg-[#C2DDB4] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#4E9141] transition-colors duration-300">
                       <Icon className="w-7 h-7 text-[#4E9141] group-hover:text-white transition-colors duration-300" />
                     </div>
 
                     <div>
                       {/* Feature title */}
-                      <h3 className="text-xl font-semibold text-[#212427] mb-2 tracking-tight group-hover:text-[#5FBB46] transition-colors">
+                      <h3 className="text-xl font-semibold text-[#212427] mb-2 tracking-tight group-hover:text-[#4E9141] transition-colors">
                         {item.title}
                       </h3>
 

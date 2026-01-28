@@ -34,7 +34,7 @@ const InsightsSection = () => {
 
           <button 
             data-testid="insights-view-all-desktop"
-            className="hidden lg:inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group mt-6 lg:mt-0"
+            className="hidden lg:inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#4E9141] transition-colors group mt-6 lg:mt-0"
           >
             View All Insights
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -49,7 +49,7 @@ const InsightsSection = () => {
               data-testid={`insight-card-${index}`}
               className="group cursor-pointer"
             >
-              <div className="relative rounded-2xl overflow-hidden h-[320px] bg-white shadow-md border border-[#C2DDB4]/20 hover:shadow-xl hover:border-[#5FBB46]/30 transition-all duration-500">
+              <div className="relative rounded-2xl overflow-hidden h-[320px] bg-white shadow-md border border-[#C2DDB4]/20 hover:shadow-xl hover:border-[#4E9141]/30 transition-all duration-500">
                 {/* Image */}
                 <img
                   src={insight.image}
@@ -63,7 +63,7 @@ const InsightsSection = () => {
                 {/* ================= CONTENT ================= */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full bg-[#5FBB46] text-white text-xs font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-[#4E9141] text-white text-xs font-semibold">
                       {insight.category}
                     </span>
                     <span className="flex items-center gap-1 text-white/80 text-sm">
@@ -84,7 +84,7 @@ const InsightsSection = () => {
                 </div>
 
                 {/* Hover Arrow */}
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#5FBB46]">
+                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#4E9141]">
                   <ArrowUpRight className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -96,7 +96,7 @@ const InsightsSection = () => {
         <div className="lg:hidden mt-8 text-center">
           <button 
             data-testid="insights-view-all-mobile"
-            className="inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
+            className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
           >
             View All Insights
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

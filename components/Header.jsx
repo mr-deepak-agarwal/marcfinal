@@ -65,19 +65,19 @@ export default function Header() {
       <div className="hidden lg:block bg-[#1D342F] text-white py-2">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2 hover:text-[#5FBB46] transition-colors">
+            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2 hover:text-[#4E9141] transition-colors">
               <Phone size={14} /> {companyInfo.phone}
             </a>
-            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-[#5FBB46] transition-colors">
+            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-[#4E9141] transition-colors">
               <Mail size={14} /> {companyInfo.email}
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-[#5FBB46] transition-colors">
+            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-[#4E9141] transition-colors">
               <Linkedin size={16} />
             </a>
-            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-[#5FBB46] transition-colors">
+            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-[#4E9141] transition-colors">
               <Twitter size={16} />
             </a>
           </div>
@@ -106,7 +106,7 @@ export default function Header() {
                     <Link
                       href={link.href}
                       onClick={() => handleClick(link.href)}
-                      className="px-4 py-2 flex items-center gap-1 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#5FBB46]"
+                      className="px-4 py-2 flex items-center gap-1 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#4E9141]"
                     >
                       {link.label}
                       <ChevronDown size={16} />
@@ -118,7 +118,7 @@ export default function Header() {
                           key={child.label}
                           href={child.href}
                           onClick={() => handleClick(child.href)}
-                          className="block px-4 py-3 text-sm text-[#212427] hover:bg-[#C2DDB4]/20 hover:text-[#5FBB46] first:rounded-t-xl last:rounded-b-xl"
+                          className="block px-4 py-3 text-sm text-[#212427] hover:bg-[#C2DDB4]/20 hover:text-[#4E9141] first:rounded-t-xl last:rounded-b-xl"
                         >
                           {child.label}
                         </Link>
@@ -130,7 +130,7 @@ export default function Header() {
                     key={link.label}
                     href={link.href}
                     onClick={() => handleClick(link.href)}
-                    className="px-4 py-2 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#5FBB46]"
+                    className="px-4 py-2 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#4E9141]"
                   >
                     {link.label}
                   </Link>
@@ -140,7 +140,7 @@ export default function Header() {
               <Link href="/contact" onClick={() => handleClick('/contact')}>
                 <Button 
                   data-testid="header-cta"
-                  className="ml-4 bg-[#5FBB46] hover:bg-[#4E9141] text-white px-6"
+                  className="ml-4 bg-[#4E9141] hover:bg-[#4E9141] text-white px-6"
                 >
                   Get in Touch
                 </Button>
@@ -184,7 +184,7 @@ export default function Header() {
                             key={child.label}
                             href={child.href}
                             onClick={() => handleClick(child.href)}
-                            className="block px-4 py-2 text-sm text-[#47635D] hover:text-[#5FBB46]"
+                            className="block px-4 py-2 text-sm text-[#47635D] hover:text-[#4E9141]"
                           >
                             {child.label}
                           </Link>
@@ -205,7 +205,7 @@ export default function Header() {
               )}
 
               <Link href="/contact" onClick={() => handleClick('/contact')}>
-                <Button className="w-full mt-4 bg-[#5FBB46] hover:bg-[#4E9141] text-white">
+                <Button className="w-full mt-4 bg-[#4E9141] hover:bg-[#4E9141] text-white">
                   Get in Touch
                 </Button>
               </Link>

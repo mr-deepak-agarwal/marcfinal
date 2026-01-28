@@ -58,7 +58,7 @@ const TestimonialsSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative bg-white rounded-3xl p-8 lg:p-12 shadow-xl border border-[#C2DDB4]/20">
             {/* Quote Icon */}
-            <div className="absolute -top-6 left-12 w-12 h-12 bg-[#5FBB46] rounded-2xl flex items-center justify-center shadow-lg shadow-[#5FBB46]/30">
+            <div className="absolute -top-6 left-12 w-12 h-12 bg-[#4E9141] rounded-2xl flex items-center justify-center shadow-lg shadow-[#4E9141]/30">
               <Quote className="w-6 h-6 text-white" />
             </div>
 
@@ -100,7 +100,7 @@ const TestimonialsSection = () => {
               <button
                 data-testid="testimonial-prev-btn"
                 onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full border-2 border-[#C2DDB4] flex items-center justify-center text-[#5D9F94] hover:border-[#5FBB46] hover:text-[#5FBB46] transition-all duration-300 hover:scale-110"
+                className="w-12 h-12 rounded-full border-2 border-[#C2DDB4] flex items-center justify-center text-[#5D9F94] hover:border-[#4E9141] hover:text-[#4E9141] transition-all duration-300 hover:scale-110"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -109,7 +109,7 @@ const TestimonialsSection = () => {
               <button
                 data-testid="testimonial-next-btn"
                 onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full bg-[#5FBB46] flex items-center justify-center text-white hover:bg-[#4E9141] transition-all duration-300 hover:scale-110 shadow-lg shadow-[#5FBB46]/30"
+                className="w-12 h-12 rounded-full bg-[#4E9141] flex items-center justify-center text-white hover:bg-[#4E9141] transition-all duration-300 hover:scale-110 shadow-lg shadow-[#4E9141]/30"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -125,7 +125,7 @@ const TestimonialsSection = () => {
                   onClick={() => setCurrentIndex(index)}
                   className={`transition-all duration-300 rounded-full ${
                     index === currentIndex
-                      ? 'w-8 h-2 bg-[#5FBB46]'
+                      ? 'w-8 h-2 bg-[#4E9141]'
                       : 'w-2 h-2 bg-[#C2DDB4] hover:bg-[#5D9F94]'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}

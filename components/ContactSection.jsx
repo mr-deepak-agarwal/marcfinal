@@ -100,9 +100,9 @@ const ContactSection = () => {
               <a
                 href={`tel:${companyInfo.phone}`}
                 data-testid="contact-phone"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#5FBB46]/40 hover:shadow-md transition-all group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-md transition-all group"
               >
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#5FBB46] transition-colors">
+                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
                   <Phone className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
                 </div>
                 <div>
@@ -118,9 +118,9 @@ const ContactSection = () => {
               <a
                 href={`mailto:${companyInfo.email}`}
                 data-testid="contact-email"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#5FBB46]/40 hover:shadow-md transition-all group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-md transition-all group"
               >
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#5FBB46] transition-colors">
+                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
                   <Mail className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ const ContactSection = () => {
             {/* ================= OFFICE LOCATIONS ================= */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Globe className="w-5 h-5 text-[#5FBB46]" />
+                <Globe className="w-5 h-5 text-[#4E9141]" />
                 <h3 className="text-lg font-semibold text-[#212427]">Our Offices</h3>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -176,7 +176,7 @@ const ContactSection = () => {
                   <div
                     key={index}
                     data-testid={`office-${index}`}
-                    className="p-3 rounded-xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#5FBB46]/40 transition-colors text-center"
+                    className="p-3 rounded-xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 transition-colors text-center"
                   >
                     <div className="text-sm font-semibold text-[#212427]">{office.city}</div>
                     <div className="text-xs text-[#5D9F94]">{office.country}</div>
@@ -208,7 +208,7 @@ const ContactSection = () => {
                     onChange={handleChange}
                     placeholder="John Doe"
                     required
-                    className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#5FBB46] focus:ring-[#5FBB46]"
+                    className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#4E9141] focus:ring-[#4E9141]"
                   />
                 </div>
 
@@ -224,7 +224,7 @@ const ContactSection = () => {
                     onChange={handleChange}
                     placeholder="john@company.com"
                     required
-                    className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#5FBB46] focus:ring-[#5FBB46]"
+                    className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#4E9141] focus:ring-[#4E9141]"
                   />
                 </div>
               </div>
@@ -239,7 +239,7 @@ const ContactSection = () => {
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Your Company"
-                  className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#5FBB46] focus:ring-[#5FBB46]"
+                  className="h-12 rounded-xl border-[#C2DDB4]/50 focus:border-[#4E9141] focus:ring-[#4E9141]"
                 />
               </div>
 
@@ -255,7 +255,7 @@ const ContactSection = () => {
                   placeholder="Tell us about your project or inquiry..."
                   required
                   rows={5}
-                  className="rounded-xl border-[#C2DDB4]/50 focus:border-[#5FBB46] focus:ring-[#5FBB46] resize-none"
+                  className="rounded-xl border-[#C2DDB4]/50 focus:border-[#4E9141] focus:ring-[#4E9141] resize-none"
                 />
               </div>
 
@@ -263,7 +263,7 @@ const ContactSection = () => {
                 type="submit"
                 data-testid="contact-form-submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#5FBB46] hover:bg-[#4E9141] text-white h-14 text-lg font-semibold rounded-xl shadow-lg shadow-[#5FBB46]/25 transition-all duration-300 hover:shadow-[#5FBB46]/40 hover:-translate-y-0.5 group"
+                className="w-full bg-[#4E9141] hover:bg-[#4E9141] text-white h-14 text-lg font-semibold rounded-xl shadow-lg shadow-[#4E9141]/25 transition-all duration-300 hover:shadow-[#4E9141]/40 hover:-translate-y-0.5 group"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">

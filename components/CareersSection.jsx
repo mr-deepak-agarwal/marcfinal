@@ -52,7 +52,7 @@ const CareersSection = () => {
               className="text-4xl lg:text-5xl font-bold text-[#212427] mb-6 leading-tight tracking-tight"
             >
               Build Your Career <br />
-              <span className="text-[#5FBB46]">With MARC</span>
+              <span className="text-[#4E9141]">With MARC</span>
             </h2>
 
             <p className="text-lg text-[#47635D] mb-8 leading-relaxed">
@@ -65,7 +65,7 @@ const CareersSection = () => {
               <Link href="/career">
                 <Button
                   data-testid="careers-cta-openings"
-                  className="bg-[#5FBB46] hover:bg-[#4E9141] text-white px-8 py-6 text-lg shadow-lg shadow-[#5FBB46]/25 transition-all duration-300 hover:shadow-[#5FBB46]/40 hover:-translate-y-0.5 group"
+                  className="bg-[#4E9141] hover:bg-[#4E9141] text-white px-8 py-6 text-lg shadow-lg shadow-[#4E9141]/25 transition-all duration-300 hover:shadow-[#4E9141]/40 hover:-translate-y-0.5 group"
                 >
                   View Open Positions
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -94,9 +94,9 @@ const CareersSection = () => {
                 <div
                   key={index}
                   data-testid={`value-card-${index}`}
-                  className="group flex items-start gap-4 p-5 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#5FBB46]/40 hover:shadow-lg transition-all duration-300"
+                  className="group flex items-start gap-4 p-5 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-12 h-12 bg-[#C2DDB4] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#5FBB46] transition-colors">
+                  <div className="w-12 h-12 bg-[#C2DDB4] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#4E9141] transition-colors">
                     <value.icon className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
                   </div>
                   <div>

@@ -1,40 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 160 84% 39%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 160 84% 39%;
-    --radius: 0.5rem;
-  }
+/* ========================================= */
+/* MARC BRAND COLOR VARIABLES               */
+/* ========================================= */
+:root {
+  /* Primary Colors */
+  --marc-bright-green: #5FBB46;
+  --marc-turquoise: #5D9F94;
+  
+  /* Secondary Colors */
+  --marc-light-green: #C2DDB4;
+  --marc-deep-turquoise: #1D342F;
+  
+  /* Neutral Colors */
+  --marc-warm-neutral: #F7FFF5;
+  --marc-cool-neutral: #F0F8F6;
+  --marc-white: #FFFFFF;
+  --marc-dark-grey: #212427;
+  
+  /* Accent Colors */
+  --marc-saffron: #FF9933;
+  --marc-amber: #F59E0B;
+  
+  /* Infographic Greens */
+  --marc-green-1: #8CC978;
+  --marc-green-2: #E0EFD6;
+  --marc-green-3: #4E9141;
+  --marc-green-4: #1C2C17;
+  
+  /* Infographic Turquoise */
+  --marc-turquoise-1: #287565;
+  --marc-turquoise-2: #B4DAD3;
+  --marc-turquoise-3: #47635D;
+  --marc-turquoise-4: #49736B;
 
+  /* Shadcn Variables */
+  --background: 0 0% 100%;
+  --foreground: 220 9% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 9% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 9% 12%;
+  --primary: 107 47% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 160 26% 48%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 120 20% 95%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 107 47% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 120 10% 90%;
+  --input: 120 10% 90%;
+  --ring: 107 47% 50%;
+  --radius: 0.5rem;
+}
+
+@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -42,10 +76,83 @@
   html {
     scroll-behavior: smooth;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
 }
 
+/* ========================================= */
+/* TYPOGRAPHY - POPPINS                      */
+/* ========================================= */
+.font-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.font-subheading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.font-body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+/* Keep serif for special accents */
 .font-serif {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+/* ========================================= */
+/* MARC BRAND UTILITIES                      */
+/* ========================================= */
+.bg-marc-bright-green { background-color: var(--marc-bright-green); }
+.bg-marc-turquoise { background-color: var(--marc-turquoise); }
+.bg-marc-light-green { background-color: var(--marc-light-green); }
+.bg-marc-deep-turquoise { background-color: var(--marc-deep-turquoise); }
+.bg-marc-warm-neutral { background-color: var(--marc-warm-neutral); }
+.bg-marc-cool-neutral { background-color: var(--marc-cool-neutral); }
+.bg-marc-saffron { background-color: var(--marc-saffron); }
+
+.text-marc-bright-green { color: var(--marc-bright-green); }
+.text-marc-turquoise { color: var(--marc-turquoise); }
+.text-marc-deep-turquoise { color: var(--marc-deep-turquoise); }
+.text-marc-saffron { color: var(--marc-saffron); }
+
+.border-marc-bright-green { border-color: var(--marc-bright-green); }
+.border-marc-turquoise { border-color: var(--marc-turquoise); }
+.border-marc-saffron { border-color: var(--marc-saffron); }
+
+/* ========================================= */
+/* SECTION DIVIDER - INDIAN SAFFRON         */
+/* ========================================= */
+.section-divider {
+  width: 100%;
+  padding: 1rem 0;
+  background: linear-gradient(90deg, var(--marc-saffron), #FFB366);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-divider-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Subtle version */
+.section-divider-subtle {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--marc-saffron), transparent);
 }
 
 /* ========================================= */
@@ -85,26 +192,26 @@
 /* GLASSMORPHISM                             */
 /* ========================================= */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 /* ========================================= */
-/* GLOW EFFECTS                              */
+/* GLOW EFFECTS - MARC GREEN                 */
 /* ========================================= */
-.glow-emerald {
-  box-shadow: 0 0 60px rgba(16, 185, 129, 0.3);
+.glow-green {
+  box-shadow: 0 0 60px rgba(95, 187, 70, 0.3);
 }
 
 .glow-text {
-  text-shadow: 0 0 40px rgba(16, 185, 129, 0.5);
+  text-shadow: 0 0 40px rgba(95, 187, 70, 0.5);
 }
 
 /* ========================================= */
@@ -114,14 +221,12 @@
   background: radial-gradient(ellipse at center, var(--tw-gradient-from), var(--tw-gradient-to));
 }
 
-.bg-mesh {
-  background-color: #0a0a0a;
+.bg-mesh-marc {
+  background-color: var(--marc-warm-neutral);
   background-image: 
-    radial-gradient(at 40% 20%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(6, 78, 59, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, rgba(6, 78, 59, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+    radial-gradient(at 40% 20%, rgba(95, 187, 70, 0.1) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(93, 159, 148, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(95, 187, 70, 0.08) 0px, transparent 50%);
 }
 
 /* ========================================= */
@@ -173,6 +278,17 @@
   100% { transform: translateX(100%); }
 }
 
+@keyframes geometric-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(2deg); }
+  66% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes geometric-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -210,6 +326,14 @@
   animation: gradient-shift 8s ease infinite;
 }
 
+.animate-geometric-float {
+  animation: geometric-float 8s ease-in-out infinite;
+}
+
+.animate-geometric-pulse {
+  animation: geometric-pulse 4s ease-in-out infinite;
+}
+
 /* ========================================= */
 /* ANIMATION DELAYS                          */
 /* ========================================= */
@@ -218,26 +342,6 @@
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
-
-/* ========================================= */
-/* TEAM CARD EFFECTS                         */
-/* ========================================= */
-.team-card-container {
-  perspective: 1000px;
-}
-
-.team-card {
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  transform-style: preserve-3d;
-}
-
-.team-card.active {
-  position: fixed;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 100;
-}
 
 /* ========================================= */
 /* CLIENT MARQUEE                            */
@@ -276,8 +380,8 @@
 }
 
 .client-tile:hover {
-  border-color: #10b981;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+  border-color: var(--marc-bright-green);
+  box-shadow: 0 10px 30px rgba(95, 187, 70, 0.15);
   transform: translateY(-4px);
 }
 
@@ -313,71 +417,35 @@
 }
 
 /* ========================================= */
-/* TIMELINE CARD SHIMMER                     */
+/* HOVER STATES - BRAND CONSISTENT          */
 /* ========================================= */
-.timeline-card {
+.hover-marc:hover {
+  color: var(--marc-bright-green);
+  transition: color 0.3s ease;
+}
+
+.hover-bg-marc:hover {
+  background-color: var(--marc-light-green);
+  transition: background-color 0.3s ease;
+}
+
+.hover-border-marc:hover {
+  border-color: var(--marc-bright-green);
+  transition: border-color 0.3s ease;
+}
+
+/* ========================================= */
+/* BUTTONS - MARC STYLE                      */
+/* ========================================= */
+.btn-marc-primary {
   position: relative;
   overflow: hidden;
-}
-
-.timeline-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transform: translateX(-100%);
-}
-
-.timeline-card:hover::after {
-  animation: shimmer 0.8s ease-out;
-}
-
-/* ========================================= */
-/* LOCATION CARDS                            */
-/* ========================================= */
-.location-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
+  background-color: var(--marc-bright-green);
+  color: white;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.location-card:hover {
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-  border-color: rgba(16, 185, 129, 0.5);
-  transform: translateY(-4px);
-}
-
-/* Location badge colors */
-.badge-hq {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-}
-
-.badge-usa {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-}
-
-.badge-partner {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-}
-
-.badge-branch {
-  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-}
-
-/* ========================================= */
-/* BUTTONS                                   */
-/* ========================================= */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-primary::before {
+.btn-marc-primary::before {
   content: '';
   position: absolute;
   top: 0;
@@ -388,13 +456,25 @@
   transition: left 0.5s ease;
 }
 
-.btn-primary:hover::before {
+.btn-marc-primary:hover::before {
   left: 100%;
 }
 
-.btn-primary:hover {
+.btn-marc-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 15px 30px rgba(95, 187, 70, 0.3);
+  background-color: var(--marc-green-3);
+}
+
+.btn-marc-secondary {
+  background-color: var(--marc-turquoise);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-marc-secondary:hover {
+  background-color: var(--marc-turquoise-1);
+  transform: translateY(-2px);
 }
 
 /* ========================================= */
@@ -469,6 +549,10 @@
   
   .client-logo-wrapper {
     height: 40px;
+  }
+
+  .section-divider-text {
+    font-size: 0.875rem;
   }
 }
 

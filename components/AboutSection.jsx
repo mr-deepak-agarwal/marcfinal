@@ -28,14 +28,14 @@ const AboutSection = () => {
             <div
               key={index}
               data-testid={`stat-card-${index}`}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-[#C2DDB4]/30 text-center group hover:shadow-lg hover:border-[#4E9141]/40 transition-all duration-500 hover:-translate-y-1"
+              className="bg-white rounded-2xl p-6 shadow-lg border border-[#C2DDB4]/40 text-center group hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-500 hover:-translate-y-1"
             >
               {/* Premium numeric tone */}
               <div className="text-4xl lg:text-5xl font-bold text-[#4E9141] mb-2 group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
 
-              <div className="text-[#212427] font-medium">
+              <div className="text-[#1D342F] font-medium">
                 {stat.label}
               </div>
             </div>

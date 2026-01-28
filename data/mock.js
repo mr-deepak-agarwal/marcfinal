@@ -23,7 +23,8 @@ export const aboutSection = {
   title: "We Shape Decisions for the Better",
   description: "MARC's experience, global reach, and state-of-the-art analytics mean that we are better able to deliver insights and advice that help today's companies grow their businesses. The end benefit of all that we do is enabling our clients to make better decisions.",
   commitment: "MARC is committed to Delivering Excellence & Partnering Success by driving Economic Growth.",
-  image: "https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg"
+  image: "https://images.unsplash.com/photo-1758518727707-b023e285b709?w=800&auto=format&fit=crop",
+  imageAlt: "MARC consulting team discussing business strategy in modern boardroom"
 };
 
 export const services = [
@@ -31,28 +32,32 @@ export const services = [
     id: 1,
     title: "Market Research",
     description: "Market research and consulting is the process of determining the viability of a new service or product through research conducted directly with potential customers.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1758691736545-5c33b6255dca?w=800&auto=format&fit=crop",
+    imageAlt: "MARC consultant presenting market research analytics to corporate clients",
     link: "/services/market-research"
   },
   {
     id: 2,
     title: "Growth Strategy",
     description: "Growth strategy is an organization's plan for overcoming current and future challenges to realize its goals for expansion and sustainable development.",
-    image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1758518725921-1eb74ed293be?w=800&auto=format&fit=crop",
+    imageAlt: "MARC business consultants collaborating on growth strategy in modern office",
     link: "/services/growth-strategy"
   },
   {
     id: 3,
     title: "Mergers & Acquisitions",
     description: "In corporate finance, mergers and acquisitions are transactions in which the ownership of companies are transferred or consolidated with other entities.",
-    image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1758519288905-38b7b00c1023?w=800&auto=format&fit=crop",
+    imageAlt: "MARC M&A advisory team finalizing business partnership deal",
     link: "/services/mergers-acquisitions"
   },
   {
     id: 4,
     title: "Internationalization Strategy",
     description: "Internationalization describes designing a product in a way that it may be readily consumed across multiple countries and global markets.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1758518729240-7162d07427b8?w=800&auto=format&fit=crop",
+    imageAlt: "MARC international business consultants discussing global expansion strategy",
     link: "/services/internationalization"
   }
 ];
@@ -68,11 +73,46 @@ export const industries = [
   "Manufacturing"
 ];
 
+export const industryImages = {
+  "Hospitality": {
+    image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=800&auto=format&fit=crop",
+    imageAlt: "Luxury hotel interior representing MARC hospitality consulting services"
+  },
+  "Consumer": {
+    image: "https://images.pexels.com/photos/6207729/pexels-photo-6207729.jpeg?w=800&auto=format&fit=crop",
+    imageAlt: "Consumer retail shopping experience for MARC consumer industry consulting"
+  },
+  "Automobile & Mobility": {
+    image: "https://images.unsplash.com/photo-1764114235916-74de69e6851f?w=800&auto=format&fit=crop",
+    imageAlt: "Modern automotive manufacturing technology for MARC automobile consulting"
+  },
+  "Healthcare": {
+    image: "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?w=800&auto=format&fit=crop",
+    imageAlt: "Modern healthcare professional environment for MARC healthcare consulting"
+  },
+  "E-Commerce & Retail": {
+    image: "https://images.unsplash.com/photo-1758874385215-c86fe62b446f?w=800&auto=format&fit=crop",
+    imageAlt: "Digital e-commerce shopping experience for MARC retail consulting"
+  },
+  "Construction & Infrastructure": {
+    image: "https://images.unsplash.com/photo-1768796372362-05c256e61d8c?w=800&auto=format&fit=crop",
+    imageAlt: "Modern construction and infrastructure development for MARC consulting"
+  },
+  "Technology": {
+    image: "https://images.unsplash.com/photo-1768796372343-99ed316eb5ef?w=800&auto=format&fit=crop",
+    imageAlt: "Modern technology office environment for MARC technology consulting"
+  },
+  "Manufacturing": {
+    image: "https://images.pexels.com/photos/17728784/pexels-photo-17728784.jpeg?w=800&auto=format&fit=crop",
+    imageAlt: "Advanced manufacturing facility for MARC manufacturing consulting"
+  }
+};
+
 export const stats = [
-  { value: "10+", label: "Years Experience" },
+  { value: "14+", label: "Years Experience" },
   { value: "30+", label: "Countries Served" },
   { value: "500+", label: "Projects Delivered" },
-  { value: "200+", label: "Happy Clients" }
+  { value: "300+", label: "Happy Clients" }
 ];
 
 export const testimonials = [
@@ -108,21 +148,24 @@ export const insights = [
     title: "FMCG Industry Overview",
     category: "Industry Report",
     date: "July 2025",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1758691736498-422201cc57da?w=800&auto=format&fit=crop",
+    imageAlt: "MARC business consultant presenting FMCG industry analytics and charts"
   },
   {
     id: 2,
     title: "Impact of Q-commerce on FMCG Sales in India",
     category: "Market Analysis",
     date: "July 2025",
-    image: "https://images.pexels.com/photos/669612/pexels-photo-669612.jpeg?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1758691736407-02406d18df6c?w=800&auto=format&fit=crop",
+    imageAlt: "MARC market analysis presentation on Q-commerce impact in India"
   },
   {
     id: 3,
     title: "India's Logistics Market Report",
     category: "Research",
     date: "June 2025",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1758691736490-03d39c292d7a?w=800&auto=format&fit=crop",
+    imageAlt: "MARC research team presenting India logistics market data and insights"
   }
 ];
 
@@ -148,6 +191,25 @@ export const whyWorkWithUs = [
     description: "Our Management has been part of the PWC due diligence division, giving us an extra edge and world class standard."
   }
 ];
+
+export const teamImages = {
+  collaboration: {
+    image: "https://images.unsplash.com/photo-1760611656007-f767a8082758?w=800&auto=format&fit=crop",
+    imageAlt: "MARC team members collaborating on business consulting project"
+  },
+  presentation: {
+    image: "https://images.unsplash.com/photo-1758691737182-d42aefd6dee8?w=800&auto=format&fit=crop",
+    imageAlt: "MARC business expert presenting strategy to corporate clients"
+  },
+  leadership: {
+    image: "https://images.unsplash.com/photo-1606472171079-8c28cee65102?w=800&auto=format&fit=crop",
+    imageAlt: "MARC professional business woman leader in corporate office"
+  },
+  meeting: {
+    image: "https://images.unsplash.com/photo-1758518729711-1cbacd55efdb?w=800&auto=format&fit=crop",
+    imageAlt: "MARC consulting team in business strategy meeting from top view"
+  }
+};
 
 export const navLinks = [
   { label: "About Us", href: "#about" },

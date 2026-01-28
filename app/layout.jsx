@@ -1,19 +1,13 @@
 import './globals.css'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
 import { LoadingProvider } from '@/components/loading-store'
 
-const inter = Inter({ 
+const poppins = Poppins({ 
   subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+  weight: ['300', '400', '500', '600', '700', '800'],
   display: 'swap',
 })
 

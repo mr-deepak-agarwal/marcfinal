@@ -44,14 +44,14 @@ const ContactSection = () => {
       id="contact"
       data-testid="contact-section"
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#1D342F' }}
+      style={{ backgroundColor: '#4E9141' }}
     >
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1D342F] via-[#243d37] to-[#1D342F]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#4E9141] via-[#5a9e4a] to-[#4E9141]" />
       
       {/* Decorative elements */}
-      <div className="absolute top-20 left-0 w-[400px] h-[400px] bg-[#4E9141]/5 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#5D9F94]/5 rounded-full blur-[150px]" />
+      <div className="absolute top-20 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#C2DDB4]/10 rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">

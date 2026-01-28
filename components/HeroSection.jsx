@@ -15,7 +15,7 @@ const HeroSection = () => {
     <section 
       data-testid="hero-section"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#5FBB46' }}
+      style={{ backgroundColor: '#4E9141' }}
     >
       {/* ===== GEOMETRIC SHAPES BACKGROUND ===== */}
       <svg

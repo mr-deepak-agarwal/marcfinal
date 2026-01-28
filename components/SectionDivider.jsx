@@ -22,7 +22,7 @@ const SectionDivider = ({ title, variant = 'default' }) => {
       data-testid={`section-divider-${title?.toLowerCase().replace(/\s+/g, '-') || 'default'}`}
       className="w-full py-4 flex items-center justify-center"
       style={{ 
-        background: 'linear-gradient(90deg, #FF9933, #FFB366, #FF9933)' 
+        background: 'linear-gradient(90deg, #B45309, #D97706, #B45309)' 
       }}
     >
       {title && (

@@ -1,51 +1,55 @@
+'use client'
+
 import React from 'react'
 import { ArrowRight, ArrowUpRight, Calendar } from 'lucide-react'
 import { insights } from '@/data/mock'
 
 const InsightsSection = () => {
   return (
-    <section id="insights" className="py-24 bg-white">
+    <section id="insights" data-testid="insights-section" className="py-24 bg-[#F0F8F6]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold mb-6">
+            <div 
+              data-testid="insights-badge"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
+            >
               Latest Insights
             </div>
 
-            {/* Serif heading */}
-            <h2 className="font-serif text-4xl lg:text-5xl font-medium text-gray-900 mb-4 tracking-tight">
+            {/* Heading */}
+            <h2 
+              data-testid="insights-heading"
+              className="text-4xl lg:text-5xl font-bold text-[#212427] mb-4 tracking-tight"
+            >
               Opinions, Analytics & Thoughts
             </h2>
 
-            <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
+            <p className="text-lg text-[#47635D] max-w-xl leading-relaxed">
               Our team of professionals share insights from industry
               opinions, economic updates to strategic perspectives.
             </p>
           </div>
 
-          <button className="hidden lg:inline-flex items-center gap-2 text-emerald-600 font-semibold text-lg hover:text-emerald-700 transition-colors group mt-6 lg:mt-0">
+          <button 
+            data-testid="insights-view-all-desktop"
+            className="hidden lg:inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group mt-6 lg:mt-0"
+          >
             View All Insights
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 
-        {/* ================= INSIGHTS GRID ================= */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        {/* ================= INSIGHTS GRID - SYMMETRICAL ================= */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {insights.map((insight, index) => (
             <article
               key={insight.id}
-              className={`group cursor-pointer ${
-                index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''
-              }`}
+              data-testid={`insight-card-${index}`}
+              className="group cursor-pointer"
             >
-              <div
-                className={`relative rounded-3xl overflow-hidden ${
-                  index === 0
-                    ? 'h-full min-h-[500px]'
-                    : 'h-[280px]'
-                }`}
-              >
+              <div className="relative rounded-2xl overflow-hidden h-[320px] bg-white shadow-md border border-[#C2DDB4]/20 hover:shadow-xl hover:border-[#5FBB46]/30 transition-all duration-500">
                 {/* Image */}
                 <img
                   src={insight.image}
@@ -54,39 +58,33 @@ const InsightsSection = () => {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/40 to-transparent group-hover:from-[#1D342F]/95 transition-all duration-500" />
 
                 {/* ================= CONTENT ================= */}
-                <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-[#5FBB46] text-white text-xs font-semibold">
                       {insight.category}
                     </span>
-                    <span className="flex items-center gap-1 text-white/70 text-sm">
+                    <span className="flex items-center gap-1 text-white/80 text-sm">
                       <Calendar className="w-4 h-4" />
                       {insight.date}
                     </span>
                   </div>
 
-                  {/* Serif insight title */}
-                  <h3
-                    className={`font-serif text-white mb-3 transition-colors group-hover:text-emerald-300 tracking-tight ${
-                      index === 0
-                        ? 'text-2xl lg:text-3xl font-medium'
-                        : 'text-xl font-medium'
-                    }`}
-                  >
+                  {/* Insight title */}
+                  <h3 className="text-xl font-bold text-white mb-3 transition-colors group-hover:text-[#C2DDB4] tracking-tight leading-snug">
                     {insight.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 text-emerald-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex items-center gap-2 text-[#C2DDB4] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span>Read More</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
 
                 {/* Hover Arrow */}
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-emerald-500">
+                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#5FBB46]">
                   <ArrowUpRight className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -96,7 +94,10 @@ const InsightsSection = () => {
 
         {/* ================= MOBILE CTA ================= */}
         <div className="lg:hidden mt-8 text-center">
-          <button className="inline-flex items-center gap-2 text-emerald-600 font-semibold text-lg hover:text-emerald-700 transition-colors group">
+          <button 
+            data-testid="insights-view-all-mobile"
+            className="inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
+          >
             View All Insights
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>

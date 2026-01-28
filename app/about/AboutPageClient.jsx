@@ -95,14 +95,14 @@ const NavigationDots = ({ activeSection, onNavigate }) => {
           className="group relative flex items-center justify-end"
           aria-label={`Go to ${section}`}
         >
-          <span className={`absolute right-10 px-4 py-2 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap capitalize shadow-lg ${isLightBg ? 'bg-white text-gray-900' : 'bg-gray-900 text-white'}`}>
+          <span className={`absolute right-10 px-4 py-2 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap capitalize shadow-lg ${isLightBg ? 'bg-white text-#1D342F' : 'bg-#1D342F text-white'}`}>
             {section === 'cta' ? 'Contact' : section}
           </span>
           <div className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
             activeSection === i 
-              ? 'scale-150 bg-emerald-500 ring-4 ring-emerald-500/30' 
+              ? 'scale-150 bg-#4E9141 ring-4 ring-#4E9141/30' 
               : isLightBg 
-                ? 'bg-gray-500 hover:bg-gray-700 hover:scale-125' 
+                ? 'bg-#5D9F94 hover:bg-#47635D hover:scale-125' 
                 : 'bg-white/50 hover:bg-white hover:scale-125'
           }`} />
         </button>
@@ -114,13 +114,13 @@ const NavigationDots = ({ activeSection, onNavigate }) => {
 const HeroBentoSection = () => {
   return (
     <section id="hero" className="snap-section bg-mesh relative overflow-hidden px-6 lg:px-8">
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[150px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-teal-500/15 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-#4E9141/20 rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-#5D9F94/15 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
       
       <div className="max-w-7xl w-full mx-auto relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 auto-rows-[140px] lg:auto-rows-[160px]">
           
-          <div className="col-span-2 row-span-2 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden group">
+          <div className="col-span-2 row-span-2 bg-gradient-to-br from-#4E9141 via-#3d7334 to-#1D342F rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-700">
               <Image
                 src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg"
@@ -132,21 +132,21 @@ const HeroBentoSection = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-#1D342F/80 via-transparent to-transparent" />
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-emerald-200 text-sm font-medium mb-5">
-                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-#C2DDB4 text-sm font-medium mb-5">
+                <span className="w-2 h-2 bg-#5FBB46 rounded-full animate-pulse" />
                 About MARC
               </div>
               <h1 className="font-serif text-4xl lg:text-6xl font-medium text-white leading-tight tracking-tight">
                 We Shape<br />
-                <span className="text-emerald-300">Decisions</span><br />
+                <span className="text-#8CC978">Decisions</span><br />
                 For the Better
               </h1>
             </div>
             
-            <p className="text-emerald-100/80 text-lg relative z-10 hidden lg:block">
+            <p className="text-#C2DDB4/80 text-lg relative z-10 hidden lg:block">
               Global strategy consultancy working with business leaders to seize competitive advantage.
             </p>
           </div>
@@ -154,40 +154,40 @@ const HeroBentoSection = () => {
           {stats.map((stat, i) => (
             <div 
               key={i} 
-              className="col-span-1 row-span-1 bg-gray-900 rounded-2xl p-5 flex flex-col justify-center items-center border border-gray-800 hover:border-emerald-500/50 transition-all duration-500 group hover:scale-105 cursor-pointer"
+              className="col-span-1 row-span-1 bg-#1D342F rounded-2xl p-5 flex flex-col justify-center items-center border border-#2a4a43 hover:border-#4E9141/50 transition-all duration-500 group hover:scale-105 cursor-pointer"
             >
-              <stat.icon className="w-7 h-7 text-emerald-400 mb-2 group-hover:scale-110 transition-transform" />
+              <stat.icon className="w-7 h-7 text-#5FBB46 mb-2 group-hover:scale-110 transition-transform" />
               <span className="text-4xl lg:text-5xl font-serif font-medium text-white">{stat.value}</span>
-              <span className="text-gray-400 text-sm mt-1">{stat.label}</span>
+              <span className="text-#47635D text-sm mt-1">{stat.label}</span>
             </div>
           ))}
 
-          <div className="col-span-1 lg:col-span-2 row-span-1 bg-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-800 hover:border-emerald-500/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
-            <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Eye className="w-7 h-7 text-emerald-400 group-hover:scale-110 transition-transform" />
+          <div className="col-span-1 lg:col-span-2 row-span-1 bg-#1D342F rounded-2xl p-5 lg:p-6 border border-#2a4a43 hover:border-#4E9141/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
+            <div className="w-14 h-14 bg-#4E9141/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Eye className="w-7 h-7 text-#5FBB46 group-hover:scale-110 transition-transform" />
             </div>
             <div>
               <h3 className="text-xl font-serif text-white mb-1">Our Vision</h3>
-              <p className="text-gray-400 text-sm leading-relaxed hidden lg:block">Creating an ecosystem of financial awareness for an improved economy.</p>
+              <p className="text-#47635D text-sm leading-relaxed hidden lg:block">Creating an ecosystem of financial awareness for an improved economy.</p>
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-2 row-span-1 bg-gray-900 rounded-2xl p-5 lg:p-6 border border-gray-800 hover:border-emerald-500/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
-            <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Compass className="w-7 h-7 text-emerald-400 group-hover:scale-110 transition-transform" />
+          <div className="col-span-1 lg:col-span-2 row-span-1 bg-#1D342F rounded-2xl p-5 lg:p-6 border border-#2a4a43 hover:border-#4E9141/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
+            <div className="w-14 h-14 bg-#4E9141/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Compass className="w-7 h-7 text-#5FBB46 group-hover:scale-110 transition-transform" />
             </div>
             <div>
               <h3 className="text-xl font-serif text-white mb-1">Our Mission</h3>
-              <p className="text-gray-400 text-sm leading-relaxed hidden lg:block">Partner with clients at all stages to deliver excellence.</p>
+              <p className="text-#47635D text-sm leading-relaxed hidden lg:block">Partner with clients at all stages to deliver excellence.</p>
             </div>
           </div>
 
         </div>
 
         <div className="mt-10 text-center">
-          <p className="text-gray-500 text-sm mb-3">Scroll to explore</p>
-          <div className="w-8 h-14 border-2 border-gray-600 rounded-full mx-auto flex justify-center pt-3">
-            <div className="w-1.5 h-3 bg-emerald-500 rounded-full animate-bounce" />
+          <p className="text-#5D9F94 text-sm mb-3">Scroll to explore</p>
+          <div className="w-8 h-14 border-2 border-#5D9F94 rounded-full mx-auto flex justify-center pt-3">
+            <div className="w-1.5 h-3 bg-#4E9141 rounded-full animate-bounce" />
           </div>
         </div>
       </div>
@@ -197,16 +197,16 @@ const HeroBentoSection = () => {
 
 const JourneySection = () => {
   return (
-    <section id="journey" className="snap-section bg-gray-950 relative overflow-hidden px-6 lg:px-8">
+    <section id="journey" className="snap-section bg-#1D342F relative overflow-hidden px-6 lg:px-8">
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="text-center mb-14">
-          <span className="text-emerald-400 text-sm tracking-[0.3em] uppercase font-medium">Our Journey</span>
+          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Our Journey</span>
           <h2 className="font-serif text-5xl lg:text-7xl font-medium text-white mt-4">
-            14 Years of <span className="text-emerald-400">Excellence</span>
+            14 Years of <span className="text-#5FBB46">Excellence</span>
           </h2>
         </div>
 
@@ -214,7 +214,7 @@ const JourneySection = () => {
           {timeline.map((item, i) => (
             <div 
               key={i} 
-              className="rounded-2xl p-6 lg:p-7 transform hover:scale-105 transition-all duration-500 cursor-pointer bg-gradient-to-br from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 relative overflow-hidden group"
+              className="rounded-2xl p-6 lg:p-7 transform hover:scale-105 transition-all duration-500 cursor-pointer bg-gradient-to-br from-#4E9141 to-#3d7334 hover:from-#4E9141 hover:to-#3d7334 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span className="text-5xl lg:text-6xl font-serif font-bold text-white/30">{item.year}</span>
@@ -224,7 +224,7 @@ const JourneySection = () => {
           ))}
         </div>
 
-        <div className="hidden lg:block relative h-1.5 bg-gradient-to-r from-emerald-900 via-emerald-500 to-emerald-300 rounded-full mt-10 mx-8" />
+        <div className="hidden lg:block relative h-1.5 bg-gradient-to-r from-#1D342F via-#4E9141 to-#8CC978 rounded-full mt-10 mx-8" />
       </div>
     </section>
   )
@@ -232,19 +232,19 @@ const JourneySection = () => {
 
 const TeamSection = ({ selectedMember, setSelectedMember }) => {
   return (
-    <section id="team" className="snap-section bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 relative overflow-hidden px-6 lg:px-8">
+    <section id="team" className="snap-section bg-gradient-to-br from-#1D342F via-#1D342F to-#2a4a43 relative overflow-hidden px-6 lg:px-8">
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="text-center mb-10">
-          <span className="text-emerald-400 text-sm tracking-[0.3em] uppercase font-medium">Our People</span>
+          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Our People</span>
           <h2 className="font-serif text-5xl lg:text-6xl font-medium text-white mt-4">
-            Leadership <span className="text-emerald-400">Team</span>
+            Leadership <span className="text-#5FBB46">Team</span>
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           <div className="order-2 lg:order-1">
             {selectedMember !== null ? (
-              <div className="bg-gray-800/50 rounded-3xl p-8 border border-gray-700 backdrop-blur-sm">
+              <div className="bg-#2a4a43/50 rounded-3xl p-8 border border-#47635D backdrop-blur-sm">
                 <div className="flex items-start gap-6">
                   <div className="relative w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0">
                     <Image
@@ -259,12 +259,12 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-serif text-2xl text-white">{directors[selectedMember].name}</h3>
-                    <p className="text-emerald-400 font-medium text-lg mb-3">{directors[selectedMember].role}</p>
+                    <p className="text-#5FBB46 font-medium text-lg mb-3">{directors[selectedMember].role}</p>
                     <a 
                       href={directors[selectedMember].linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-gray-400 hover:text-emerald-400 transition-colors text-sm"
+                      className="inline-flex items-center gap-2 text-#47635D hover:text-#5FBB46 transition-colors text-sm"
                     >
                       <Linkedin className="w-4 h-4" />
                       LinkedIn Profile
@@ -272,23 +272,23 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                   </div>
                 </div>
                 
-                <p className="text-gray-300 text-base leading-relaxed mt-6">{directors[selectedMember].bio}</p>
+                <p className="text-#B4DAD3 text-base leading-relaxed mt-6">{directors[selectedMember].bio}</p>
                 
                 <div className="flex flex-wrap gap-2 mt-6">
                   {directors[selectedMember].credentials.map((cred, i) => (
-                    <span key={i} className="px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium">
+                    <span key={i} className="px-4 py-2 bg-#4E9141/20 text-#8CC978 rounded-full text-sm font-medium">
                       {cred}
                     </span>
                   ))}
                 </div>
               </div>
             ) : (
-              <div className="bg-gray-800/30 rounded-3xl p-10 border border-gray-700/50 text-center backdrop-blur-sm">
-                <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-10 h-10 text-emerald-400" />
+              <div className="bg-#2a4a43/30 rounded-3xl p-10 border border-#47635D/50 text-center backdrop-blur-sm">
+                <div className="w-20 h-20 bg-#4E9141/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-10 h-10 text-#5FBB46" />
                 </div>
                 <h3 className="font-serif text-2xl text-white mb-3">Meet Our Leaders</h3>
-                <p className="text-gray-400 text-lg">Click on a team member to view their profile.</p>
+                <p className="text-#47635D text-lg">Click on a team member to view their profile.</p>
               </div>
             )}
           </div>
@@ -299,7 +299,7 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                 <div
                   key={i}
                   onClick={() => setSelectedMember(selectedMember === i ? null : i)}
-                  className={`relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 ${selectedMember === i ? 'ring-4 ring-emerald-500 scale-105' : 'hover:scale-105 hover:ring-2 hover:ring-emerald-500/50'}`}
+                  className={`relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 ${selectedMember === i ? 'ring-4 ring-#4E9141 scale-105' : 'hover:scale-105 hover:ring-2 hover:ring-#4E9141/50'}`}
                 >
                   <div className="relative aspect-[3/4]">
                     <Image
@@ -311,15 +311,15 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                       quality={85}
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-#1D342F via-#1D342F/40 to-transparent" />
                     
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <h4 className="font-serif text-lg text-white leading-tight">{director.name}</h4>
-                      <p className="text-emerald-400 text-sm">{director.role}</p>
+                      <p className="text-#5FBB46 text-sm">{director.role}</p>
                     </div>
 
                     {selectedMember === i && (
-                      <div className="absolute top-3 right-3 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                      <div className="absolute top-3 right-3 w-8 h-8 bg-#4E9141 rounded-full flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -343,9 +343,9 @@ const ClientsSection = () => {
     <section id="clients" className="snap-section bg-white relative overflow-hidden px-6 lg:px-8">
       <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-10">
-          <span className="text-emerald-600 text-sm tracking-[0.3em] uppercase font-medium">Our Clients</span>
-          <h2 className="font-serif text-5xl lg:text-6xl font-medium text-gray-900 mt-4">
-            Trusted by <span className="text-emerald-600">500+</span> Companies
+          <span className="text-#4E9141 text-sm tracking-[0.3em] uppercase font-medium">Our Clients</span>
+          <h2 className="font-serif text-5xl lg:text-6xl font-medium text-#1D342F mt-4">
+            Trusted by <span className="text-#4E9141">500+</span> Companies
           </h2>
         </div>
 
@@ -356,8 +356,8 @@ const ClientsSection = () => {
             { value: '98%', label: 'Client Satisfaction' },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="font-serif text-5xl lg:text-6xl font-medium text-emerald-600">{stat.value}</div>
-              <div className="text-gray-600 text-base mt-1">{stat.label}</div>
+              <div className="font-serif text-5xl lg:text-6xl font-medium text-#4E9141">{stat.value}</div>
+              <div className="text-#5D9F94 text-base mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -367,7 +367,7 @@ const ClientsSection = () => {
             {duplicatedClients.map((client, i) => (
               <div 
                 key={i} 
-                className="flex-shrink-0 w-48 h-24 bg-gray-50 rounded-xl flex items-center justify-center p-5 border border-gray-200 hover:border-emerald-400 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                className="flex-shrink-0 w-48 h-24 bg-#F7FFF5 rounded-xl flex items-center justify-center p-5 border border-#C2DDB4 hover:border-#5FBB46 hover:shadow-lg transition-all duration-300 cursor-pointer group"
               >
                 <img 
                   src={client.logo} 
@@ -385,7 +385,7 @@ const ClientsSection = () => {
             {[...duplicatedClients].reverse().map((client, i) => (
               <div 
                 key={i} 
-                className="flex-shrink-0 w-48 h-24 bg-gray-50 rounded-xl flex items-center justify-center p-5 border border-gray-200 hover:border-emerald-400 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                className="flex-shrink-0 w-48 h-24 bg-#F7FFF5 rounded-xl flex items-center justify-center p-5 border border-#C2DDB4 hover:border-#5FBB46 hover:shadow-lg transition-all duration-300 cursor-pointer group"
               >
                 <img 
                   src={client.logo} 
@@ -404,14 +404,14 @@ const ClientsSection = () => {
 
 const LocationsSection = () => {
   return (
-    <section id="locations" className="snap-section bg-gradient-to-br from-emerald-900 via-emerald-950 to-gray-900 relative overflow-hidden px-6 lg:px-8">
+    <section id="locations" className="snap-section bg-gradient-to-br from-#1D342F via-#1D342F to-#1D342F relative overflow-hidden px-6 lg:px-8">
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="text-center mb-12">
-          <span className="text-emerald-400 text-sm tracking-[0.3em] uppercase font-medium">Global Presence</span>
+          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Global Presence</span>
           <h2 className="font-serif text-5xl lg:text-6xl font-medium text-white mt-4">
-            Across <span className="text-emerald-400">3 Continents</span>
+            Across <span className="text-#5FBB46">3 Continents</span>
           </h2>
-          <p className="text-emerald-100/60 mt-4 max-w-2xl mx-auto text-lg">
+          <p className="text-#C2DDB4/60 mt-4 max-w-2xl mx-auto text-lg">
             Our local presence gives us an edge with regional expertise and professional knowledge.
           </p>
         </div>
@@ -420,12 +420,12 @@ const LocationsSection = () => {
           {locations.map((loc, i) => (
             <div 
               key={i}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10 hover:border-emerald-400/50 hover:bg-white/15 transition-all duration-300 cursor-pointer"
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10 hover:border-#5FBB46/50 hover:bg-white/15 transition-all duration-300 cursor-pointer"
             >
               <span className="text-4xl mb-3 block">{loc.flag}</span>
               <h4 className="font-serif text-xl text-white mb-1">{loc.city}</h4>
-              <p className="text-emerald-400 text-sm mb-3">{loc.country}</p>
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${loc.type === 'Headquarters' ? 'bg-emerald-500' : loc.type === 'USA Office' ? 'bg-blue-500' : loc.type === 'Partner' ? 'bg-purple-500' : 'bg-gray-600'}`}>
+              <p className="text-#5FBB46 text-sm mb-3">{loc.country}</p>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${loc.type === 'Headquarters' ? 'bg-#4E9141' : loc.type === 'USA Office' ? 'bg-blue-500' : loc.type === 'Partner' ? 'bg-purple-500' : 'bg-#5D9F94'}`}>
                 {loc.type}
               </span>
             </div>
@@ -440,22 +440,22 @@ const CTASection = () => {
   return (
     <section id="cta" className="snap-section bg-mesh relative overflow-hidden px-6 lg:px-8">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/20 rounded-full blur-[180px] animate-pulse-glow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-#4E9141/20 rounded-full blur-[180px] animate-pulse-glow" />
       </div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <h2 className="font-serif text-5xl lg:text-7xl font-medium text-white mb-6 leading-tight">
           Ready to make<br />
-          <span className="text-emerald-400">better decisions?</span>
+          <span className="text-#5FBB46">better decisions?</span>
         </h2>
-        <p className="text-gray-400 text-xl lg:text-2xl mb-12 max-w-2xl mx-auto">
+        <p className="text-#47635D text-xl lg:text-2xl mb-12 max-w-2xl mx-auto">
           Let us help you solve your toughest challenges and realize your greatest ambitions.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
           <Link
             href="/#contact"
-            className="w-full sm:w-auto px-12 py-5 bg-emerald-500 text-white rounded-2xl font-semibold text-lg hover:bg-emerald-400 transition-all duration-300 shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:-translate-y-1 flex items-center justify-center gap-3 group"
+            className="w-full sm:w-auto px-12 py-5 bg-#4E9141 text-white rounded-2xl font-semibold text-lg hover:bg-#5FBB46 transition-all duration-300 shadow-xl shadow-#4E9141/30 hover:shadow-#4E9141/50 hover:-translate-y-1 flex items-center justify-center gap-3 group"
           >
             Schedule Consultation
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -516,7 +516,7 @@ export default function AboutPageClient() {
   }
 
   return (
-    <div className="h-screen bg-gray-950 overflow-hidden">
+    <div className="h-screen bg-#1D342F overflow-hidden">
 
       
       <div ref={containerRef} className="snap-container scrollbar-hide">

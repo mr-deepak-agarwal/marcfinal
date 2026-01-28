@@ -101,34 +101,34 @@ export default function MarketResearchOptionB() {
    
 
       {/* Hero Section - Clean & Editorial */}
-      <section className="relative min-h-[85vh] flex items-center bg-gray-50">
+      <section className="relative min-h-[85vh] flex items-center bg-#F7FFF5">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-emerald-50 to-transparent" />
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-#F7FFF5 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 py-20 relative z-10 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-[2px] bg-emerald-600" />
-                <span className="text-emerald-600 font-medium tracking-wide uppercase text-sm">Market Research</span>
+                <div className="w-12 h-[2px] bg-#4E9141" />
+                <span className="text-#4E9141 font-medium tracking-wide uppercase text-sm">Market Research</span>
               </div>
               
-              <h1 className="font-serif text-4xl lg:text-6xl font-medium text-gray-900 leading-[1.1] mb-8">
+              <h1 className="font-serif text-4xl lg:text-6xl font-medium text-#1D342F leading-[1.1] mb-8">
                 Navigate the Indian Market with
-                <span className="text-emerald-600"> Data-Driven Clarity</span>
+                <span className="text-#4E9141"> Data-Driven Clarity</span>
               </h1>
               
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-xl">
+              <p className="text-#5D9F94 text-lg leading-relaxed mb-10 max-w-xl">
                 Deep insights into customer behavior, market trends, competitive landscape, and commercial feasibility. We empower confident decisions for market entry, expansion, and sustainable growth.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-all group">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-#4E9141 text-white rounded-lg font-semibold hover:bg-#3d7334 transition-all group">
                   Start Your Project
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-emerald-600 hover:text-emerald-600 transition-all">
+                <Link href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-#B4DAD3 text-#47635D rounded-lg font-semibold hover:border-#4E9141 hover:text-#4E9141 transition-all">
                   Our Methodology
                 </Link>
               </div>
@@ -136,25 +136,25 @@ export default function MarketResearchOptionB() {
 
             {/* Right - Stats Card */}
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-10 border border-gray-100">
-                <h3 className="font-serif text-2xl text-gray-900 mb-8">Research Excellence</h3>
+              <div className="bg-white rounded-2xl shadow-2xl p-10 border border-#F0F8F6">
+                <h3 className="font-serif text-2xl text-#1D342F mb-8">Research Excellence</h3>
                 <div className="grid grid-cols-2 gap-8">
                   {stats.map((stat, i) => (
                     <div key={i} className="text-center">
-                      <div className="font-serif text-4xl font-bold text-emerald-600">{stat.value}</div>
-                      <div className="text-gray-500 text-sm mt-1">{stat.label}</div>
+                      <div className="font-serif text-4xl font-bold text-#4E9141">{stat.value}</div>
+                      <div className="text-#5D9F94 text-sm mt-1">{stat.label}</div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 pt-8 border-t border-gray-100">
-                  <p className="text-gray-600 text-sm">
+                <div className="mt-8 pt-8 border-t border-#F0F8F6">
+                  <p className="text-#5D9F94 text-sm">
                     Trusted by leading Indian and global companies for strategic market intelligence.
                   </p>
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-emerald-100 rounded-2xl -z-10" />
-              <div className="absolute -top-6 -left-6 w-16 h-16 border-2 border-emerald-200 rounded-xl -z-10" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-#C2DDB4 rounded-2xl -z-10" />
+              <div className="absolute -top-6 -left-6 w-16 h-16 border-2 border-#C2DDB4 rounded-xl -z-10" />
             </div>
           </div>
         </div>
@@ -166,11 +166,11 @@ export default function MarketResearchOptionB() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {valueProps.map((item, i) => (
               <div key={i} className="group">
-                <div className="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors">
-                  <item.icon className="w-7 h-7 text-emerald-600" />
+                <div className="w-14 h-14 bg-#F7FFF5 rounded-xl flex items-center justify-center mb-5 group-hover:bg-#C2DDB4 transition-colors">
+                  <item.icon className="w-7 h-7 text-#4E9141" />
                 </div>
-                <h3 className="font-serif text-xl text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="font-serif text-xl text-#1D342F mb-2">{item.title}</h3>
+                <p className="text-#5D9F94 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -178,17 +178,17 @@ export default function MarketResearchOptionB() {
       </section>
 
       {/* Methodology - Vertical Timeline */}
-      <section id="methodology" className="py-24 bg-gray-50">
+      <section id="methodology" className="py-24 bg-#F7FFF5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mb-16">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-[2px] bg-emerald-600" />
-              <span className="text-emerald-600 font-medium tracking-wide uppercase text-sm">Our Approach</span>
+              <div className="w-12 h-[2px] bg-#4E9141" />
+              <span className="text-#4E9141 font-medium tracking-wide uppercase text-sm">Our Approach</span>
             </div>
-            <h2 className="font-serif text-3xl lg:text-5xl font-medium text-gray-900 mb-6">
+            <h2 className="font-serif text-3xl lg:text-5xl font-medium text-#1D342F mb-6">
               Rigorous, Insight-Led Methodology
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-#5D9F94 text-lg">
               We combine deep sector expertise with strong on-ground intelligence. Our work is defined by precision, analytical rigor, and a commitment to partnering with clients for confident decisions.
             </p>
           </div>
@@ -197,13 +197,13 @@ export default function MarketResearchOptionB() {
             {methodology.map((step, i) => (
               <div key={i} className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-full bg-emerald-600 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-#4E9141 flex items-center justify-center">
                     <span className="font-serif text-xl font-bold text-white">{step.num}</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-gray-600">{step.desc}</p>
+                  <h3 className="font-serif text-xl text-#1D342F mb-2">{step.title}</h3>
+                  <p className="text-#5D9F94">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -216,29 +216,29 @@ export default function MarketResearchOptionB() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-[2px] bg-emerald-600" />
-              <span className="text-emerald-600 font-medium tracking-wide uppercase text-sm">Services</span>
-              <div className="w-12 h-[2px] bg-emerald-600" />
+              <div className="w-12 h-[2px] bg-#4E9141" />
+              <span className="text-#4E9141 font-medium tracking-wide uppercase text-sm">Services</span>
+              <div className="w-12 h-[2px] bg-#4E9141" />
             </div>
-            <h2 className="font-serif text-3xl lg:text-5xl font-medium text-gray-900">
+            <h2 className="font-serif text-3xl lg:text-5xl font-medium text-#1D342F">
               Key Research Services
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group border border-transparent hover:border-emerald-100">
+              <div key={i} className="bg-#F7FFF5 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group border border-transparent hover:border-#C2DDB4">
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center group-hover:shadow-md transition-shadow">
-                    <service.icon className="w-7 h-7 text-emerald-600" />
+                    <service.icon className="w-7 h-7 text-#4E9141" />
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
+                  <ArrowUpRight className="w-5 h-5 text-#47635D group-hover:text-#4E9141 transition-colors" />
                 </div>
-                <h3 className="font-serif text-2xl text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.desc}</p>
+                <h3 className="font-serif text-2xl text-#1D342F mb-3">{service.title}</h3>
+                <p className="text-#5D9F94 mb-6">{service.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {service.features.map((feature, j) => (
-                    <span key={j} className="px-3 py-1 bg-white text-gray-600 rounded-full text-sm border border-gray-200">
+                    <span key={j} className="px-3 py-1 bg-white text-#5D9F94 rounded-full text-sm border border-#C2DDB4">
                       {feature}
                     </span>
                   ))}
@@ -250,19 +250,19 @@ export default function MarketResearchOptionB() {
       </section>
 
       {/* Case Studies */}
-      <section className="py-24 bg-gray-900">
+      <section className="py-24 bg-#1D342F">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-[2px] bg-emerald-400" />
-                <span className="text-emerald-400 font-medium tracking-wide uppercase text-sm">Case Studies</span>
+                <div className="w-12 h-[2px] bg-#5FBB46" />
+                <span className="text-#5FBB46 font-medium tracking-wide uppercase text-sm">Case Studies</span>
               </div>
               <h2 className="font-serif text-3xl lg:text-5xl font-medium text-white">
                 Success Stories
               </h2>
             </div>
-            <Link href="/case-studies" className="mt-6 lg:mt-0 inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+            <Link href="/case-studies" className="mt-6 lg:mt-0 inline-flex items-center gap-2 text-#5FBB46 hover:text-#8CC978 font-medium transition-colors">
               View All Case Studies <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -272,18 +272,18 @@ export default function MarketResearchOptionB() {
               <div key={i} className="group cursor-pointer">
                 <div className="relative h-56 rounded-xl overflow-hidden mb-6">
                   <img src={study.image} alt={study.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-#1D342F/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex gap-2 mb-2">
                       {study.tags.map((tag, j) => (
-                        <span key={j} className="px-2 py-1 bg-emerald-500/80 text-white rounded text-xs">{tag}</span>
+                        <span key={j} className="px-2 py-1 bg-#4E9141/80 text-white rounded text-xs">{tag}</span>
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-emerald-400 text-sm font-medium mb-2">{study.client}</p>
-                <h3 className="font-serif text-xl text-white mb-3 group-hover:text-emerald-400 transition-colors">{study.title}</h3>
-                <p className="text-gray-400 text-sm">{study.desc}</p>
+                <p className="text-#5FBB46 text-sm font-medium mb-2">{study.client}</p>
+                <h3 className="font-serif text-xl text-white mb-3 group-hover:text-#5FBB46 transition-colors">{study.title}</h3>
+                <p className="text-#47635D text-sm">{study.desc}</p>
               </div>
             ))}
           </div>
@@ -294,23 +294,23 @@ export default function MarketResearchOptionB() {
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-gray-900">
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-#1D342F">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-#C2DDB4">
             {faqs.map((faq, i) => (
               <div key={i} className="py-6">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-start justify-between text-left"
                 >
-                  <span className="font-medium text-gray-900 pr-8">{faq.q}</span>
-                  <ChevronDown className={`w-5 h-5 text-emerald-600 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                  <span className="font-medium text-#1D342F pr-8">{faq.q}</span>
+                  <ChevronDown className={`w-5 h-5 text-#4E9141 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
                 {openFaq === i && (
-                  <p className="mt-4 text-gray-600 pr-12">{faq.a}</p>
+                  <p className="mt-4 text-#5D9F94 pr-12">{faq.a}</p>
                 )}
               </div>
             ))}
@@ -319,16 +319,16 @@ export default function MarketResearchOptionB() {
       </section>
 
       {/* CTA - Clean */}
-      <section className="py-24 bg-emerald-600">
+      <section className="py-24 bg-#4E9141">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl lg:text-5xl font-medium text-white mb-6">
             Ready to Make Informed Decisions?
           </h2>
-          <p className="text-emerald-100 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-#C2DDB4 text-lg mb-10 max-w-2xl mx-auto">
             Partner with MARC for market research that delivers clarity, confidence, and actionable strategies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-emerald-700 rounded-lg font-semibold hover:bg-gray-100 transition-all group">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-#3d7334 rounded-lg font-semibold hover:bg-#F0F8F6 transition-all group">
               Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

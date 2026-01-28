@@ -56,8 +56,8 @@ const industries = [
     title: 'E-Commerce & Retail',
     shortDesc: 'Inventory management and successful sales channels.',
     fullDesc: 'The E-commerce industry revolutionized the business world. Its impact has transformed consumer behaviour patterns and supply chain functions on a large scale. MARC provides market research, deal advisory, and financial analysis.',
-    color: 'from-emerald-500 to-teal-600',
-    bgColor: 'bg-emerald-50',
+    color: 'from-#4E9141 to-teal-600',
+    bgColor: 'bg-#F7FFF5',
     stat: '4.1%',
     statLabel: 'FMCG via E-Commerce'
   },
@@ -89,8 +89,8 @@ const industries = [
     title: 'Healthcare',
     shortDesc: 'Research analysis for pharma companies and healthcare systems.',
     fullDesc: 'The advent of COVID-19, better understanding of mental health and rapid digitization are transforming healthcare. Our professionals assist with strategic advisory, expansion, and customer trend analysis.',
-    color: 'from-teal-500 to-emerald-600',
-    bgColor: 'bg-teal-50',
+    color: 'from-#5D9F94 to-#4E9141',
+    bgColor: 'bg-#F0F8F6',
     stat: '5%',
     statLabel: 'Annual Profit Growth'
   },
@@ -111,7 +111,7 @@ const industries = [
     title: 'Manufacturing & Services',
     shortDesc: 'Quality control, procurement, inventory, and ERP systems.',
     fullDesc: 'In the rapidly changing industrial landscape, products that once were essential often get outdated. Our extensive feasibility studies, research data, and operational guidelines enable success.',
-    color: 'from-slate-500 to-gray-600',
+    color: 'from-#5D9F94 to-#5D9F94',
     bgColor: 'bg-slate-100',
     stat: '54.5',
     statLabel: 'US Manufacturing Index'
@@ -180,9 +180,9 @@ export default function IndustriesPage() {
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-20">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-#F7FFF5">
           {/* Abstract Shapes */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-emerald-100/50 to-transparent" />
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-#C2DDB4/50 to-transparent" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-violet-100/30 to-transparent rounded-full blur-3xl" />
           
           {/* Grid Pattern */}
@@ -195,19 +195,19 @@ export default function IndustriesPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-8 animate-fadeInUp">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-#C2DDB4 text-#3d7334 text-sm font-medium mb-8 animate-fadeInUp">
                 <Building2 className="w-4 h-4" />
                 <span>Industry Expertise</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-#1D342F leading-[1.1] tracking-tight animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 Deep expertise
-                <span className="block mt-2 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                <span className="block mt-2 bg-gradient-to-r from-#4E9141 to-teal-600 bg-clip-text text-transparent">
                   across industries
                 </span>
               </h1>
               
-              <p className="mt-8 text-lg sm:text-xl text-slate-600 max-w-xl leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+              <p className="mt-8 text-lg sm:text-xl text-#5D9F94 max-w-xl leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
                 Working alongside clients on their most critical challenges often results 
                 in new industry perspectives and insights.
               </p>
@@ -215,7 +215,7 @@ export default function IndustriesPage() {
               <div className="mt-10 flex flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
                 <a 
                   href="#industries" 
-                  className="group inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full transition-all duration-300"
+                  className="group inline-flex items-center gap-2 px-8 py-4 bg-#1D342F hover:bg-#2a4a43 text-white font-semibold rounded-full transition-all duration-300"
                   data-testid="explore-industries-btn"
                 >
                   Explore Industries
@@ -233,8 +233,8 @@ export default function IndustriesPage() {
                   style={{ animationDelay: `${i * 0.05}s` }}
                   onClick={() => setActiveIndustry(ind.id)}
                 >
-                  <ind.icon className="w-8 h-8 text-slate-700" />
-                  <span className="text-xs font-medium text-slate-600 text-center leading-tight">{ind.title.split(' ')[0]}</span>
+                  <ind.icon className="w-8 h-8 text-#47635D" />
+                  <span className="text-xs font-medium text-#5D9F94 text-center leading-tight">{ind.title.split(' ')[0]}</span>
                 </div>
               ))}
             </div>
@@ -248,11 +248,11 @@ export default function IndustriesPage() {
         className="py-24 lg:py-32 px-6 lg:px-8 bg-white"
       >
         <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Industries We Serve</span>
-          <h2 className="mt-4 text-4xl lg:text-5xl font-bold text-slate-900">
+          <span className="text-#4E9141 font-semibold text-sm uppercase tracking-wider">Industries We Serve</span>
+          <h2 className="mt-4 text-4xl lg:text-5xl font-bold text-#1D342F">
             Delivering Impact in Every Industry
           </h2>
-          <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          <p className="mt-6 text-lg text-#5D9F94 leading-relaxed max-w-3xl mx-auto">
             MARC brings expertise spanning every possible industry. We know the challenges faced 
             in business environments, hence we turn that challenge into a study—then into a solution 
             for every client.
@@ -271,7 +271,7 @@ export default function IndustriesPage() {
             {industries.map((industry, index) => (
               <div 
                 key={industry.id}
-                className={`group relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-transparent hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden ${activeIndustry === industry.id ? 'ring-2 ring-emerald-500' : ''}`}
+                className={`group relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-transparent hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden ${activeIndustry === industry.id ? 'ring-2 ring-#4E9141' : ''}`}
                 style={{ transitionDelay: `${index * 50}ms` }}
                 onClick={() => handleIndustryClick(industry.id)}
                 data-testid={`industry-card-${industry.id}`}
@@ -282,28 +282,28 @@ export default function IndustriesPage() {
                 <div className="relative z-10">
                   {/* Icon */}
                   <div className={`w-14 h-14 rounded-2xl ${industry.bgColor} group-hover:bg-white/20 flex items-center justify-center mb-6 transition-colors duration-500`}>
-                    <industry.icon className="w-7 h-7 text-slate-700 group-hover:text-white transition-colors duration-500" />
+                    <industry.icon className="w-7 h-7 text-#47635D group-hover:text-white transition-colors duration-500" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-white transition-colors duration-500 mb-3">
+                  <h3 className="text-xl font-bold text-#1D342F group-hover:text-white transition-colors duration-500 mb-3">
                     {industry.title}
                   </h3>
-                  <p className="text-slate-600 group-hover:text-white/90 transition-colors duration-500 text-sm leading-relaxed mb-4">
+                  <p className="text-#5D9F94 group-hover:text-white/90 transition-colors duration-500 text-sm leading-relaxed mb-4">
                     {industry.shortDesc}
                   </p>
 
                   {/* Stat */}
                   <div className="flex items-center justify-between pt-4 border-t border-slate-100 group-hover:border-white/20 transition-colors duration-500">
                     <div>
-                      <div className="text-2xl font-bold text-emerald-600 group-hover:text-white transition-colors duration-500">
+                      <div className="text-2xl font-bold text-#4E9141 group-hover:text-white transition-colors duration-500">
                         {industry.stat}
                       </div>
-                      <div className="text-xs text-slate-500 group-hover:text-white/70 transition-colors duration-500">
+                      <div className="text-xs text-#5D9F94 group-hover:text-white/70 transition-colors duration-500">
                         {industry.statLabel}
                       </div>
                     </div>
-                    <ChevronRight className={`w-5 h-5 text-slate-400 group-hover:text-white transition-all duration-500 ${activeIndustry === industry.id ? 'rotate-90' : ''}`} />
+                    <ChevronRight className={`w-5 h-5 text-#47635D group-hover:text-white transition-all duration-500 ${activeIndustry === industry.id ? 'rotate-90' : ''}`} />
                   </div>
                 </div>
               </div>
@@ -325,26 +325,26 @@ export default function IndustriesPage() {
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <div className={`w-16 h-16 rounded-2xl ${industry.bgColor} flex items-center justify-center`}>
-                      <industry.icon className="w-8 h-8 text-slate-700" />
+                      <industry.icon className="w-8 h-8 text-#47635D" />
                     </div>
                     <div>
-                      <span className="text-emerald-600 text-sm font-semibold uppercase tracking-wider">Industry</span>
-                      <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">{industry.title}</h2>
+                      <span className="text-#4E9141 text-sm font-semibold uppercase tracking-wider">Industry</span>
+                      <h2 className="text-3xl lg:text-4xl font-bold text-#1D342F">{industry.title}</h2>
                     </div>
                   </div>
                   
-                  <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                  <p className="text-lg text-#5D9F94 leading-relaxed mb-8">
                     {industry.fullDesc}
                   </p>
 
                   <div className="flex items-center gap-8">
                     <div>
-                      <div className="text-4xl font-bold text-emerald-600">{industry.stat}</div>
-                      <div className="text-sm text-slate-500">{industry.statLabel}</div>
+                      <div className="text-4xl font-bold text-#4E9141">{industry.stat}</div>
+                      <div className="text-sm text-#5D9F94">{industry.statLabel}</div>
                     </div>
                     <Link 
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-#4E9141 hover:bg-#4E9141 text-white font-semibold rounded-full transition-colors"
                     >
                       Get Consultation
                       <ArrowRight className="w-4 h-4" />
@@ -368,8 +368,8 @@ export default function IndustriesPage() {
       >
         <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
-            <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Success Stories</span>
-            <h2 className="mt-4 text-4xl lg:text-5xl font-bold text-slate-900">
+            <span className="text-#4E9141 font-semibold text-sm uppercase tracking-wider">Success Stories</span>
+            <h2 className="mt-4 text-4xl lg:text-5xl font-bold text-#1D342F">
               Client Highlights
             </h2>
           </div>
@@ -378,14 +378,14 @@ export default function IndustriesPage() {
             {caseHighlights.map((item, index) => (
               <div 
                 key={index}
-                className="group p-6 rounded-2xl bg-[#F5F3EE] hover:bg-emerald-50 border border-slate-100 hover:border-emerald-200 transition-all duration-300"
+                className="group p-6 rounded-2xl bg-[#F5F3EE] hover:bg-#F7FFF5 border border-slate-100 hover:border-#C2DDB4 transition-all duration-300"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-2">
+                <div className="text-xs font-semibold text-#4E9141 uppercase tracking-wider mb-2">
                   {item.industry}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.client}</h3>
-                <p className="text-sm text-slate-600">{item.work}</p>
+                <h3 className="text-lg font-bold text-#1D342F mb-2">{item.client}</h3>
+                <p className="text-sm text-#5D9F94">{item.work}</p>
               </div>
             ))}
           </div>
@@ -395,21 +395,21 @@ export default function IndustriesPage() {
       {/* Why MARC */}
       <section 
         ref={el => observerRefs.current[3] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white"
+        className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-br from-#1D342F via-#2a4a43 to-#1D342F text-white"
       >
         <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-emerald-400 font-semibold text-sm uppercase tracking-wider">Why Choose MARC</span>
+              <span className="text-#5FBB46 font-semibold text-sm uppercase tracking-wider">Why Choose MARC</span>
               <h2 className="mt-4 text-4xl lg:text-5xl font-bold leading-tight">
                 Trusted for creating research frameworks
               </h2>
-              <p className="mt-6 text-lg text-slate-300 leading-relaxed">
+              <p className="mt-6 text-lg text-#B4DAD3 leading-relaxed">
                 MARC is trusted for how well we dwell in creating research frameworks in various 
                 sectors, geographies, and ecologies. Our professionals are ready to dwell into 
                 any sector, albeit new and novel.
               </p>
-              <p className="mt-4 text-emerald-400 font-medium text-lg">
+              <p className="mt-4 text-#5FBB46 font-medium text-lg">
                 We love learning and experimenting.
               </p>
             </div>
@@ -422,8 +422,8 @@ export default function IndustriesPage() {
                 { num: '98%', label: 'Client Satisfaction' }
               ].map((stat, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-center">
-                  <div className="text-4xl font-bold text-emerald-400">{stat.num}</div>
-                  <div className="mt-2 text-sm text-slate-400">{stat.label}</div>
+                  <div className="text-4xl font-bold text-#5FBB46">{stat.num}</div>
+                  <div className="mt-2 text-sm text-#47635D">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -434,15 +434,15 @@ export default function IndustriesPage() {
       {/* CTA Section */}
       <section className="py-24 lg:py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
+          <h2 className="text-3xl lg:text-4xl font-bold text-#1D342F">
             Ready to transform your industry challenge into success?
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-#5D9F94">
             Let us help you navigate your industry's complexities with data-driven insights.
           </p>
           <Link 
             href="/contact" 
-            className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/25"
+            className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-#4E9141 hover:bg-#4E9141 text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-#4E9141/25"
             data-testid="contact-cta-btn"
           >
             Schedule a Consultation

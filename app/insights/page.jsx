@@ -57,11 +57,11 @@ export default function InsightsPage() {
      
 
       {/* Hero Section - Stunning Split Design */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-900 to-emerald-950">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-#1D342F via-#1D342F to-#1D342F">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[150px] animate-pulse" />
-          <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-teal-500/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-#4E9141/20 rounded-full blur-[150px] animate-pulse" />
+          <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-#5D9F94/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         {/* Grid overlay */}
@@ -71,24 +71,24 @@ export default function InsightsPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-#4E9141/10 border border-#4E9141/20 text-#5FBB46 text-sm font-medium mb-8">
                 <BookOpen className="w-4 h-4" />
                 <span>65+ Research Reports</span>
               </div>
 
               <h1 className="font-serif text-5xl lg:text-7xl font-medium text-white leading-[1.05] mb-8">
                 Insights That
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 via-#5D9F94 to-cyan-400">
                   Drive Decisions
                 </span>
               </h1>
 
-              <p className="text-gray-400 text-xl leading-relaxed mb-10 max-w-lg">
+              <p className="text-#47635D text-xl leading-relaxed mb-10 max-w-lg">
                 Deep research, strategic analysis, and industry intelligence from our team of experts. Download reports that power confident business decisions.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="#reports" className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-semibold hover:shadow-2xl hover:shadow-emerald-500/30 transition-all flex items-center gap-2">
+                <Link href="#reports" className="group px-8 py-4 bg-gradient-to-r from-#4E9141 to-#5D9F94 text-white rounded-2xl font-semibold hover:shadow-2xl hover:shadow-#4E9141/30 transition-all flex items-center gap-2">
                   Browse Reports
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -114,27 +114,27 @@ export default function InsightsPage() {
                 >
                   <div className="relative aspect-[4/5]">
                     <img src={insight.image} alt={insight.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-#1D342F via-#1D342F/50 to-transparent" />
                     
                     {insight.new && (
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full">
+                      <div className="absolute top-4 left-4 px-3 py-1 bg-#4E9141 text-white text-xs font-bold rounded-full">
                         NEW
                       </div>
                     )}
 
                     <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <p className="text-emerald-400 text-sm font-medium mb-2 capitalize">{insight.category}</p>
+                      <p className="text-#5FBB46 text-sm font-medium mb-2 capitalize">{insight.category}</p>
                       <h3 className="text-white font-serif text-xl leading-tight">{insight.title}</h3>
-                      <div className="flex items-center gap-2 mt-4 text-gray-400 text-sm">
+                      <div className="flex items-center gap-2 mt-4 text-#47635D text-sm">
                         <Download className="w-4 h-4" />
                         {insight.downloads} downloads
                       </div>
                     </div>
 
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-emerald-500/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 bg-#4E9141/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                        <Download className="w-8 h-8 text-emerald-600" />
+                        <Download className="w-8 h-8 text-#4E9141" />
                       </div>
                     </div>
                   </div>
@@ -144,12 +144,12 @@ export default function InsightsPage() {
               {/* Floating stats */}
               <div className="absolute -left-10 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-white/20">
                 <div className="text-3xl font-bold text-white">65+</div>
-                <div className="text-gray-400 text-sm">Reports</div>
+                <div className="text-#47635D text-sm">Reports</div>
               </div>
 
               <div className="absolute -right-10 bottom-20 bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-white/20">
-                <div className="text-3xl font-bold text-emerald-400">50k+</div>
-                <div className="text-gray-400 text-sm">Downloads</div>
+                <div className="text-3xl font-bold text-#5FBB46">50k+</div>
+                <div className="text-#47635D text-sm">Downloads</div>
               </div>
             </div>
           </div>
@@ -164,16 +164,16 @@ export default function InsightsPage() {
       </section>
 
       {/* Category Pills */}
-      <section id="reports" className="py-12 bg-[#fafafa] sticky top-0 z-40 border-b border-gray-200">
+      <section id="reports" className="py-12 bg-[#fafafa] sticky top-0 z-40 border-b border-#C2DDB4">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
             <div className="relative w-full lg:w-96">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-#47635D" />
               <input
                 type="text"
                 placeholder="Search reports..."
-                className="w-full pl-14 pr-6 py-4 bg-white border border-gray-200 rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 focus:outline-none transition-all text-gray-900"
+                className="w-full pl-14 pr-6 py-4 bg-white border border-#C2DDB4 rounded-2xl focus:border-#4E9141 focus:ring-4 focus:ring-#4E9141/10 focus:outline-none transition-all text-#1D342F"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -187,13 +187,13 @@ export default function InsightsPage() {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                     activeCategory === cat.id
-                      ? 'bg-gray-900 text-white shadow-lg'
-                      : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-#1D342F text-white shadow-lg'
+                      : 'bg-white text-#5D9F94 hover:bg-#F0F8F6 border border-#C2DDB4'
                   }`}
                 >
                   <cat.icon className="w-4 h-4" />
                   {cat.label}
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${activeCategory === cat.id ? 'bg-white/20' : 'bg-gray-100'}`}>
+                  <span className={`px-2 py-0.5 rounded-full text-xs ${activeCategory === cat.id ? 'bg-white/20' : 'bg-#F0F8F6'}`}>
                     {cat.count}
                   </span>
                 </button>
@@ -214,7 +214,7 @@ export default function InsightsPage() {
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className={`relative bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 ${i % 5 === 0 ? 'h-full' : ''}`}>
+                <div className={`relative bg-white rounded-3xl overflow-hidden border border-#F0F8F6 hover:border-#C2DDB4 hover:shadow-2xl hover:shadow-#4E9141/10 transition-all duration-500 ${i % 5 === 0 ? 'h-full' : ''}`}>
                   {/* Image */}
                   <div className={`relative overflow-hidden ${i % 5 === 0 ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
                     <img 
@@ -227,9 +227,9 @@ export default function InsightsPage() {
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex gap-2">
                       {insight.new && (
-                        <span className="px-3 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full">NEW</span>
+                        <span className="px-3 py-1 bg-#4E9141 text-white text-xs font-bold rounded-full">NEW</span>
                       )}
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-medium rounded-full capitalize">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-#47635D text-xs font-medium rounded-full capitalize">
                         {insight.category}
                       </span>
                     </div>
@@ -237,7 +237,7 @@ export default function InsightsPage() {
                     {/* Download button on hover */}
                     <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${hoveredCard === i ? 'opacity-100' : 'opacity-0'}`}>
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                        <Download className="w-7 h-7 text-emerald-600" />
+                        <Download className="w-7 h-7 text-#4E9141" />
                       </div>
                     </div>
 
@@ -252,12 +252,12 @@ export default function InsightsPage() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className={`font-serif text-gray-900 group-hover:text-emerald-600 transition-colors leading-tight ${i % 5 === 0 ? 'text-2xl' : 'text-lg'}`}>
+                    <h3 className={`font-serif text-#1D342F group-hover:text-#4E9141 transition-colors leading-tight ${i % 5 === 0 ? 'text-2xl' : 'text-lg'}`}>
                       {insight.title}
                     </h3>
                     <div className="flex items-center justify-between mt-4">
-                      <span className="text-gray-500 text-sm">PDF Report</span>
-                      <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                      <span className="text-#5D9F94 text-sm">PDF Report</span>
+                      <ArrowUpRight className="w-5 h-5 text-#47635D group-hover:text-#4E9141 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </div>
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export default function InsightsPage() {
 
           {/* Load More */}
           <div className="text-center mt-16">
-            <button className="px-10 py-4 bg-gray-900 text-white rounded-2xl font-semibold hover:bg-gray-800 transition-colors inline-flex items-center gap-2">
+            <button className="px-10 py-4 bg-#1D342F text-white rounded-2xl font-semibold hover:bg-#2a4a43 transition-colors inline-flex items-center gap-2">
               Load More Reports
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -276,16 +276,16 @@ export default function InsightsPage() {
       </section>
 
       {/* Video Insights */}
-      <section id="videos" className="py-24 bg-gray-900">
+      <section id="videos" className="py-24 bg-#1D342F">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-emerald-400 text-sm font-medium tracking-widest uppercase">Video Content</span>
+              <span className="text-#5FBB46 text-sm font-medium tracking-widest uppercase">Video Content</span>
               <h2 className="font-serif text-4xl lg:text-5xl text-white mt-4">
-                Watch Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Insights</span>
+                Watch Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 to-#5D9F94">Insights</span>
               </h2>
             </div>
-            <Link href="#" className="hidden md:flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium">
+            <Link href="#" className="hidden md:flex items-center gap-2 text-#5FBB46 hover:text-#8CC978 font-medium">
               View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -300,7 +300,7 @@ export default function InsightsPage() {
                   {/* Play button */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl">
-                      <Play className="w-8 h-8 text-emerald-600 ml-1" />
+                      <Play className="w-8 h-8 text-#4E9141 ml-1" />
                     </div>
                   </div>
 
@@ -309,7 +309,7 @@ export default function InsightsPage() {
                     {video.duration}
                   </div>
                 </div>
-                <h3 className="font-serif text-xl text-white group-hover:text-emerald-400 transition-colors">
+                <h3 className="font-serif text-xl text-white group-hover:text-#5FBB46 transition-colors">
                   {video.title}
                 </h3>
               </div>
@@ -319,7 +319,7 @@ export default function InsightsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-#4E9141 via-#4E9141 to-#5D9F94 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[100px]" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[80px]" />
@@ -332,10 +332,10 @@ export default function InsightsPage() {
           <h2 className="font-serif text-4xl lg:text-6xl font-medium text-white mb-6">
             Need Custom Research?
           </h2>
-          <p className="text-emerald-100 text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-#C2DDB4 text-xl mb-10 max-w-2xl mx-auto">
             Our team can prepare industry-specific insights tailored to your unique business needs and challenges.
           </p>
-          <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-emerald-700 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl group">
+          <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-#3d7334 rounded-2xl font-semibold text-lg hover:bg-#F0F8F6 transition-all shadow-xl hover:shadow-2xl group">
             Request Custom Report
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </Link>

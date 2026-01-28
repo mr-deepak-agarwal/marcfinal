@@ -34,8 +34,8 @@ const caseStudies = [
     solution: 'Menu engineering, pricing strategy optimization, and customer experience enhancement program',
     outcomes: ['20% revenue growth', '25% improvement in table turnover', 'Enhanced customer retention'],
     image: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?w=800',
-    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
-    bgGradient: 'from-emerald-500/20 to-teal-500/20',
+    gradient: 'from-#5FBB46 via-#5D9F94 to-cyan-500',
+    bgGradient: 'from-#4E9141/20 to-#5D9F94/20',
     featured: true,
   },
   {
@@ -83,8 +83,8 @@ const caseStudies = [
     solution: 'Location scoring model, competitive intelligence, and go-to-market strategy development',
     outcomes: ['Optimal location identified', 'Clear entry roadmap', '40% faster market entry'],
     image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?w=800',
-    gradient: 'from-gray-400 via-slate-500 to-gray-600',
-    bgGradient: 'from-gray-500/20 to-slate-500/20',
+    gradient: 'from-#47635D via-#5D9F94 to-#5D9F94',
+    bgGradient: 'from-#5D9F94/20 to-#5D9F94/20',
   },
 ]
 
@@ -113,7 +113,7 @@ export default function CaseStudiesPage() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-transparent rounded-full blur-[200px] animate-pulse" />
+          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-#4E9141/20 via-#5D9F94/10 to-transparent rounded-full blur-[200px] animate-pulse" />
           <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-cyan-500/15 via-blue-500/10 to-transparent rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
@@ -124,24 +124,24 @@ export default function CaseStudiesPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 backdrop-blur-sm mb-8">
-                <Sparkles className="w-5 h-5 text-emerald-400" />
-                <span className="text-emerald-400 font-medium">Real Results, Real Impact</span>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-#4E9141/10 to-#5D9F94/10 border border-#4E9141/20 backdrop-blur-sm mb-8">
+                <Sparkles className="w-5 h-5 text-#5FBB46" />
+                <span className="text-#5FBB46 font-medium">Real Results, Real Impact</span>
               </div>
 
               <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-medium text-white leading-[0.95] tracking-tight mb-8">
                 Success
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 via-#5D9F94 to-cyan-400">
                   Stories
                 </span>
               </h1>
 
-              <p className="text-gray-400 text-xl leading-relaxed mb-10 max-w-lg">
+              <p className="text-#47635D text-xl leading-relaxed mb-10 max-w-lg">
                 From challenge to triumph — discover how we deliver measurable business impact through data-driven insights and strategic expertise.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="#cases" className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-semibold hover:shadow-2xl hover:shadow-emerald-500/30 transition-all flex items-center gap-2">
+                <Link href="#cases" className="group px-8 py-4 bg-gradient-to-r from-#4E9141 to-#5D9F94 text-white rounded-2xl font-semibold hover:shadow-2xl hover:shadow-#4E9141/30 transition-all flex items-center gap-2">
                   Explore Cases
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -156,12 +156,12 @@ export default function CaseStudiesPage() {
               {stats.map((stat, i) => (
                 <div 
                   key={i}
-                  className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/[0.06] hover:border-emerald-500/30 transition-all duration-500"
+                  className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/[0.06] hover:border-#4E9141/30 transition-all duration-500"
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <stat.icon className="w-10 h-10 text-emerald-400 mb-4" />
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-#4E9141/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <stat.icon className="w-10 h-10 text-#5FBB46 mb-4" />
                   <div className="font-serif text-4xl lg:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-gray-400">{stat.label}</div>
+                  <div className="text-#47635D">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -170,21 +170,21 @@ export default function CaseStudiesPage() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-          <span className="text-gray-500 text-xs uppercase tracking-widest">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-700 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-emerald-500 rounded-full animate-bounce" />
+          <span className="text-#5D9F94 text-xs uppercase tracking-widest">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-#47635D rounded-full flex justify-center pt-2">
+            <div className="w-1 h-2 bg-#4E9141 rounded-full animate-bounce" />
           </div>
         </div>
       </section>
 
       {/* Featured Case Studies - Large Cards */}
       <section className="py-24 relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-#4E9141/50 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-emerald-400 text-sm font-medium tracking-widest uppercase">Featured</span>
+              <span className="text-#5FBB46 text-sm font-medium tracking-widest uppercase">Featured</span>
               <h2 className="font-serif text-4xl text-white mt-4">Highlighted Success Stories</h2>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function CaseStudiesPage() {
                 {/* Background Image */}
                 <div className="relative aspect-[4/3]">
                   <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-gray-900/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-#1D342F via-#1D342F/60 to-#1D342F/20" />
                   
                   {/* Colored gradient overlay on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${study.gradient} opacity-0 group-hover:opacity-40 transition-all duration-500`} />
@@ -225,8 +225,8 @@ export default function CaseStudiesPage() {
 
                   {/* Bottom */}
                   <div>
-                    <p className="text-emerald-400 font-medium mb-2">{study.client}</p>
-                    <h3 className="font-serif text-2xl lg:text-3xl text-white mb-4 group-hover:text-emerald-300 transition-colors">
+                    <p className="text-#5FBB46 font-medium mb-2">{study.client}</p>
+                    <h3 className="font-serif text-2xl lg:text-3xl text-white mb-4 group-hover:text-#8CC978 transition-colors">
                       {study.title}
                     </h3>
                     
@@ -234,7 +234,7 @@ export default function CaseStudiesPage() {
                     <div className="flex flex-wrap gap-3">
                       {study.outcomes.map((outcome, j) => (
                         <div key={j} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                          <CheckCircle2 className="w-4 h-4 text-#5FBB46" />
                           <span className="text-white text-sm">{outcome}</span>
                         </div>
                       ))}
@@ -248,12 +248,12 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Bar */}
-      <section id="cases" className="py-6 bg-gray-900/50 sticky top-0 z-40 backdrop-blur-xl border-y border-white/5">
+      <section id="cases" className="py-6 bg-#1D342F/50 sticky top-0 z-40 backdrop-blur-xl border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Filter className="w-5 h-5 text-gray-400" />
-              <span className="text-gray-400 text-sm">Filter by industry:</span>
+              <Filter className="w-5 h-5 text-#47635D" />
+              <span className="text-#47635D text-sm">Filter by industry:</span>
             </div>
             <div className="flex gap-2 overflow-x-auto">
               {industries.map((industry) => (
@@ -262,8 +262,8 @@ export default function CaseStudiesPage() {
                   onClick={() => setActiveIndustry(industry)}
                   className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                     activeIndustry === industry
-                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white'
-                      : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10'
+                      ? 'bg-gradient-to-r from-#4E9141 to-#5D9F94 text-white'
+                      : 'bg-white/5 text-#47635D hover:text-white hover:bg-white/10 border border-white/10'
                   }`}
                 >
                   {industry}
@@ -315,15 +315,15 @@ export default function CaseStudiesPage() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <p className="text-emerald-400 text-sm font-medium mb-2">{study.client}</p>
-                    <h3 className="font-serif text-xl text-white mb-3 group-hover:text-emerald-300 transition-colors line-clamp-2">
+                    <p className="text-#5FBB46 text-sm font-medium mb-2">{study.client}</p>
+                    <h3 className="font-serif text-xl text-white mb-3 group-hover:text-#8CC978 transition-colors line-clamp-2">
                       {study.title}
                     </h3>
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">{study.challenge}</p>
+                    <p className="text-#47635D text-sm mb-4 line-clamp-2">{study.challenge}</p>
                     
                     {/* Key outcome */}
                     <div className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-lg">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-#5FBB46 flex-shrink-0" />
                       <span className="text-white text-sm">{study.outcomes[0]}</span>
                     </div>
                   </div>
@@ -335,12 +335,12 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900/50 to-[#0a0a0a]">
+      <section className="py-24 bg-gradient-to-b from-#1D342F/50 to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-emerald-400 text-sm font-medium tracking-widest uppercase">Our Approach</span>
+            <span className="text-#5FBB46 text-sm font-medium tracking-widest uppercase">Our Approach</span>
             <h2 className="font-serif text-4xl lg:text-5xl text-white mt-4">
-              How We Deliver <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Results</span>
+              How We Deliver <span className="text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 to-#5D9F94">Results</span>
             </h2>
           </div>
 
@@ -353,13 +353,13 @@ export default function CaseStudiesPage() {
             ].map((step, i) => (
               <div key={i} className="text-center group">
                 <div className="w-20 h-20 mx-auto mb-6 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-#4E9141 to-#5D9F94 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
                   <div className="absolute inset-0 bg-[#0a0a0a] rounded-2xl flex items-center justify-center">
-                    <span className="font-serif text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">{step.num}</span>
+                    <span className="font-serif text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 to-#5D9F94">{step.num}</span>
                   </div>
                 </div>
                 <h3 className="font-serif text-xl text-white mb-3">{step.title}</h3>
-                <p className="text-gray-400 text-sm">{step.desc}</p>
+                <p className="text-#47635D text-sm">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -368,7 +368,7 @@ export default function CaseStudiesPage() {
 
       {/* CTA */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-#4E9141 via-#4E9141 to-#5D9F94" />
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[150px]" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]" />
@@ -378,11 +378,11 @@ export default function CaseStudiesPage() {
           <h2 className="font-serif text-4xl lg:text-6xl font-medium text-white mb-6">
             Ready to Write Your Success Story?
           </h2>
-          <p className="text-emerald-100 text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-#C2DDB4 text-xl mb-10 max-w-2xl mx-auto">
             Partner with MARC to transform your business challenges into measurable achievements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-emerald-700 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl group">
+            <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-#3d7334 rounded-2xl font-semibold text-lg hover:bg-#F0F8F6 transition-all shadow-xl hover:shadow-2xl group">
               Start Your Project
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </Link>

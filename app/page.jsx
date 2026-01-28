@@ -22,22 +22,22 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <main>
         <HeroSection />
-        <SectionDivider title="About Us" variant="line-text" />
+        <SectionDivider title="About Us" variant="watermark" />
         <AboutSection />
-        <SectionDivider title="Our Services" variant="line-text" />
+        <SectionDivider title="Services" variant="watermark" />
         <ServicesSection />
-        <SectionDivider title="Industries" variant="line-text" />
+        <SectionDivider title="Industries" variant="watermark" />
         <IndustriesSection />
-        <SectionDivider title="Why Choose Us" variant="line-text" />
+        <SectionDivider title="Why Us" variant="watermark" />
         <WhyUsSection />
-        <SectionDivider title="Testimonials" variant="line-text" />
+        <SectionDivider title="Testimonials" variant="watermark" />
         <TestimonialsSection />
         <ClientsSection />
-        <SectionDivider title="Insights" variant="line-text" />
+        <SectionDivider title="Insights" variant="watermark" />
         <InsightsSection />
-        <SectionDivider title="Careers" variant="line-text" />
+        <SectionDivider title="Careers" variant="watermark" />
         <CareersSection />
-        <SectionDivider title="Contact" variant="line-text" />
+        <SectionDivider title="Contact" variant="watermark" />
         <ContactSection />
       </main>
       <Footer />

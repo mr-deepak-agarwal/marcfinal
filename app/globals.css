@@ -9,7 +9,7 @@
 /* ========================================= */
 :root {
   /* Primary Colors */
-  --marc-bright-green: #5FBB46;
+  --marc-bright-green: #4E9141;
   --marc-turquoise: #5D9F94;
   
   /* Secondary Colors */
@@ -23,8 +23,8 @@
   --marc-dark-grey: #212427;
   
   /* Accent Colors */
-  --marc-saffron: #FF9933;
-  --marc-amber: #F59E0B;
+  --marc-saffron: #B45309;
+  --marc-amber: #B45309;
   
   /* Infographic Greens */
   --marc-green-1: #8CC978;

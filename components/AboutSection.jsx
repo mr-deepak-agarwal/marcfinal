@@ -56,16 +56,16 @@ const AboutSection = () => {
             </div>
 
             {/* Floating Mission Card */}
-            <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl p-6 shadow-xl max-w-xs hidden lg:block border border-[#C2DDB4]/30">
+            <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl p-6 shadow-xl max-w-xs hidden lg:block border border-[#4E9141]/20">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center">
-                  <Target className="w-7 h-7 text-[#4E9141]" />
+                <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center">
+                  <Target className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <div className="text-base font-semibold text-[#212427] tracking-tight">
+                  <div className="text-base font-semibold text-[#1D342F] tracking-tight">
                     Our Mission
                   </div>
-                  <div className="text-sm text-[#5D9F94]">
+                  <div className="text-sm text-[#4E9141]">
                     Enabling better decisions
                   </div>
                 </div>

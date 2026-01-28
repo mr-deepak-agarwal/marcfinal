@@ -99,12 +99,12 @@ export default function CareersPage() {
     <div className="min-h-screen bg-[#F7FFF5]" data-testid="careers-page">
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 bg-[#1D342F]">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 bg-[#4E9141]">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#4E9141]/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5D9F94]/20 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4E9141]/10 rounded-full blur-[150px]" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[150px]" />
         </div>
         
         {/* Grid Pattern */}

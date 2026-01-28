@@ -158,9 +158,9 @@ export default function CareersPage() {
               { num: '14+', label: 'Years' },
               { num: '8', label: 'Offices' }
             ].map((stat, i) => (
-              <div key={i} className="text-center px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                <div className="text-3xl font-bold text-[#C2DDB4]">{stat.num}</div>
-                <div className="text-sm text-white/60">{stat.label}</div>
+              <div key={i} className="text-center px-6 py-4 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20">
+                <div className="text-3xl font-bold text-white">{stat.num}</div>
+                <div className="text-sm text-white/70">{stat.label}</div>
               </div>
             ))}
           </div>

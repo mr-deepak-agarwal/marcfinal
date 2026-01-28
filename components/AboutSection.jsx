@@ -114,12 +114,12 @@ const AboutSection = () => {
                 <div
                   key={index}
                   data-testid={`feature-${index}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#C2DDB4]/30 hover:bg-[#C2DDB4]/20 hover:border-[#4E9141]/40 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#C2DDB4]/40 hover:bg-[#F7FFF5] hover:border-[#4E9141]/40 transition-colors shadow-sm"
                 >
-                  <div className="w-10 h-10 bg-[#C2DDB4] rounded-lg flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-[#4E9141]" />
+                  <div className="w-10 h-10 bg-[#4E9141] rounded-lg flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-white" />
                   </div>
-                  <span className="font-medium text-[#212427]">
+                  <span className="font-medium text-[#1D342F]">
                     {item.label}
                   </span>
                 </div>

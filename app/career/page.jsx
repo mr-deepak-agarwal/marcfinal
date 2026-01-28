@@ -276,15 +276,15 @@ export default function CareersPage() {
       {/* Life at MARC */}
       <section 
         ref={el => observerRefs.current[3] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-[#1D342F] text-white"
+        className="py-24 lg:py-32 px-6 lg:px-8 bg-[#4E9141] text-white"
       >
         <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center max-w-3xl mx-auto">
-            <span className="text-[#C2DDB4] font-semibold text-sm uppercase tracking-wider">Life at MARC</span>
+            <span className="text-white/80 font-semibold text-sm uppercase tracking-wider">Life at MARC</span>
             <h2 className="mt-4 text-4xl lg:text-5xl font-bold leading-tight">
               We're always looking for diverse talents
             </h2>
-            <p className="mt-6 text-lg text-white/70 leading-relaxed">
+            <p className="mt-6 text-lg text-white/80 leading-relaxed">
               We are a family of passionate and experienced strategic advisors with a leadership team 
               who care deeply about your goals and growth.
             </p>
@@ -298,9 +298,9 @@ export default function CareersPage() {
               { value: '8', label: 'Offices Across India' },
               { value: '100+', label: 'Team Members' }
             ].map((stat, i) => (
-              <div key={i} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                <div className="text-4xl lg:text-5xl font-bold text-[#4E9141]">{stat.value}</div>
-                <div className="mt-2 text-sm text-white/60">{stat.label}</div>
+              <div key={i} className="text-center p-6 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20">
+                <div className="text-4xl lg:text-5xl font-bold text-white">{stat.value}</div>
+                <div className="mt-2 text-sm text-white/70">{stat.label}</div>
               </div>
             ))}
           </div>

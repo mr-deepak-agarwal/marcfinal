@@ -22,22 +22,22 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <main>
         <HeroSection />
-        <SectionDivider title="About Us" variant="side-accent" />
+        <SectionDivider title="About Us" variant="line-text" />
         <AboutSection />
-        <SectionDivider title="Our Services" variant="side-accent" />
+        <SectionDivider title="Our Services" variant="line-text" />
         <ServicesSection />
-        <SectionDivider title="Industries" variant="side-accent" />
+        <SectionDivider title="Industries" variant="line-text" />
         <IndustriesSection />
-        <SectionDivider title="Why Choose Us" variant="side-accent" />
+        <SectionDivider title="Why Choose Us" variant="line-text" />
         <WhyUsSection />
-        <SectionDivider title="Testimonials" variant="side-accent" />
+        <SectionDivider title="Testimonials" variant="line-text" />
         <TestimonialsSection />
         <ClientsSection />
-        <SectionDivider title="Insights" variant="side-accent" />
+        <SectionDivider title="Insights" variant="line-text" />
         <InsightsSection />
-        <SectionDivider title="Careers" variant="side-accent" />
+        <SectionDivider title="Careers" variant="line-text" />
         <CareersSection />
-        <SectionDivider title="Contact" variant="side-accent" />
+        <SectionDivider title="Contact" variant="line-text" />
         <ContactSection />
       </main>
       <Footer />

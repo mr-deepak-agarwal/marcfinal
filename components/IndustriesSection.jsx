@@ -33,14 +33,14 @@ const IndustriesSection = () => {
       id="industries"
       data-testid="industries-section"
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#1D342F' }}
+      style={{ backgroundColor: '#4E9141' }}
     >
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1D342F] via-[#243d37] to-[#1D342F]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#4E9141] via-[#5a9e4a] to-[#4E9141]" />
       
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#5D9F94]/5 rounded-full blur-[120px]" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/10 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -92,7 +92,7 @@ const IndustriesSection = () => {
                   className={`group relative p-6 rounded-2xl text-left transition-all duration-500 overflow-hidden ${
                     isHovered
                       ? 'bg-white scale-[1.02] shadow-2xl shadow-black/30'
-                      : 'bg-[#2a4a43] hover:bg-[#325850]'
+                      : 'bg-white/15 backdrop-blur-sm hover:bg-white/25'
                   }`}
                 >
                   {/* Hover gradient effect */}
@@ -103,12 +103,12 @@ const IndustriesSection = () => {
                     className={`relative w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
                       isHovered
                         ? 'bg-[#4E9141]'
-                        : 'bg-[#4E9141]/20'
+                        : 'bg-white/20'
                     }`}
                   >
                     <Icon
                       className={`w-6 h-6 transition-colors ${
-                        isHovered ? 'text-white' : 'text-[#4E9141]'
+                        isHovered ? 'text-white' : 'text-white'
                       }`}
                     />
                   </div>

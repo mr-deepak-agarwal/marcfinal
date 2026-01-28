@@ -8,20 +8,26 @@ const ServicesSection = () => {
   const [hoveredService, setHoveredService] = useState(null)
 
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" data-testid="services-section" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold mb-6">
+          <div 
+            data-testid="services-badge"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
+          >
             Our Services
           </div>
 
-          {/* Editorial serif heading */}
-          <h2 className="font-serif text-4xl lg:text-5xl font-medium text-gray-900 mb-6 leading-tight tracking-tight">
+          {/* Heading */}
+          <h2 
+            data-testid="services-heading"
+            className="text-4xl lg:text-5xl font-bold text-[#212427] mb-6 leading-tight tracking-tight"
+          >
             Comprehensive Business Solutions
           </h2>
 
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-[#47635D] leading-relaxed">
             MARC provides actionable answers through our professional strategy
             management consulting and business consulting services tailored to
             meet your specific needs.
@@ -33,6 +39,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
+              data-testid={`service-card-${index}`}
               className="group relative rounded-3xl overflow-hidden cursor-pointer"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
@@ -49,8 +56,8 @@ const ServicesSection = () => {
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
                     hoveredService === index
-                      ? 'bg-emerald-900/80'
-                      : 'bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent'
+                      ? 'bg-[#5FBB46]/85'
+                      : 'bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/50 to-transparent'
                   }`}
                 />
               </div>
@@ -66,19 +73,19 @@ const ServicesSection = () => {
                 >
                   {/* Index */}
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="font-serif text-emerald-400 text-sm font-medium tracking-tight">
+                    <span className="text-[#C2DDB4] text-sm font-semibold tracking-tight">
                       0{index + 1}
                     </span>
-                    <span className="w-8 h-px bg-emerald-400" />
+                    <span className="w-8 h-px bg-[#C2DDB4]" />
                   </div>
 
-                  {/* Serif service title */}
-                  <h3 className="font-serif text-2xl lg:text-3xl font-medium text-white mb-3 leading-snug tracking-tight">
+                  {/* Service title */}
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
 
                   <p
-                    className={`text-white/80 leading-relaxed transition-all duration-500 ${
+                    className={`text-white/90 leading-relaxed transition-all duration-500 ${
                       hoveredService === index
                         ? 'opacity-100 max-h-32'
                         : 'opacity-0 max-h-0'
@@ -92,14 +99,14 @@ const ServicesSection = () => {
                 <div
                   className={`absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
                     hoveredService === index
-                      ? 'bg-emerald-500 scale-110'
+                      ? 'bg-white scale-110'
                       : ''
                   }`}
                 >
                   <ArrowUpRight
                     className={`w-5 h-5 transition-all duration-300 ${
                       hoveredService === index
-                        ? 'text-white rotate-45'
+                        ? 'text-[#5FBB46] rotate-45'
                         : 'text-white'
                     }`}
                   />
@@ -111,7 +118,10 @@ const ServicesSection = () => {
 
         {/* ================= CTA ================= */}
         <div className="mt-12 text-center">
-          <button className="inline-flex items-center gap-2 text-emerald-600 font-semibold text-lg hover:text-emerald-700 transition-colors group">
+          <button 
+            data-testid="services-view-all"
+            className="inline-flex items-center gap-2 text-[#5FBB46] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
+          >
             View All Services
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>

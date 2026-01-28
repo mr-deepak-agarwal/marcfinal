@@ -100,16 +100,16 @@ const ContactSection = () => {
               <a
                 href={`tel:${companyInfo.phone}`}
                 data-testid="contact-phone"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-md transition-all group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-[#C2DDB4]/40 hover:border-[#4E9141]/50 hover:shadow-md transition-all group"
               >
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
-                  <Phone className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-sm text-[#5D9F94] font-medium">
                     Call us
                   </div>
-                  <div className="text-lg font-semibold text-[#212427] tracking-tight">
+                  <div className="text-lg font-semibold text-[#1D342F] tracking-tight">
                     {companyInfo.phone}
                   </div>
                 </div>
@@ -118,16 +118,16 @@ const ContactSection = () => {
               <a
                 href={`mailto:${companyInfo.email}`}
                 data-testid="contact-email"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-md transition-all group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-[#C2DDB4]/40 hover:border-[#4E9141]/50 hover:shadow-md transition-all group"
               >
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
-                  <Mail className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-sm text-[#5D9F94] font-medium">
                     Email us
                   </div>
-                  <div className="text-lg font-semibold text-[#212427] tracking-tight">
+                  <div className="text-lg font-semibold text-[#1D342F] tracking-tight">
                     {companyInfo.email}
                   </div>
                 </div>
@@ -135,30 +135,30 @@ const ContactSection = () => {
 
               <div 
                 data-testid="contact-address"
-                className="flex items-start gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30"
+                className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-[#C2DDB4]/40"
               >
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-[#4E9141]" />
+                <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-sm text-[#5D9F94] font-medium">
                     Headquarters
                   </div>
-                  <div className="text-lg font-semibold text-[#212427] leading-relaxed tracking-tight">
+                  <div className="text-lg font-semibold text-[#1D342F] leading-relaxed tracking-tight">
                     {companyInfo.address}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
-                <div className="w-14 h-14 bg-[#C2DDB4] rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-[#4E9141]" />
+              <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-[#C2DDB4]/40">
+                <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-sm text-[#5D9F94] font-medium">
                     Business Hours
                   </div>
-                  <div className="text-lg font-semibold text-[#212427] tracking-tight">
+                  <div className="text-lg font-semibold text-[#1D342F] tracking-tight">
                     Mon - Sat: 9:00 AM - 6:00 PM IST
                   </div>
                 </div>

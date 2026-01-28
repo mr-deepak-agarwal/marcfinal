@@ -8,150 +8,141 @@ import {
   Instagram,
   Linkedin,
   Youtube,
-  ArrowUp,
+  Phone,
+  Mail,
+  MapPin,
 } from 'lucide-react'
 
-const companyInfo = {
-  phone: '+91 93596 28675',
-  email: 'contact@marcglocal.com',
-  address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourem, Panaji, Goa 403001',
-  socialLinks: {
-    facebook: 'https://www.facebook.com/MARCGlocal/',
-    twitter: 'https://twitter.com/Marcglocal',
-    instagram: 'https://www.instagram.com/marc_glocal/',
-    linkedin: 'https://www.linkedin.com/company/marcglocal/',
-    youtube: 'https://www.youtube.com/channel/UCMg4JaqL7zZ3pLfpfkhRnVQ',
-  },
-}
-
-const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Industries', href: '/industries' },
+const companyLinks = [
   { label: 'Insights', href: '/insights' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Media', href: '/media' },
+  { label: 'Our Clientele', href: '/about#clients' },
 ]
 
 const resourceLinks = [
+  { label: 'Locations', href: '/contact' },
   { label: 'Careers', href: '/career' },
-  { label: 'Media', href: '/media' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Contact Us', href: '/contact' },
+]
+
+const socialLinks = [
+  { icon: Twitter, href: 'https://twitter.com/Marcglocal', label: 'Twitter' },
+  { icon: Facebook, href: 'https://www.facebook.com/MARCGlocal/', label: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/marc_glocal/', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/marcglocal/', label: 'LinkedIn' },
+  { icon: Youtube, href: 'https://www.youtube.com/channel/UCMg4JaqL7zZ3pLfpfkhRnVQ', label: 'YouTube' },
 ]
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const socialIcons = [
-    { icon: Facebook, href: companyInfo.socialLinks.facebook },
-    { icon: Twitter, href: companyInfo.socialLinks.twitter },
-    { icon: Instagram, href: companyInfo.socialLinks.instagram },
-    { icon: Linkedin, href: companyInfo.socialLinks.linkedin },
-    { icon: Youtube, href: companyInfo.socialLinks.youtube },
-  ]
-
   return (
-    <footer data-testid="footer" className="bg-[#1D342F] text-white">
+    <footer data-testid="footer" className="bg-[#F7FFF5] border-t border-[#C2DDB4]/50">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-4 gap-12">
-          {/* Logo Section */}
-          <div className="lg:col-span-2">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          
+          {/* Logo & Description */}
+          <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <div className="text-3xl font-bold tracking-tight">
-                <span className="text-[#4E9141]">M</span>ARC
-              </div>
+              <img 
+                src="/marc_logo.png" 
+                alt="MARC Glocal - Business Consulting Services" 
+                className="h-12"
+              />
             </Link>
-
-            <p className="text-[#B4DAD3] mb-6 max-w-md leading-relaxed">
-              MARC is committed to Delivering Excellence & Partnering Success by driving Economic Growth through actionable insights and strategic consulting.
+            <p className="text-[#47635D] text-sm leading-relaxed mb-6">
+              We offer a wide range of business consulting services that we constantly look to expand.
             </p>
-
+            
             {/* Social Icons */}
             <div className="flex items-center gap-3">
-              {socialIcons.map((social, index) => (
+              {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-testid={`footer-social-${index}`}
-                  className="w-10 h-10 rounded-lg bg-[#47635D] flex items-center justify-center text-[#B4DAD3] hover:bg-[#4E9141] hover:text-white transition-all duration-300"
+                  aria-label={social.label}
+                  data-testid={`footer-social-${social.label.toLowerCase()}`}
+                  className="w-9 h-9 rounded-full bg-[#4E9141] flex items-center justify-center text-white hover:bg-[#3d7334] transition-colors duration-300"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Company Links */}
           <div>
-            <h4 data-testid="footer-quick-links-title" className="text-lg font-semibold mb-6 tracking-tight">Quick Links</h4>
+            <h4 className="text-[#1D342F] font-bold text-lg mb-6">Company</h4>
             <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  {link.href.startsWith('/') && !link.href.includes('#') ? (
-                    <Link
-                      href={link.href}
-                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : link.href.includes('#') ? (
-                    <button
-                      onClick={() => scrollToSection(link.href.replace('/', ''))}
-                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
-                    >
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources & Contact */}
-          <div>
-            <h4 data-testid="footer-resources-title" className="text-lg font-semibold mb-6 tracking-tight">Resources</h4>
-            <ul className="space-y-3 mb-8">
-              {resourceLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#B4DAD3] hover:text-[#4E9141] transition-colors"
+                    className="text-[#47635D] hover:text-[#4E9141] transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
 
-            <h4 className="text-lg font-semibold mb-4 tracking-tight">Contact Us</h4>
-            <ul className="space-y-2 text-[#B4DAD3]">
+          {/* Resources Links */}
+          <div>
+            <h4 className="text-[#1D342F] font-bold text-lg mb-6">Resources</h4>
+            <ul className="space-y-3">
+              {resourceLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[#47635D] hover:text-[#4E9141] transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-[#1D342F] font-bold text-lg mb-6">Get In Touch</h4>
+            <ul className="space-y-4">
               <li>
-                <a href={`tel:${companyInfo.phone}`} className="hover:text-[#4E9141] transition-colors">
-                  {companyInfo.phone}
+                <a 
+                  href="tel:+919359628675" 
+                  className="flex items-start gap-3 text-[#47635D] hover:text-[#4E9141] transition-colors group"
+                >
+                  <Phone className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">+91 93596 28675</span>
                 </a>
               </li>
               <li>
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-[#4E9141] transition-colors">
-                  {companyInfo.email}
+                <a 
+                  href="mailto:contact@marcglocal.com" 
+                  className="flex items-start gap-3 text-[#47635D] hover:text-[#4E9141] transition-colors group"
+                >
+                  <Mail className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">contact@marcglocal.com</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.google.com/maps/dir//2nd+Floor,+CMM+Building,+Above+CMM+Arena+Megastore,+Rua+de+Our%C3%A9m,+Panaji,+Goa+403001"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 text-[#47635D] hover:text-[#4E9141] transition-colors group"
+                >
+                  <MapPin className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                  <span className="text-sm leading-relaxed">
+                    2nd Floor, CMM Building,<br />
+                    Above Sarvaa Restaurant,<br />
+                    Rua de Ourém, Panaji,<br />
+                    Goa 403001
+                  </span>
                 </a>
               </li>
             </ul>
@@ -160,31 +151,19 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#47635D]">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[#5D9F94] text-sm">
-            © {new Date().getFullYear()} Mangal Analytics and Research Consulting (MARC). All Rights Reserved.
+      <div className="border-t border-[#C2DDB4]/50">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[#47635D] text-sm text-center sm:text-left">
+            © {new Date().getFullYear()} Mangal Analytics and Research Consulting (MARC), All Rights Reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm">
-            <Link href="#" className="text-[#5D9F94] hover:text-[#4E9141] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="text-[#5D9F94] hover:text-[#4E9141] transition-colors">
-              Terms of Service
-            </Link>
-          </div>
+          <Link 
+            href="/privacy-policy" 
+            className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors"
+          >
+            Privacy Policy
+          </Link>
         </div>
       </div>
-
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        data-testid="scroll-to-top-btn"
-        className="fixed bottom-8 right-8 w-12 h-12 bg-[#4E9141] text-white rounded-full shadow-lg shadow-[#4E9141]/30 flex items-center justify-center hover:bg-[#4E9141] transition-all duration-300 hover:-translate-y-1 z-50"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </button>
     </footer>
   )
 }

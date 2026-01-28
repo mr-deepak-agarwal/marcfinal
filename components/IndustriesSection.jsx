@@ -31,7 +31,9 @@ const IndustriesSection = () => {
   return (
     <section
       id="industries"
-      className="py-24 bg-emerald-900 relative overflow-hidden"
+      data-testid="industries-section"
+      className="py-24 relative overflow-hidden"
+      style={{ backgroundColor: '#5D9F94' }}
     >
       {/* ================= BACKGROUND PATTERN ================= */}
       <div className="absolute inset-0 opacity-10">
@@ -48,16 +50,22 @@ const IndustriesSection = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* ================= HEADER ================= */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-200 text-sm font-semibold mb-6">
+          <div 
+            data-testid="industries-badge"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-sm font-semibold mb-6"
+          >
             Industries We Serve
           </div>
 
-          {/* Serif heading */}
-          <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-white mb-6 leading-tight">
+          {/* Heading */}
+          <h2 
+            data-testid="industries-heading"
+            className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+          >
             Shaping Better Business Decisions
           </h2>
 
-          <p className="text-lg text-emerald-100/80 max-w-2xl mx-auto">
+          <p className="text-lg text-white/85 max-w-2xl mx-auto">
             MARC combines strategy management consulting and market research to
             help businesses act with clarity and confidence across diverse
             sectors.
@@ -72,35 +80,36 @@ const IndustriesSection = () => {
             return (
               <button
                 key={index}
+                data-testid={`industry-card-${index}`}
                 onClick={() => setActiveIndustry(index)}
                 className={`group p-6 rounded-2xl transition-all duration-500 text-left ${
                   activeIndustry === index
-                    ? 'bg-white text-emerald-900 shadow-2xl shadow-black/20 scale-105'
-                    : 'bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/10'
+                    ? 'bg-white text-[#1D342F] shadow-2xl shadow-black/20 scale-105'
+                    : 'bg-white/15 backdrop-blur-sm text-white hover:bg-white/25 border border-white/15'
                 }`}
               >
                 {/* Icon */}
                 <div
                   className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
                     activeIndustry === index
-                      ? 'bg-emerald-100'
-                      : 'bg-white/10 group-hover:bg-white/20'
+                      ? 'bg-[#C2DDB4]'
+                      : 'bg-white/15 group-hover:bg-white/25'
                   }`}
                 >
                   <Icon
                     className={`w-7 h-7 transition-colors ${
                       activeIndustry === index
-                        ? 'text-emerald-600'
-                        : 'text-emerald-300'
+                        ? 'text-[#4E9141]'
+                        : 'text-[#C2DDB4]'
                     }`}
                   />
                 </div>
 
-                {/* Serif industry title */}
+                {/* Industry title */}
                 <h3
-                  className={`font-serif text-lg font-semibold mb-2 ${
+                  className={`text-lg font-semibold mb-2 ${
                     activeIndustry === index
-                      ? 'text-gray-900'
+                      ? 'text-[#212427]'
                       : 'text-white'
                   }`}
                 >
@@ -117,8 +126,8 @@ const IndustriesSection = () => {
                   <span
                     className={
                       activeIndustry === index
-                        ? 'text-emerald-600'
-                        : 'text-emerald-300'
+                        ? 'text-[#5FBB46]'
+                        : 'text-[#C2DDB4]'
                     }
                   >
                     Learn more
@@ -126,8 +135,8 @@ const IndustriesSection = () => {
                   <ArrowRight
                     className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
                       activeIndustry === index
-                        ? 'text-emerald-600'
-                        : 'text-emerald-300'
+                        ? 'text-[#5FBB46]'
+                        : 'text-[#C2DDB4]'
                     }`}
                   />
                 </div>
@@ -137,8 +146,8 @@ const IndustriesSection = () => {
         </div>
 
         {/* ================= DECORATIVE ELEMENTS ================= */}
-        <div className="absolute top-20 left-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-0 w-80 h-80 bg-emerald-300/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-0 w-96 h-96 bg-[#5FBB46]/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-0 w-80 h-80 bg-[#C2DDB4]/15 rounded-full blur-3xl" />
       </div>
     </section>
   )

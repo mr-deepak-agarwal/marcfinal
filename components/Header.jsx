@@ -29,12 +29,14 @@ const navLinks = [
     label: 'Services',
     href: '/#services',
     children: [
-      { label: 'S1', href: '/s1' },
-      { label: 'S2', href: '/s2' },
+      { label: 'Market Research', href: '/s1' },
+      { label: 'Growth Strategy', href: '/s2' },
     ],
   },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights' },
+  { label: 'Media', href: '/media' },
+  { label: 'Careers', href: '/career' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -60,22 +62,22 @@ export default function Header() {
   return (
     <>
       {/* Top Info Bar */}
-      <div className="hidden lg:block bg-emerald-900 text-white py-2">
+      <div className="hidden lg:block bg-[#1D342F] text-white py-2">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2">
+            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2 hover:text-[#5FBB46] transition-colors">
               <Phone size={14} /> {companyInfo.phone}
             </a>
-            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2">
+            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-[#5FBB46] transition-colors">
               <Mail size={14} /> {companyInfo.email}
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noreferrer">
+            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-[#5FBB46] transition-colors">
               <Linkedin size={16} />
             </a>
-            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noreferrer">
+            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-[#5FBB46] transition-colors">
               <Twitter size={16} />
             </a>
           </div>
@@ -84,6 +86,7 @@ export default function Header() {
 
       {/* Header */}
       <header
+        data-testid="header"
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled ? 'bg-white/95 backdrop-blur shadow-md' : 'bg-white'
         }`}
@@ -91,7 +94,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" onClick={() => handleClick('/')}>
+            <Link href="/" onClick={() => handleClick('/')} data-testid="header-logo">
               <img src="/marc_logo.png" alt="MARC Logo" className="h-10" />
             </Link>
 
@@ -103,19 +106,19 @@ export default function Header() {
                     <Link
                       href={link.href}
                       onClick={() => handleClick(link.href)}
-                      className="px-4 py-2 flex items-center gap-1 text-sm font-medium text-gray-800 rounded-lg hover:bg-emerald-50 hover:text-emerald-600"
+                      className="px-4 py-2 flex items-center gap-1 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#5FBB46]"
                     >
                       {link.label}
                       <ChevronDown size={16} />
                     </Link>
 
-                    <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-[#C2DDB4]/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                       {link.children.map((child) => (
                         <Link
                           key={child.label}
                           href={child.href}
                           onClick={() => handleClick(child.href)}
-                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                          className="block px-4 py-3 text-sm text-[#212427] hover:bg-[#C2DDB4]/20 hover:text-[#5FBB46] first:rounded-t-xl last:rounded-b-xl"
                         >
                           {child.label}
                         </Link>
@@ -127,7 +130,7 @@ export default function Header() {
                     key={link.label}
                     href={link.href}
                     onClick={() => handleClick(link.href)}
-                    className="px-4 py-2 text-sm font-medium text-gray-800 rounded-lg hover:bg-emerald-50 hover:text-emerald-600"
+                    className="px-4 py-2 text-sm font-medium text-[#212427] rounded-lg hover:bg-[#C2DDB4]/30 hover:text-[#5FBB46]"
                   >
                     {link.label}
                   </Link>
@@ -135,7 +138,10 @@ export default function Header() {
               )}
 
               <Link href="/contact" onClick={() => handleClick('/contact')}>
-                <Button className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6">
+                <Button 
+                  data-testid="header-cta"
+                  className="ml-4 bg-[#5FBB46] hover:bg-[#4E9141] text-white px-6"
+                >
                   Get in Touch
                 </Button>
               </Link>
@@ -143,6 +149,7 @@ export default function Header() {
 
             {/* Mobile Toggle */}
             <button
+              data-testid="mobile-menu-toggle"
               className="lg:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -153,14 +160,14 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white shadow-lg">
+          <div className="lg:hidden bg-white shadow-lg border-t border-[#C2DDB4]/20">
             <div className="px-6 py-4 space-y-2">
               {navLinks.map((link) =>
                 link.children ? (
                   <div key={link.label}>
                     <button
                       onClick={() => setIsServicesOpen(!isServicesOpen)}
-                      className="w-full flex justify-between items-center px-4 py-3 font-medium text-gray-800 hover:bg-emerald-50 rounded-lg"
+                      className="w-full flex justify-between items-center px-4 py-3 font-medium text-[#212427] hover:bg-[#C2DDB4]/20 rounded-lg"
                     >
                       {link.label}
                       <ChevronDown
@@ -177,7 +184,7 @@ export default function Header() {
                             key={child.label}
                             href={child.href}
                             onClick={() => handleClick(child.href)}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:text-emerald-600"
+                            className="block px-4 py-2 text-sm text-[#47635D] hover:text-[#5FBB46]"
                           >
                             {child.label}
                           </Link>
@@ -190,7 +197,7 @@ export default function Header() {
                     key={link.label}
                     href={link.href}
                     onClick={() => handleClick(link.href)}
-                    className="block px-4 py-3 font-medium text-gray-800 hover:bg-emerald-50 rounded-lg"
+                    className="block px-4 py-3 font-medium text-[#212427] hover:bg-[#C2DDB4]/20 rounded-lg"
                   >
                     {link.label}
                   </Link>
@@ -198,7 +205,7 @@ export default function Header() {
               )}
 
               <Link href="/contact" onClick={() => handleClick('/contact')}>
-                <Button className="w-full mt-4 bg-emerald-600 text-white">
+                <Button className="w-full mt-4 bg-[#5FBB46] hover:bg-[#4E9141] text-white">
                   Get in Touch
                 </Button>
               </Link>

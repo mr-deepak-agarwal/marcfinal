@@ -48,7 +48,7 @@ const ServicesSection = () => {
               <div className="relative h-[400px]">
                 <img
                   src={service.image}
-                  alt={service.title}
+                  alt={service.imageAlt || service.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 

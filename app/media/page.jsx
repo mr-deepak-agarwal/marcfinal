@@ -159,8 +159,8 @@ export default function MediaPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900">
           {/* Animated Orbs */}
           <div className="absolute inset-0">
-            <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/15 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-20 right-20 w-96 h-96 bg-#4E9141/20 rounded-full blur-[120px] animate-pulse" />
+            <div className="absolute bottom-20 left-20 w-80 h-80 bg-#5D9F94/15 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
           
           {/* Newspaper Pattern */}
@@ -173,14 +173,14 @@ export default function MediaPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-300 text-sm font-medium mb-8 animate-fadeInUp">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-#8CC978 text-sm font-medium mb-8 animate-fadeInUp">
               <Newspaper className="w-4 h-4" />
               <span>Media & Press</span>
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
               In the news,
-              <span className="block mt-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-#5FBB46 via-#5D9F94 to-cyan-400 bg-clip-text text-transparent">
                 taking the spotlight
               </span>
             </h1>
@@ -231,9 +231,9 @@ export default function MediaPage() {
         <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Media Contacts */}
-            <div className="group p-8 rounded-3xl bg-white border border-slate-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mb-6">
-                <Mail className="w-7 h-7 text-emerald-600" />
+            <div className="group p-8 rounded-3xl bg-white border border-slate-100 hover:border-#C2DDB4 hover:shadow-xl transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-#C2DDB4 flex items-center justify-center mb-6">
+                <Mail className="w-7 h-7 text-#4E9141" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Media Contacts</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
@@ -242,7 +242,7 @@ export default function MediaPage() {
               </p>
               <a 
                 href="mailto:contact@marcglocal.com" 
-                className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-#4E9141 font-semibold hover:gap-3 transition-all"
                 data-testid="media-contact-link"
               >
                 contact@marcglocal.com
@@ -251,9 +251,9 @@ export default function MediaPage() {
             </div>
 
             {/* Press Kit */}
-            <div className="group p-8 rounded-3xl bg-white border border-slate-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mb-6">
-                <Download className="w-7 h-7 text-emerald-600" />
+            <div className="group p-8 rounded-3xl bg-white border border-slate-100 hover:border-#C2DDB4 hover:shadow-xl transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-#C2DDB4 flex items-center justify-center mb-6">
+                <Download className="w-7 h-7 text-#4E9141" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Press Kit</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
@@ -261,7 +261,7 @@ export default function MediaPage() {
                 Usage rights are reserved with MARC.
               </p>
               <button 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-#4E9141 hover:bg-#4E9141 text-white font-semibold rounded-full transition-colors"
                 data-testid="download-press-kit-btn"
               >
                 <Download className="w-4 h-4" />
@@ -282,7 +282,7 @@ export default function MediaPage() {
           {/* Tabs */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-12">
             <div>
-              <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Media Coverage</span>
+              <span className="text-#4E9141 font-semibold text-sm uppercase tracking-wider">Media Coverage</span>
               <h2 className="mt-2 text-4xl lg:text-5xl font-bold text-slate-900">
                 {activeTab === 'news' ? 'MARC in the News' : 'Press Releases'}
               </h2>
@@ -316,12 +316,12 @@ export default function MediaPage() {
           {activeTab === 'news' && newsArticles[0] && (
             <a 
               href={newsArticles[0].link}
-              className="group block mb-12 p-8 rounded-3xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 hover:shadow-xl transition-all duration-300"
+              className="group block mb-12 p-8 rounded-3xl bg-gradient-to-br from-#F7FFF5 to-#F0F8F6 border border-#C2DDB4 hover:shadow-xl transition-all duration-300"
               data-testid="featured-article"
             >
               <div className="flex items-center gap-4 mb-4">
-                <Award className="w-5 h-5 text-emerald-600" />
-                <span className="text-sm font-medium text-emerald-600">Featured</span>
+                <Award className="w-5 h-5 text-#4E9141" />
+                <span className="text-sm font-medium text-#4E9141">Featured</span>
               </div>
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
@@ -329,15 +329,15 @@ export default function MediaPage() {
                     <Calendar className="w-4 h-4" />
                     <span>{newsArticles[0].date}</span>
                     <span className="w-1 h-1 rounded-full bg-slate-300" />
-                    <span className="text-emerald-600 font-medium">{newsArticles[0].source}</span>
+                    <span className="text-#4E9141 font-medium">{newsArticles[0].source}</span>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-4">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 group-hover:text-#4E9141 transition-colors mb-4">
                     {newsArticles[0].title}
                   </h3>
                   <p className="text-slate-600 leading-relaxed">{newsArticles[0].excerpt}</p>
                 </div>
                 <div className="flex items-center justify-center lg:justify-end">
-                  <span className="inline-flex items-center gap-2 text-emerald-600 font-semibold group-hover:gap-3 transition-all">
+                  <span className="inline-flex items-center gap-2 text-#4E9141 font-semibold group-hover:gap-3 transition-all">
                     Read Article
                     <ExternalLink className="w-5 h-5" />
                   </span>
@@ -360,10 +360,10 @@ export default function MediaPage() {
                   <Calendar className="w-3.5 h-3.5" />
                   <span>{article.date}</span>
                 </div>
-                <div className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-2">
+                <div className="text-xs font-semibold text-#4E9141 uppercase tracking-wider mb-2">
                   {article.source}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-3 line-clamp-2">
+                <h3 className="text-lg font-bold text-slate-900 group-hover:text-#4E9141 transition-colors mb-3 line-clamp-2">
                   {article.title}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed line-clamp-3 flex-grow">
@@ -371,7 +371,7 @@ export default function MediaPage() {
                 </p>
                 <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-sm text-slate-500">Read more</span>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-#4E9141 group-hover:translate-x-1 transition-all" />
                 </div>
               </a>
             ))}
@@ -387,7 +387,7 @@ export default function MediaPage() {
       >
         <div className={`max-w-4xl mx-auto transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
-            <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Journey</span>
+            <span className="text-#4E9141 font-semibold text-sm uppercase tracking-wider">Journey</span>
             <h2 className="mt-4 text-4xl lg:text-5xl font-bold text-slate-900">
               Milestones & Recognition
             </h2>
@@ -395,7 +395,7 @@ export default function MediaPage() {
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-500 via-teal-500 to-cyan-500" />
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-#4E9141 via-#5D9F94 to-cyan-500" />
 
             <div className="space-y-8">
               {[
@@ -409,10 +409,10 @@ export default function MediaPage() {
               ].map((item, index) => (
                 <div key={index} className="relative pl-20" style={{ transitionDelay: `${index * 100}ms` }}>
                   {/* Timeline Dot */}
-                  <div className="absolute left-6 w-4 h-4 rounded-full bg-white border-4 border-emerald-500 -translate-x-1/2" />
+                  <div className="absolute left-6 w-4 h-4 rounded-full bg-white border-4 border-#4E9141 -translate-x-1/2" />
                   
                   <div className="p-6 rounded-2xl bg-white border border-slate-100 hover:shadow-lg transition-all duration-300">
-                    <div className="text-sm font-bold text-emerald-600 mb-1">{item.year}</div>
+                    <div className="text-sm font-bold text-#4E9141 mb-1">{item.year}</div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
                     <p className="text-slate-600">{item.desc}</p>
                   </div>

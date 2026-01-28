@@ -51,4 +51,7 @@ next-env.d.ts
 Thumbs.db
 
 # CRA leftovers (delete these from project too)
-/plugins/
+/plugins/-e 
+# Environment files
+*.env
+*.env.*

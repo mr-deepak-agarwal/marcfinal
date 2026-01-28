@@ -94,13 +94,13 @@ const CareersSection = () => {
                 <div
                   key={index}
                   data-testid={`value-card-${index}`}
-                  className="group flex items-start gap-4 p-5 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300"
+                  className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#C2DDB4]/40 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-12 h-12 bg-[#C2DDB4] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#4E9141] transition-colors">
-                    <value.icon className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 bg-[#4E9141] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <value.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-[#212427] mb-1">
+                    <h3 className="text-lg font-semibold text-[#1D342F] mb-1">
                       {value.title}
                     </h3>
                     <p className="text-[#47635D] text-sm leading-relaxed">

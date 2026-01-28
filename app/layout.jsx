@@ -37,8 +37,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-    <body className="antialiased">
+    <html lang="en" className={poppins.variable}>
+    <body className="antialiased font-sans">
       <LoadingProvider>
           <RouteLoader />
           <Header />

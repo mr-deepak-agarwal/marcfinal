@@ -135,6 +135,14 @@ const insights = [
   },
 ]
 
+// Card stack data for hero animation
+const stackedCards = [
+  { title: 'Healthcare Market Analysis', category: 'Healthcare', downloads: '2.4k', color: '#E8F5E3' },
+  { title: 'Digital Transformation Report', category: 'Technology', downloads: '1.8k', color: '#FEF3C7' },
+  { title: 'Retail Industry Outlook 2026', category: 'Retail', downloads: '3.1k', color: '#DBEAFE' },
+  { title: 'Manufacturing Trends India', category: 'Manufacturing', downloads: '1.5k', color: '#FCE7F3' },
+]
+
 const trendingTopics = [
   'Artificial Intelligence',
   'Market Entry Strategy',
@@ -147,7 +155,16 @@ export default function InsightsPageV2() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [isVisible, setIsVisible] = useState({})
+  const [activeCard, setActiveCard] = useState(0)
   const observerRefs = useRef([])
+
+  // Auto-rotate cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % stackedCards.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const observers = observerRefs.current.map((ref, index) => {
@@ -174,55 +191,153 @@ export default function InsightsPageV2() {
   })
 
   const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
-  const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 3)
+  const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4) // Changed to 4
 
   return (
     <div className="bg-white min-h-screen" data-testid="insights-page-v2">
       
-      {/* ==================== HERO - Clean & Minimal ==================== */}
-      <section className="pt-32 pb-16 bg-white border-b border-gray-100">
+      {/* ==================== HERO with Animated Card Stack ==================== */}
+      <section className="pt-32 pb-20 bg-white border-b border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-10 h-[2px] bg-[#4E9141]" />
-              <span className="text-[#4E9141] font-medium text-sm uppercase tracking-widest">
-                Research & Insights
-              </span>
-            </div>
-            
-            <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] tracking-tight mb-6">
-              Insights that inform better decisions
-            </h1>
-            
-            <p className="text-xl text-[#47635D] leading-relaxed">
-              Deep research, strategic analysis, and industry intelligence 
-              from our team of experts across sectors and geographies.
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-10 h-[2px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-medium text-sm uppercase tracking-widest">
+                  Research & Insights
+                </span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] tracking-tight mb-6">
+                Insights that inform better decisions
+              </h1>
+              
+              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
+                Deep research, strategic analysis, and industry intelligence 
+                from our team of experts across sectors and geographies.
+              </p>
 
-          {/* Quick Stats Row */}
-          <div className="flex flex-wrap gap-12 mt-12 pt-8 border-t border-gray-100">
-            <div>
-              <div className="text-4xl font-bold text-[#4E9141]">65+</div>
-              <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
+              {/* Quick Stats Row */}
+              <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">65+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Downloads</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">11</div>
+                  <div className="text-sm text-[#47635D] mt-1">Industries</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">30+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Countries</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-[#4E9141]">50k+</div>
-              <div className="text-sm text-[#47635D] mt-1">Downloads</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-[#4E9141]">11</div>
-              <div className="text-sm text-[#47635D] mt-1">Industries Covered</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-[#4E9141]">30+</div>
-              <div className="text-sm text-[#47635D] mt-1">Countries</div>
+
+            {/* Right - Animated Card Stack */}
+            <div className="relative h-[450px] hidden lg:block">
+              {/* Background decorative elements */}
+              <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#4E9141]/5 rounded-full blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#5D9F94]/10 rounded-full blur-2xl" />
+              
+              {/* Card Stack */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                {stackedCards.map((card, index) => {
+                  const isActive = index === activeCard
+                  const offset = (index - activeCard + stackedCards.length) % stackedCards.length
+                  
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => setActiveCard(index)}
+                      className="absolute w-72 cursor-pointer transition-all duration-700 ease-out"
+                      style={{
+                        transform: `
+                          translateY(${offset * 12}px) 
+                          translateX(${offset * 8}px) 
+                          rotate(${offset * 2}deg)
+                          scale(${1 - offset * 0.05})
+                        `,
+                        zIndex: stackedCards.length - offset,
+                        opacity: offset > 2 ? 0 : 1,
+                      }}
+                    >
+                      <div 
+                        className={`rounded-2xl p-6 shadow-xl border-2 transition-all duration-500 ${
+                          isActive 
+                            ? 'border-[#4E9141] shadow-[#4E9141]/20' 
+                            : 'border-transparent shadow-black/10'
+                        }`}
+                        style={{ backgroundColor: card.color }}
+                      >
+                        {/* Card Header */}
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="px-3 py-1 bg-white/80 backdrop-blur-sm text-[#4E9141] text-xs font-semibold rounded-full">
+                            {card.category}
+                          </span>
+                          {index === 0 && (
+                            <span className="px-2 py-1 bg-[#4E9141] text-white text-xs font-bold rounded">
+                              NEW
+                            </span>
+                          )}
+                        </div>
+                        
+                        {/* Card Image Placeholder */}
+                        <div className="w-full h-32 bg-white/60 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                          <img 
+                            src={insights[index]?.image || insights[0].image}
+                            alt={card.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        {/* Card Title */}
+                        <h3 className="font-bold text-[#1D342F] text-lg leading-tight mb-3">
+                          {card.title}
+                        </h3>
+                        
+                        {/* Card Footer */}
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-[#47635D] flex items-center gap-1">
+                            <Download className="w-4 h-4" />
+                            {card.downloads}
+                          </span>
+                          <span className="text-[#4E9141] font-medium flex items-center gap-1">
+                            PDF Report
+                            <ArrowUpRight className="w-4 h-4" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Card Navigation Dots */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+                {stackedCards.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveCard(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === activeCard 
+                        ? 'w-6 bg-[#4E9141]' 
+                        : 'bg-[#C2DDB4] hover:bg-[#4E9141]/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== FEATURED INSIGHT ==================== */}
+      {/* ==================== FEATURED INSIGHT - 1 Big + 4 Small ==================== */}
       <section 
         ref={el => observerRefs.current[0] = el}
         className="py-16 bg-[#F7FFF5]"
@@ -235,11 +350,11 @@ export default function InsightsPageV2() {
             </Link>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Main Featured */}
-            <Link href="#" className="group block">
-              <article className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500">
-                <div className="relative aspect-[16/10] overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Main Featured - Full Height */}
+            <Link href="#" className="group block h-full">
+              <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
+                <div className="relative aspect-[16/9] overflow-hidden">
                   <img 
                     src={featuredInsight.image} 
                     alt={featuredInsight.title}
@@ -256,7 +371,7 @@ export default function InsightsPageV2() {
                     </span>
                   </div>
                 </div>
-                <div className="p-8">
+                <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center gap-4 text-sm text-[#47635D] mb-4">
                     <span>{featuredInsight.date}</span>
                     <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
@@ -268,10 +383,10 @@ export default function InsightsPageV2() {
                   <h3 className="text-2xl font-bold text-[#1D342F] mb-3 group-hover:text-[#4E9141] transition-colors leading-tight">
                     {featuredInsight.title}
                   </h3>
-                  <p className="text-[#47635D] leading-relaxed mb-6">
+                  <p className="text-[#47635D] leading-relaxed mb-6 flex-1">
                     {featuredInsight.excerpt}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     <span className="text-sm text-[#47635D]">{featuredInsight.downloads} downloads</span>
                     <span className="inline-flex items-center gap-2 text-[#4E9141] font-semibold group-hover:gap-3 transition-all">
                       Read Report <ArrowUpRight className="w-4 h-4" />
@@ -281,31 +396,33 @@ export default function InsightsPageV2() {
               </article>
             </Link>
 
-            {/* Latest 3 */}
-            <div className="flex flex-col gap-4">
+            {/* Right Side - 4 Reports in 2x2 Grid */}
+            <div className="grid grid-cols-2 gap-4">
               {latestInsights.map((insight, i) => (
                 <Link key={i} href="#" className="group block">
-                  <article className="flex gap-5 p-5 bg-white rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300">
-                    <div className="relative w-32 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                  <article className="h-full bg-white rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+                    <div className="relative aspect-[16/10] overflow-hidden">
                       <img 
                         src={insight.image} 
                         alt={insight.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       {insight.new && (
-                        <div className="absolute top-2 left-2 w-2 h-2 bg-[#4E9141] rounded-full" />
+                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#4E9141] text-white text-xs font-bold rounded">
+                          NEW
+                        </div>
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="p-4 flex-1 flex flex-col">
                       <div className="flex items-center gap-2 text-xs text-[#47635D] mb-2">
                         <span className="capitalize text-[#4E9141] font-medium">{insight.category}</span>
                         <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
                         <span>{insight.readTime}</span>
                       </div>
-                      <h4 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2 leading-snug">
+                      <h4 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2 leading-snug text-sm flex-1">
                         {insight.title}
                       </h4>
-                      <div className="flex items-center gap-1 mt-3 text-sm text-[#47635D]">
+                      <div className="flex items-center gap-1 mt-3 pt-3 border-t border-gray-50 text-xs text-[#47635D]">
                         <Download className="w-3.5 h-3.5" />
                         {insight.downloads}
                       </div>

@@ -18,7 +18,7 @@ const navLinks = [
     ],
   },
   { label: 'Industries', href: '/industries' },
-  { label: 'Insights', href: '/insights-v2' },
+  { label: 'Insights', href: '/insights' },
   { label: 'Media', href: '/media' },
   { label: 'Careers', href: '/career' },
   { label: 'Contact', href: '/contact' },

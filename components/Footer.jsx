@@ -20,7 +20,7 @@ const XIcon = ({ className }) => (
 )
 
 const companyLinks = [
-  { label: 'Insights', href: '/insights-v2' },
+  { label: 'Insights', href: '/insights' },
   { label: 'About Us', href: '/about' },
   { label: 'Industries', href: '/industries' },
   { label: 'Media', href: '/media' },

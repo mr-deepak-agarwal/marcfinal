@@ -165,7 +165,7 @@ export default function Header() {
               />
 
               {navLinks.map((link, index) =>
-                link.children ? (
+                link.hasServicesMenu ? (
                   <div
                     key={link.label}
                     className="relative"
@@ -193,31 +193,68 @@ export default function Header() {
                       />
                     </Link>
 
-                    {/* Enhanced Dropdown Menu - Mega Menu for Services */}
+                    {/* Icon Grid Services Menu */}
                     <div 
-                      className={`absolute left-0 top-full pt-3 transition-all duration-400 ${
+                      className={`absolute -left-20 top-full pt-3 transition-all duration-400 ${
                         activeDropdown === link.label 
                           ? 'opacity-100 visible translate-y-0' 
                           : 'opacity-0 invisible -translate-y-3'
                       }`}
                     >
-                      {link.label === 'Services' ? (
-                        /* Mega Menu for Services */
-                        <div className="w-[600px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/10 border border-[#4E9141]/10 overflow-hidden p-6">
-                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-[#4E9141] to-transparent rounded-full" />
-                          
-                          <div className="grid grid-cols-2 gap-6">
-                            {link.children.map((category, idx) => (
-                              <div key={idx}>
-                                {category.children ? (
-                                  <>
+                      <div className="w-[720px] bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/10 border border-[#4E9141]/10 overflow-hidden">
+                        {/* Top accent line */}
+                        <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+                        
+                        <div className="p-6">
+                          {/* Services Grid */}
+                          <div className="space-y-6">
+                            {serviceCategories.map((category, catIdx) => (
+                              <div key={catIdx}>
+                                {/* Category Label */}
+                                <div className="flex items-center gap-3 mb-3">
+                                  <span className="text-[#4E9141] font-semibold text-xs uppercase tracking-widest">{category.label}</span>
+                                  <div className="flex-1 h-[1px] bg-gradient-to-r from-[#C2DDB4] to-transparent" />
+                                </div>
+                                
+                                {/* Services Icon Grid */}
+                                <div className={`grid ${category.services.length <= 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2`}>
+                                  {category.services.map((service, svcIdx) => (
                                     <Link
-                                      href={category.href}
-                                      onClick={() => handleClick(category.href)}
-                                      className="text-[#4E9141] font-semibold text-sm uppercase tracking-wider mb-3 block hover:text-[#3d7334] transition-colors"
+                                      key={svcIdx}
+                                      href={service.href}
+                                      onClick={() => handleClick(service.href)}
+                                      className="group flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300 border border-transparent hover:border-[#C2DDB4]/50"
                                     >
-                                      {category.label}
+                                      <div className="w-10 h-10 rounded-lg bg-[#F7FFF5] group-hover:bg-[#4E9141] flex items-center justify-center transition-all duration-300 flex-shrink-0">
+                                        <service.icon className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                                      </div>
+                                      <span className="text-sm text-[#1D342F] group-hover:text-[#4E9141] font-medium transition-colors leading-tight">
+                                        {service.label}
+                                      </span>
                                     </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {/* Bottom CTA */}
+                          <div className="mt-6 pt-4 border-t border-[#C2DDB4]/30 flex items-center justify-between">
+                            <span className="text-sm text-[#47635D]">Need help choosing the right service?</span>
+                            <Link 
+                              href="/contact" 
+                              onClick={() => handleClick('/contact')}
+                              className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E9141] hover:text-[#3d7334] transition-colors"
+                            >
+                              Talk to an Expert
+                              <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
                                     <div className="space-y-1">
                                       {category.children.map((subItem, subIdx) => (
                                         <Link

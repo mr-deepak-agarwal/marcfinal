@@ -48,6 +48,19 @@ Recreate and enhance the MARC Glocal consultancy website based on the user's Git
    - Renamed `/insights-v2` to `/insights`
    - Updated all internal links to point to `/insights`
 
+### Session 2 (Jan 30, 2025)
+6. **Header Navigation Fix**
+   - Removed duplicate "Contact" link from navigation
+   - Kept only the green "Contact" button
+
+7. **Industries Page Redesign**
+   - Reduced hero section whitespace
+   - Left-aligned "Industries We Serve" section with green line
+   - Fixed card hover states (e-commerce, healthcare, manufacturing) - text now visible on green hover background
+   - Left-aligned "Success Stories" section with green line
+   - Removed excessive whitespace
+   - Green CTA section matching other pages
+
 ## File Structure
 ```
 /app

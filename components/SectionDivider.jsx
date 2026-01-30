@@ -3,14 +3,14 @@
 import React from 'react'
 
 const SectionDivider = ({ title, variant = 'default' }) => {
-  // Option B: Modern insights-style with orange label
+  // Modern clean style - readable with proper sizing
   if (variant === 'line-text') {
     return (
-      <div className="w-full py-12 px-6">
+      <div className="w-full py-6 px-6 bg-[#1D342F]">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3">
-            <span className="w-10 h-[2px] bg-[#B45309]" />
-            <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-4">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-white font-bold text-lg lg:text-xl uppercase tracking-[0.15em]">
               {title}
             </span>
           </div>

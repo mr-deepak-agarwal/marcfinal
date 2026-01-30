@@ -492,7 +492,7 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Animated Milestones Journey Section */}
+      {/* Animated Milestones Journey Section - Connected Path Animation */}
       <section 
         id="milestones"
         ref={el => observerRefs.current[2] = el}
@@ -510,22 +510,56 @@ export default function MediaPage() {
           </h2>
 
           <div className="relative">
-            {/* Animated Path Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 overflow-hidden">
-              <div 
-                className="w-full h-full bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]"
-                style={{
-                  animation: 'pathFlow 3s linear infinite',
-                }}
+            {/* SVG Path that draws itself */}
+            <svg 
+              className="absolute left-8 top-0 w-4 h-full pointer-events-none"
+              style={{ transform: 'translateX(-50%)' }}
+            >
+              <defs>
+                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#4E9141" />
+                  <stop offset="50%" stopColor="#C2DDB4" />
+                  <stop offset="100%" stopColor="#4E9141" />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              {/* Main path line */}
+              <path
+                d="M 8 0 L 8 100%"
+                stroke="url(#pathGradient)"
+                strokeWidth="3"
+                fill="none"
+                strokeLinecap="round"
+                className="milestone-path"
+                filter="url(#glow)"
               />
-              {/* Animated dots along the path */}
-              <div 
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#4E9141] shadow-lg shadow-[#4E9141]/50"
-                style={{
-                  animation: 'dotMove 4s ease-in-out infinite',
-                }}
-              />
-            </div>
+              {/* Animated particles */}
+              {[0, 1, 2, 3, 4].map((i) => (
+                <circle
+                  key={i}
+                  r="4"
+                  fill="#4E9141"
+                  className="milestone-particle"
+                  style={{
+                    animation: `particleFlow 3s linear infinite`,
+                    animationDelay: `${i * 0.6}s`,
+                  }}
+                >
+                  <animateMotion
+                    dur="3s"
+                    repeatCount="indefinite"
+                    begin={`${i * 0.6}s`}
+                    path="M 8 0 L 8 1000"
+                  />
+                </circle>
+              ))}
+            </svg>
 
             <div className="space-y-8">
               {milestones.map((item, index) => (
@@ -538,40 +572,136 @@ export default function MediaPage() {
                       ? 'opacity-100 translate-x-0'
                       : 'opacity-0 -translate-x-8'
                   }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  style={{ transitionDelay: `${index * 200}ms` }}
                 >
-                  {/* Timeline Dot with pulse animation */}
-                  <div className={`absolute left-6 w-5 h-5 rounded-full border-4 border-white shadow-lg -translate-x-1/2 transition-all duration-500 ${
-                    visibleMilestones.includes(index)
-                      ? 'bg-[#4E9141] scale-110'
-                      : 'bg-[#C2DDB4] scale-100'
-                  }`}>
+                  {/* Milestone Node with ripple effect */}
+                  <div className="absolute left-8 -translate-x-1/2 flex items-center justify-center">
+                    {/* Outer ripple rings */}
                     {visibleMilestones.includes(index) && (
-                      <span className="absolute inset-0 rounded-full bg-[#4E9141] animate-ping opacity-30" />
+                      <>
+                        <span 
+                          className="absolute w-12 h-12 rounded-full border-2 border-[#4E9141]/30"
+                          style={{
+                            animation: 'ripple 2s ease-out infinite',
+                            animationDelay: '0s',
+                          }}
+                        />
+                        <span 
+                          className="absolute w-12 h-12 rounded-full border-2 border-[#4E9141]/20"
+                          style={{
+                            animation: 'ripple 2s ease-out infinite',
+                            animationDelay: '0.5s',
+                          }}
+                        />
+                      </>
                     )}
+                    {/* Main node */}
+                    <div 
+                      className={`relative w-6 h-6 rounded-full border-4 border-white shadow-lg transition-all duration-500 z-10 ${
+                        visibleMilestones.includes(index)
+                          ? 'bg-[#4E9141] scale-110'
+                          : 'bg-[#C2DDB4] scale-100'
+                      }`}
+                    >
+                      {visibleMilestones.includes(index) && (
+                        <span 
+                          className="absolute inset-0 rounded-full bg-[#4E9141]"
+                          style={{
+                            animation: 'pulse 1.5s ease-in-out infinite',
+                          }}
+                        />
+                      )}
+                      {/* Inner glow */}
+                      <span className={`absolute inset-1 rounded-full bg-white/50 transition-opacity duration-500 ${
+                        visibleMilestones.includes(index) ? 'opacity-100' : 'opacity-0'
+                      }`} />
+                    </div>
                   </div>
                   
-                  <div className="p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300 group">
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-2xl font-bold text-[#4E9141]">{item.year}</span>
-                      <span className="w-8 h-[2px] bg-[#C2DDB4] group-hover:w-12 group-hover:bg-[#4E9141] transition-all" />
+                  {/* Milestone Card with enhanced hover */}
+                  <div className={`p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141] hover:shadow-2xl hover:shadow-[#4E9141]/10 transition-all duration-500 group transform hover:-translate-y-1 ${
+                    visibleMilestones.includes(index) ? 'milestone-card-visible' : ''
+                  }`}>
+                    {/* Year badge */}
+                    <div className="flex items-center gap-4 mb-3">
+                      <span className="px-4 py-1.5 bg-[#4E9141] text-white text-lg font-bold rounded-full shadow-lg shadow-[#4E9141]/30 group-hover:scale-105 transition-transform">
+                        {item.year}
+                      </span>
+                      <span className="h-[2px] flex-grow bg-gradient-to-r from-[#4E9141] to-transparent group-hover:from-[#4E9141] group-hover:via-[#C2DDB4] group-hover:to-transparent transition-all" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#1D342F] mb-2">{item.title}</h3>
-                    <p className="text-[#47635D]">{item.desc}</p>
+                    <h3 className="text-xl font-bold text-[#1D342F] mb-2 group-hover:text-[#4E9141] transition-colors">{item.title}</h3>
+                    <p className="text-[#47635D] leading-relaxed">{item.desc}</p>
+                    
+                    {/* Decorative corner accent */}
+                    <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#4E9141]/10 to-transparent transform rotate-45 translate-x-8 -translate-y-8" />
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* CSS for path animation */}
+            {/* CSS for connected path animations */}
             <style jsx>{`
-              @keyframes pathFlow {
-                0% { background-position: 0 0; }
-                100% { background-position: 0 100px; }
+              @keyframes ripple {
+                0% {
+                  transform: scale(0.8);
+                  opacity: 1;
+                }
+                100% {
+                  transform: scale(2);
+                  opacity: 0;
+                }
               }
-              @keyframes dotMove {
-                0%, 100% { top: 0; opacity: 1; }
-                50% { top: calc(100% - 12px); opacity: 0.5; }
+              @keyframes pulse {
+                0%, 100% {
+                  transform: scale(1);
+                  opacity: 0.5;
+                }
+                50% {
+                  transform: scale(1.2);
+                  opacity: 0;
+                }
+              }
+              @keyframes particleFlow {
+                0% {
+                  opacity: 0;
+                  transform: translateY(0);
+                }
+                10% {
+                  opacity: 1;
+                }
+                90% {
+                  opacity: 1;
+                }
+                100% {
+                  opacity: 0;
+                  transform: translateY(100vh);
+                }
+              }
+              .milestone-path {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+                animation: drawPath 2s ease-out forwards;
+              }
+              @keyframes drawPath {
+                to {
+                  stroke-dashoffset: 0;
+                }
+              }
+              .milestone-particle {
+                filter: drop-shadow(0 0 6px rgba(78, 145, 65, 0.8));
+              }
+              .milestone-card-visible {
+                animation: cardReveal 0.6s ease-out forwards;
+              }
+              @keyframes cardReveal {
+                0% {
+                  clip-path: inset(0 100% 0 0);
+                }
+                100% {
+                  clip-path: inset(0 0 0 0);
+                }
               }
             `}</style>
           </div>

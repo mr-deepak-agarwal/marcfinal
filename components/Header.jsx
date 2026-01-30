@@ -98,7 +98,7 @@ export default function Header() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* Logo with glow effect on scroll */}
+            {/* Logo with zoom + glow effect on scroll */}
             <Link 
               href="/" 
               onClick={() => handleClick('/')} 
@@ -106,14 +106,16 @@ export default function Header() {
               className="relative group z-10"
             >
               <div className={`absolute -inset-4 rounded-2xl transition-all duration-500 ${
-                isScrolled ? 'bg-[#4E9141]/5 blur-xl scale-100' : 'bg-transparent blur-none scale-0'
+                isScrolled ? 'bg-[#4E9141]/10 blur-xl scale-100' : 'bg-transparent blur-none scale-0'
               }`} />
               <img 
                 src="/marc_logo.png" 
                 alt="MARC - Business Consulting Services" 
-                className={`relative h-10 transition-all duration-500 ${
-                  isScrolled ? 'drop-shadow-lg' : ''
-                } group-hover:scale-105`}
+                className={`relative transition-all duration-500 origin-left ${
+                  isScrolled 
+                    ? 'h-12 drop-shadow-lg scale-105' 
+                    : 'h-10 scale-100'
+                } group-hover:scale-110`}
               />
             </Link>
 

@@ -414,29 +414,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => handleClick(link.href)}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                  className={`block px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300 ${
-                    isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-
-            <div className="pt-4">
-              <Link href="/contact" onClick={() => handleClick('/contact')}>
-                <button className="w-full py-3.5 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 shadow-lg shadow-[#4E9141]/20">
-                  Get in Touch
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* CSS for header animations */}
       <style jsx global>{`

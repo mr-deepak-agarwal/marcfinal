@@ -2,47 +2,48 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
+
+// Services data with icons for the grid menu
+const serviceCategories = [
+  {
+    label: 'Market Research',
+    services: [
+      { label: 'Market Research', href: '/services/market-research', icon: Search },
+      { label: 'Feasibility Study', href: '/services/feasibility-study', icon: FileCheck },
+    ]
+  },
+  {
+    label: 'Growth Strategy',
+    services: [
+      { label: 'Strategy Consulting', href: '/services/strategy-consulting', icon: Compass },
+      { label: 'Standard Operating Procedure', href: '/services/sop', icon: FileText },
+      { label: 'Profit & Loss Analysis', href: '/services/profit-loss-analysis', icon: TrendingUp },
+      { label: 'Management Information Systems', href: '/services/mis', icon: BarChart3 },
+      { label: 'Financial Modelling', href: '/services/financial-modelling', icon: Calculator },
+      { label: 'HR Advisory', href: '/services/hr-advisory', icon: Users },
+    ]
+  },
+  {
+    label: 'Mergers & Acquisitions',
+    services: [
+      { label: 'Due Diligence', href: '/services/due-diligence', icon: Shield },
+      { label: 'Valuation', href: '/services/valuation', icon: Scale },
+      { label: 'Deal Advisory', href: '/services/deal-advisory', icon: Handshake },
+    ]
+  },
+  {
+    label: 'Global Expansion',
+    services: [
+      { label: 'Internationalization', href: '/services/internationalization', icon: Globe },
+    ]
+  },
+]
 
 const navLinks = [
   { label: 'About', href: '/about' },
-  {
-    label: 'Services',
-    href: '/services',
-    children: [
-      { 
-        label: 'Market Research', 
-        href: '/services/market-research',
-        children: [
-          { label: 'Market Research', href: '/services/market-research' },
-          { label: 'Feasibility Study', href: '/services/feasibility-study' },
-        ]
-      },
-      { 
-        label: 'Growth Strategy', 
-        href: '/services/strategy-consulting',
-        children: [
-          { label: 'Strategy Consulting', href: '/services/strategy-consulting' },
-          { label: 'Standard Operating Procedure', href: '/services/sop' },
-          { label: 'Profit and Loss Analysis', href: '/services/profit-loss-analysis' },
-          { label: 'Management Information Systems', href: '/services/mis' },
-          { label: 'Financial Modelling', href: '/services/financial-modelling' },
-          { label: 'HR Advisory', href: '/services/hr-advisory' },
-        ]
-      },
-      { 
-        label: 'Mergers & Acquisitions', 
-        href: '/services/mergers-acquisitions',
-        children: [
-          { label: 'Due Diligence', href: '/services/due-diligence' },
-          { label: 'Valuation', href: '/services/valuation' },
-          { label: 'Deal Advisory', href: '/services/deal-advisory' },
-        ]
-      },
-      { label: 'Internationalization', href: '/services/internationalization' },
-    ],
-  },
+  { label: 'Services', href: '/services', hasServicesMenu: true },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights' },
   { label: 'Media', href: '/media' },

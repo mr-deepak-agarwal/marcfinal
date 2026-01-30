@@ -58,13 +58,6 @@ const ContactSection = () => {
           
           {/* Left Content */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">
-                Start The Conversation
-              </span>
-            </div>
-
             <h2 
               data-testid="contact-heading"
               className="text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.1] mb-6"

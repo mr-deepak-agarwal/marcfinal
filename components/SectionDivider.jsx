@@ -3,14 +3,14 @@
 import React from 'react'
 
 const SectionDivider = ({ title, variant = 'default' }) => {
-  // Modern clean style - readable with proper sizing
+  // Clean white background with orange accent line
   if (variant === 'line-text') {
     return (
-      <div className="w-full py-6 px-6 bg-[#1D342F]">
+      <div className="w-full py-6 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-white font-bold text-lg lg:text-xl uppercase tracking-[0.15em]">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg lg:text-xl uppercase tracking-[0.1em]">
               {title}
             </span>
           </div>

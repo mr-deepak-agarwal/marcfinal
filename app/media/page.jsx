@@ -492,7 +492,7 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Animated Milestones Journey Section - Staggered Flip Cards */}
+      {/* Animated Milestones Journey Section */}
       <section 
         id="milestones"
         ref={el => observerRefs.current[2] = el}
@@ -509,115 +509,72 @@ export default function MediaPage() {
             Milestones & Recognition
           </h2>
 
-          {/* Flip Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {milestones.map((item, index) => (
+          <div className="relative">
+            {/* Animated Path Line */}
+            <div className="absolute left-8 top-0 bottom-0 w-1 overflow-hidden">
               <div 
-                key={index}
-                data-milestone-item
-                data-index={index}
-                className="perspective-1000"
-                style={{ 
-                  perspective: '1000px',
-                  transitionDelay: `${index * 150}ms` 
+                className="w-full h-full bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]"
+                style={{
+                  animation: 'pathFlow 3s linear infinite',
                 }}
-              >
+              />
+              {/* Animated dots along the path */}
+              <div 
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#4E9141] shadow-lg shadow-[#4E9141]/50"
+                style={{
+                  animation: 'dotMove 4s ease-in-out infinite',
+                }}
+              />
+            </div>
+
+            <div className="space-y-8">
+              {milestones.map((item, index) => (
                 <div 
-                  className={`relative w-full h-[280px] transition-all duration-700 preserve-3d cursor-pointer group ${
+                  key={index} 
+                  data-milestone-item
+                  data-index={index}
+                  className={`relative pl-20 transition-all duration-700 ${
                     visibleMilestones.includes(index)
-                      ? 'flip-card-flipped'
-                      : ''
+                      ? 'opacity-100 translate-x-0'
+                      : 'opacity-0 -translate-x-8'
                   }`}
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    transform: visibleMilestones.includes(index) ? 'rotateY(0deg)' : 'rotateY(180deg)',
-                  }}
+                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  {/* Front of card (shown after flip) */}
-                  <div 
-                    className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden"
-                    style={{ backfaceVisibility: 'hidden' }}
-                  >
-                    <div className="h-full bg-gradient-to-br from-[#F7FFF5] to-white border border-[#C2DDB4]/30 rounded-2xl p-6 flex flex-col hover:shadow-2xl hover:shadow-[#4E9141]/10 hover:border-[#4E9141]/50 transition-all duration-300 hover:-translate-y-2">
-                      {/* Year Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="px-5 py-2 bg-[#4E9141] text-white text-xl font-bold rounded-full shadow-lg shadow-[#4E9141]/30">
-                          {item.year}
-                        </span>
-                        <div className="w-12 h-12 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                          <Award className="w-6 h-6 text-[#4E9141]" />
-                        </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="flex-grow">
-                        <h3 className="text-xl font-bold text-[#1D342F] mb-3 group-hover:text-[#4E9141] transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-[#47635D] leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                      
-                      {/* Bottom decoration */}
-                      <div className="mt-4 pt-4 border-t border-[#C2DDB4]/30">
-                        <div className="flex items-center gap-2">
-                          <span className="h-1 flex-grow bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-transparent rounded-full" />
-                          <span className="w-2 h-2 rounded-full bg-[#4E9141] animate-pulse" />
-                        </div>
-                      </div>
-                      
-                      {/* Shimmer effect on hover */}
-                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none rounded-2xl" />
-                    </div>
+                  {/* Timeline Dot with pulse animation */}
+                  <div className={`absolute left-6 w-5 h-5 rounded-full border-4 border-white shadow-lg -translate-x-1/2 transition-all duration-500 ${
+                    visibleMilestones.includes(index)
+                      ? 'bg-[#4E9141] scale-110'
+                      : 'bg-[#C2DDB4] scale-100'
+                  }`}>
+                    {visibleMilestones.includes(index) && (
+                      <span className="absolute inset-0 rounded-full bg-[#4E9141] animate-ping opacity-30" />
+                    )}
                   </div>
                   
-                  {/* Back of card (shown before flip - loading state) */}
-                  <div 
-                    className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden"
-                    style={{ 
-                      backfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)'
-                    }}
-                  >
-                    <div className="h-full bg-[#4E9141] rounded-2xl flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <div className="w-16 h-16 mx-auto mb-4 border-4 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span className="text-white/80 text-sm font-medium">Loading milestone...</span>
-                      </div>
+                  <div className="p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300 group">
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-2xl font-bold text-[#4E9141]">{item.year}</span>
+                      <span className="w-8 h-[2px] bg-[#C2DDB4] group-hover:w-12 group-hover:bg-[#4E9141] transition-all" />
                     </div>
+                    <h3 className="text-xl font-bold text-[#1D342F] mb-2">{item.title}</h3>
+                    <p className="text-[#47635D]">{item.desc}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* CSS for flip card animations */}
-          <style jsx>{`
-            .perspective-1000 {
-              perspective: 1000px;
-            }
-            .preserve-3d {
-              transform-style: preserve-3d;
-            }
-            .backface-hidden {
-              backface-visibility: hidden;
-            }
-            @keyframes flipIn {
-              0% {
-                transform: rotateY(180deg) scale(0.8);
-                opacity: 0;
+            {/* CSS for path animation */}
+            <style jsx>{`
+              @keyframes pathFlow {
+                0% { background-position: 0 0; }
+                100% { background-position: 0 100px; }
               }
-              50% {
-                transform: rotateY(90deg) scale(0.9);
-                opacity: 0.5;
+              @keyframes dotMove {
+                0%, 100% { top: 0; opacity: 1; }
+                50% { top: calc(100% - 12px); opacity: 0.5; }
               }
-              100% {
-                transform: rotateY(0deg) scale(1);
-                opacity: 1;
-              }
-            }
-          `}</style>
+            `}</style>
+          </div>
         </div>
       </section>
 

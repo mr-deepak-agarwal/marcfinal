@@ -38,17 +38,10 @@ const TestimonialsSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="text-center mb-16">
-          <div 
-            data-testid="testimonials-badge"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
-          >
-            Testimonials
-          </div>
-
-          {/* Heading */}
+          {/* Large Heading - Insights Style */}
           <h2 
             data-testid="testimonials-heading"
-            className="text-4xl lg:text-5xl font-bold text-[#212427] mb-6 tracking-tight"
+            className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
             What Our Clients Say
           </h2>

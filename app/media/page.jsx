@@ -262,46 +262,53 @@ export default function MediaPage() {
   return (
     <div className="min-h-screen bg-white" data-testid="media-page">
 
-      {/* Hero Section - Light green like other pages */}
-      <section className="relative pt-28 pb-16 bg-[#F7FFF5] overflow-hidden">
+      {/* Hero Section - Light green like About page with animated carousel */}
+      <section className="relative pt-32 pb-20 bg-[#F7FFF5] overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="w-12 h-[3px] bg-[#4E9141]" />
-              <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-                Media & Press
-              </span>
-            </div>
-            
-            <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-              In the news,
-              <span className="text-[#4E9141]"> taking the spotlight</span>
-            </h1>
-            
-            <p className="text-xl text-[#47635D] leading-relaxed mb-8 max-w-xl">
-              We are either brainstorming novel ways to execute strategies, or making headlines. 
-              Stay abreast of our presence in the tabloids.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-12 h-[3px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+                  Media & Press
+                </span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
+                In the news,
+                <span className="text-[#4E9141]"> taking the spotlight</span>
+              </h1>
+              
+              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
+                We are either brainstorming novel ways to execute strategies, or making headlines. 
+                Stay abreast of our presence in the tabloids.
+              </p>
 
-            <div className="flex flex-wrap gap-4">
-              <a 
-                href="#coverage" 
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group"
-                data-testid="view-coverage-btn"
-              >
-                View Coverage
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
-                href="#milestones" 
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all"
-                data-testid="milestones-btn"
-              >
-                Our Journey
-              </a>
+              <div className="flex flex-wrap gap-4">
+                <a 
+                  href="#coverage" 
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group"
+                  data-testid="view-coverage-btn"
+                >
+                  View Coverage
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a 
+                  href="#milestones" 
+                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all"
+                  data-testid="milestones-btn"
+                >
+                  Our Journey
+                </a>
+              </div>
+            </div>
+
+            {/* Animated Carousel */}
+            <div className="relative hidden lg:block">
+              <MediaCarousel />
             </div>
           </div>
         </div>

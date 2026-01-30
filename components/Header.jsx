@@ -21,7 +21,6 @@ const navLinks = [
   { label: 'Insights', href: '/insights' },
   { label: 'Media', href: '/media' },
   { label: 'Careers', href: '/career' },
-  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {

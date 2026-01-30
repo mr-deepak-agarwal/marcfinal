@@ -415,7 +415,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Offices Section */}
+      {/* Offices Section - Interactive Map Layout */}
       <section 
         ref={el => observerRefs.current[1] = el}
         className="py-16 bg-[#F7FFF5]"
@@ -434,67 +434,235 @@ export default function ContactPage() {
             At MARC, we work seamlessly together as one firm to serve our clients wherever they need us.
           </p>
 
-          {/* Office Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {offices.map((office, i) => (
-              <div 
-                key={i}
-                className="group bg-white rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
-                data-testid={`office-card-${i}`}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-3xl">{office.flag}</span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    office.type === 'Headquarters' 
-                      ? 'bg-[#4E9141]/10 text-[#4E9141]' 
-                      : office.type === 'USA Office'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-[#C2DDB4]/30 text-[#47635D]'
-                  }`}>
-                    {office.type}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-bold text-[#1D342F] mb-1 group-hover:text-[#4E9141] transition-colors">
-                  {office.city}
-                </h3>
-                <p className="text-[#4E9141] text-sm font-medium mb-3">{office.state}</p>
-                <p className="text-[#47635D] text-sm mb-4 min-h-[60px]">{office.address}</p>
-                
-                {/* Contact Info */}
-                <div className="space-y-2 mb-4">
-                  <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
-                    <Phone className="w-4 h-4" />
-                    {office.phone}
-                  </a>
-                  {office.phone2 && (
-                    <a href={`tel:${office.phone2.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
-                      <Phone className="w-4 h-4" />
-                      {office.phone2}
-                    </a>
-                  )}
-                  <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
-                    <Mail className="w-4 h-4" />
-                    {office.email}
-                  </a>
-                </div>
-                
-                {/* Find Us Link */}
-                <a 
-                  href={office.mapLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30 group-hover:border-[#4E9141]/30 transition-colors"
+          {/* Interactive Map with Side Panel */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Map Area */}
+            <div className="lg:col-span-2 relative bg-white rounded-2xl border border-[#C2DDB4]/30 p-6 min-h-[500px] overflow-hidden">
+              {/* Background pattern */}
+              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #4E9141 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+              
+              {/* SVG Map of India with pins */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                <svg viewBox="0 0 400 450" className="w-full h-full max-w-md">
+                  {/* Simplified India outline */}
+                  <path
+                    d="M200 30 L280 60 L320 100 L340 160 L330 200 L350 250 L340 300 L300 350 L280 380 L240 400 L200 420 L160 400 L120 380 L100 350 L60 300 L50 250 L70 200 L60 160 L80 100 L120 60 Z"
+                    fill="#C2DDB4"
+                    fillOpacity="0.3"
+                    stroke="#4E9141"
+                    strokeWidth="2"
+                    className="drop-shadow-lg"
+                  />
+                  
+                  {/* City pins - positioned roughly on map */}
+                  {[
+                    { id: 0, x: 140, y: 90, city: 'Panaji' }, // Goa - HQ
+                    { id: 2, x: 160, y: 140, city: 'Mumbai' },
+                    { id: 3, x: 175, y: 160, city: 'Pune' },
+                    { id: 5, x: 150, y: 110, city: 'Ahmedabad' },
+                    { id: 6, x: 130, y: 280, city: 'Kochi' },
+                    { id: 7, x: 190, y: 130, city: 'Indore' },
+                    { id: 8, x: 320, y: 100, city: 'Agartala' },
+                    { id: 9, x: 150, y: 260, city: 'Mangaluru' },
+                    { id: 4, x: 280, y: 150, city: 'Kolkata' },
+                  ].map((pin) => (
+                    <g 
+                      key={pin.id}
+                      className="cursor-pointer"
+                      onClick={() => setSelectedOffice(pin.id)}
+                    >
+                      {/* Pin shadow */}
+                      <ellipse
+                        cx={pin.x}
+                        cy={pin.y + 20}
+                        rx="8"
+                        ry="4"
+                        fill="rgba(0,0,0,0.2)"
+                      />
+                      {/* Pin body */}
+                      <g className={`transition-transform duration-300 ${selectedOffice === pin.id ? 'scale-125' : 'hover:scale-110'}`} style={{ transformOrigin: `${pin.x}px ${pin.y}px` }}>
+                        <path
+                          d={`M${pin.x} ${pin.y + 15} 
+                             C${pin.x - 12} ${pin.y} ${pin.x - 12} ${pin.y - 15} ${pin.x} ${pin.y - 15}
+                             C${pin.x + 12} ${pin.y - 15} ${pin.x + 12} ${pin.y} ${pin.x} ${pin.y + 15}Z`}
+                          fill={selectedOffice === pin.id ? '#4E9141' : (pin.id === 0 ? '#4E9141' : '#47635D')}
+                          className="drop-shadow-md"
+                        />
+                        <circle
+                          cx={pin.x}
+                          cy={pin.y - 5}
+                          r="5"
+                          fill="white"
+                        />
+                      </g>
+                      {/* City label on hover/select */}
+                      {selectedOffice === pin.id && (
+                        <text
+                          x={pin.x}
+                          y={pin.y - 25}
+                          textAnchor="middle"
+                          className="text-xs font-bold fill-[#1D342F]"
+                        >
+                          {pin.city}
+                        </text>
+                      )}
+                    </g>
+                  ))}
+                </svg>
+
+                {/* USA Pin - Separate indicator */}
+                <div 
+                  className={`absolute top-4 left-4 flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer transition-all ${
+                    selectedOffice === 1 ? 'bg-[#4E9141] text-white shadow-lg' : 'bg-white border border-[#C2DDB4]/50 hover:border-[#4E9141]'
+                  }`}
+                  onClick={() => setSelectedOffice(1)}
                 >
-                  <span className="text-[#4E9141] text-sm font-semibold">Find us on Map</span>
-                  <div className="w-8 h-8 bg-[#4E9141]/10 rounded-full flex items-center justify-center group-hover:bg-[#4E9141] transition-all">
-                    <ArrowUpRight className="w-4 h-4 text-[#4E9141] group-hover:text-white transition-colors" />
+                  <span className="text-xl">🇺🇸</span>
+                  <span className={`font-semibold text-sm ${selectedOffice === 1 ? 'text-white' : 'text-[#1D342F]'}`}>USA Office</span>
+                </div>
+
+                {/* Legend */}
+                <div className="absolute bottom-4 left-4 flex items-center gap-4 text-xs text-[#47635D]">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-[#4E9141]" />
+                    <span>Headquarters</span>
                   </div>
-                </a>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-[#47635D]" />
+                    <span>Branch</span>
+                  </div>
+                </div>
+
+                {/* Instructions */}
+                <div className="absolute bottom-4 right-4 text-xs text-[#47635D] bg-white/80 px-3 py-1 rounded-full">
+                  Click a pin to view details →
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Office Details Panel */}
+            <div className="lg:col-span-1">
+              {selectedOffice !== null ? (
+                <div className="bg-white rounded-2xl border border-[#C2DDB4]/30 p-6 sticky top-24 transition-all duration-500 animate-fadeIn">
+                  {/* Office Type Badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl">{offices[selectedOffice].flag}</span>
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      offices[selectedOffice].type === 'Headquarters' 
+                        ? 'bg-[#4E9141]/10 text-[#4E9141]' 
+                        : offices[selectedOffice].type === 'USA Office'
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-[#C2DDB4]/30 text-[#47635D]'
+                    }`}>
+                      {offices[selectedOffice].type}
+                    </span>
+                  </div>
+
+                  {/* City & State */}
+                  <h3 className="text-2xl font-bold text-[#1D342F] mb-1">
+                    {offices[selectedOffice].city}
+                  </h3>
+                  <p className="text-[#4E9141] font-medium mb-4">{offices[selectedOffice].state}</p>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-3 mb-4 p-4 bg-[#F7FFF5] rounded-xl">
+                    <MapPin className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                    <p className="text-[#47635D] text-sm">{offices[selectedOffice].address}</p>
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="space-y-3 mb-6">
+                    <a 
+                      href={`tel:${offices[selectedOffice].phone.replace(/\s/g, '')}`} 
+                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-colors group"
+                    >
+                      <div className="w-10 h-10 bg-[#4E9141]/10 rounded-lg flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
+                        <Phone className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-[#47635D]">Phone</p>
+                        <p className="text-[#1D342F] font-medium">{offices[selectedOffice].phone}</p>
+                      </div>
+                    </a>
+                    {offices[selectedOffice].phone2 && (
+                      <a 
+                        href={`tel:${offices[selectedOffice].phone2.replace(/\s/g, '')}`} 
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-colors group"
+                      >
+                        <div className="w-10 h-10 bg-[#4E9141]/10 rounded-lg flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
+                          <Phone className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-[#47635D]">Alternate</p>
+                          <p className="text-[#1D342F] font-medium">{offices[selectedOffice].phone2}</p>
+                        </div>
+                      </a>
+                    )}
+                    <a 
+                      href={`mailto:${offices[selectedOffice].email}`} 
+                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-colors group"
+                    >
+                      <div className="w-10 h-10 bg-[#4E9141]/10 rounded-lg flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
+                        <Mail className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-[#47635D]">Email</p>
+                        <p className="text-[#1D342F] font-medium">{offices[selectedOffice].email}</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* Map Link Button */}
+                  <a 
+                    href={offices[selectedOffice].mapLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#4E9141] text-white font-semibold rounded-xl hover:bg-[#3d7334] transition-all"
+                  >
+                    <MapPin className="w-5 h-5" />
+                    Open in Google Maps
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </div>
+              ) : (
+                <div className="bg-white rounded-2xl border border-[#C2DDB4]/30 p-8 text-center sticky top-24">
+                  <div className="w-16 h-16 bg-[#F7FFF5] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="w-8 h-8 text-[#4E9141]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1D342F] mb-2">Select a Location</h3>
+                  <p className="text-[#47635D]">Click on any pin on the map to view office details</p>
+                  
+                  {/* Quick list */}
+                  <div className="mt-6 space-y-2">
+                    {offices.map((office, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setSelectedOffice(i)}
+                        className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-colors text-left"
+                      >
+                        <span className="text-lg">{office.flag}</span>
+                        <div>
+                          <p className="text-sm font-medium text-[#1D342F]">{office.city}</p>
+                          <p className="text-xs text-[#47635D]">{office.state}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+          }
+        `}</style>
       </section>
 
       {/* Map Section */}

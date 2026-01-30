@@ -60,6 +60,8 @@ Recreate and enhance the MARC Glocal consultancy website based on the user's Git
    - Left-aligned "Success Stories" section with green line
    - Removed excessive whitespace
    - Green CTA section matching other pages
+   - **Fixed scroll behavior** - clicking on industry card now scrolls to correct position (not cutting content)
+   - **Industry Detail section with image background** - each industry now shows relevant stock photo with dark gradient overlay instead of plain green box
 
 ## File Structure
 ```

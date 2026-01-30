@@ -99,8 +99,8 @@ const ContactSection = () => {
               data-testid="contact-phone"
               className="flex items-start gap-4 group"
             >
-              <div className="w-12 h-12 rounded-full bg-[#B45309]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#B45309]/30 transition-colors">
-                <Phone className="w-5 h-5 text-[#B45309]" />
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-colors">
+                <Phone className="w-5 h-5 text-white" />
               </div>
               <div>
                 <div className="text-xs text-white/50 uppercase tracking-wider mb-1">Phone</div>
@@ -116,8 +116,8 @@ const ContactSection = () => {
               data-testid="contact-email"
               className="flex items-start gap-4 group"
             >
-              <div className="w-12 h-12 rounded-full bg-[#B45309]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#B45309]/30 transition-colors">
-                <Mail className="w-5 h-5 text-[#B45309]" />
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-colors">
+                <Mail className="w-5 h-5 text-white" />
               </div>
               <div>
                 <div className="text-xs text-white/50 uppercase tracking-wider mb-1">Email</div>
@@ -132,8 +132,8 @@ const ContactSection = () => {
               data-testid="contact-address"
               className="flex items-start gap-4"
             >
-              <div className="w-12 h-12 rounded-full bg-[#B45309]/20 flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-[#B45309]" />
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 text-white" />
               </div>
               <div>
                 <div className="text-xs text-white/50 uppercase tracking-wider mb-1">Office</div>

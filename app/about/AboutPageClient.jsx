@@ -9,23 +9,23 @@ import {
   Building2, Phone, Mail, ExternalLink, Handshake
 } from 'lucide-react'
 
-// Team images for animated carousel
+// Team images for animated carousel - using reliable Unsplash URLs
 const teamImages = [
   {
-    url: 'https://images.unsplash.com/photo-1551135049-8a33b5883817?w=800',
+    url: 'https://images.unsplash.com/photo-1551135049-8a33b5883817?w=800&q=80',
     title: 'Strategy Planning',
   },
   {
-    url: 'https://images.unsplash.com/flagged/photo-1551135049-83f3419288d0c?w=800',
+    url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
     title: 'Client Meetings',
   },
   {
-    url: 'https://images.unsplash.com/photo-1565688527174-775059ac429c?w=800',
-    title: 'Collaborative Work',
+    url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    title: 'Team Brainstorming',
   },
   {
-    url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800',
-    title: 'Team Brainstorming',
+    url: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
+    title: 'Collaborative Work',
   },
 ]
 
@@ -70,15 +70,24 @@ const timeline = [
   { year: '2024', title: 'USA Operations', desc: 'MARC Glocal Inc, Delaware' },
 ]
 
-const clients = [
+// All clients from old page - Row 1
+const clientsRow1 = [
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
   { name: 'EIP', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-2.png' },
   { name: 'Danlaw', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-3.png' },
+  { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
+]
+
+// Row 2 - scrolls opposite direction
+const clientsRow2 = [
   { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
   { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
-  { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
+  { name: 'Adani', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/adani.png' },
+  { name: 'Godrej', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/godrej.png' },
+  { name: 'L&T', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/lt.png' },
+  { name: 'Tata', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/tata.png' },
 ]
 
 const affiliations = [
@@ -86,25 +95,21 @@ const affiliations = [
     name: 'Mundi Consulting',
     description: 'International consulting company providing services for strategic and operational management, human resources, and international procurement.',
     website: 'https://www.mundiconsulting.net/en/',
-    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/mundi-consulting.png',
   },
   {
     name: 'Research 8020 Limited',
     description: 'Full range of qualitative and quantitative research solutions across sub-Saharan Africa for Government and NGOs.',
     website: 'https://research8020.com/',
-    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/research-8020.png',
   },
   {
     name: 'Clearview Consulting Partners',
     description: 'Multi-locational management consulting with expertise in M&A advisory, strategy, and business advisory services.',
     website: 'https://www.clearviewpartners.in/',
-    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/clearview.png',
   },
   {
     name: 'Electronica Finance Limited',
     description: 'Pioneer in Machine Finance with 50+ offices across India, serving 7500+ customers with AUM exceeding Rs.1250 crores.',
     website: 'https://www.efl.co.in/',
-    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/efl.png',
   },
 ]
 
@@ -134,7 +139,7 @@ function TeamCarousel() {
 
   return (
     <div className="relative w-full h-[450px]">
-      {/* Stacked cards animation like insights page */}
+      {/* Stacked cards animation */}
       <div className="relative w-full h-full">
         {teamImages.map((image, index) => {
           const isActive = index === currentIndex
@@ -199,6 +204,71 @@ function TeamCarousel() {
   )
 }
 
+// Client Logo Marquee Component - Two rows, opposite directions
+function ClientMarquee() {
+  return (
+    <div className="space-y-6 overflow-hidden">
+      {/* Row 1 - scrolls left */}
+      <div className="relative">
+        <div className="flex animate-marquee-left">
+          {[...clientsRow1, ...clientsRow1, ...clientsRow1].map((client, i) => (
+            <div 
+              key={i}
+              className="flex-shrink-0 mx-4 flex items-center justify-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/30 hover:shadow-lg transition-all duration-300 w-[180px] h-[100px]"
+            >
+              <img 
+                src={client.logo}
+                alt={client.name}
+                className="max-h-12 max-w-[140px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Row 2 - scrolls right (opposite direction) */}
+      <div className="relative">
+        <div className="flex animate-marquee-right">
+          {[...clientsRow2, ...clientsRow2, ...clientsRow2].map((client, i) => (
+            <div 
+              key={i}
+              className="flex-shrink-0 mx-4 flex items-center justify-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/30 hover:shadow-lg transition-all duration-300 w-[180px] h-[100px]"
+            >
+              <img 
+                src={client.logo}
+                alt={client.name}
+                className="max-h-12 max-w-[140px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* CSS for marquee animations */}
+      <style jsx>{`
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-33.33%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee-left {
+          animation: marquee-left 20s linear infinite;
+        }
+        .animate-marquee-right {
+          animation: marquee-right 20s linear infinite;
+        }
+        .animate-marquee-left:hover,
+        .animate-marquee-right:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
+  )
+}
+
 // Locations Carousel Component
 function LocationsCarousel() {
   const scrollRef = useRef(null)
@@ -222,7 +292,6 @@ function LocationsCarousel() {
     return () => cancelAnimationFrame(animationId)
   }, [isPaused])
 
-  // Double the locations for infinite scroll effect
   const doubledLocations = [...locations, ...locations]
 
   return (
@@ -268,7 +337,6 @@ export default function AboutPageClient() {
   const [visibleTimeline, setVisibleTimeline] = useState([])
 
   useEffect(() => {
-    // Animate timeline items on scroll
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -293,13 +361,11 @@ export default function AboutPageClient() {
       
       {/* ==================== HERO SECTION - Light Background ==================== */}
       <section className="pt-32 pb-20 bg-[#F7FFF5] relative overflow-hidden">
-        {/* Subtle background decorations */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-[3px] bg-[#4E9141]" />
@@ -336,7 +402,6 @@ export default function AboutPageClient() {
               </div>
             </div>
 
-            {/* Right - Animated Team Carousel */}
             <div className="relative hidden lg:block">
               <TeamCarousel />
             </div>
@@ -352,7 +417,6 @@ export default function AboutPageClient() {
               Trusted by 500+ Companies
             </h2>
             
-            {/* Stats Row */}
             <div className="flex flex-wrap justify-center gap-12 lg:gap-24 mb-16">
               {stats.map((stat, i) => (
                 <div key={i} className="text-center">
@@ -363,21 +427,8 @@ export default function AboutPageClient() {
             </div>
           </div>
 
-          {/* Client Logos Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            {clients.map((client, i) => (
-              <div 
-                key={i}
-                className="flex items-center justify-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/30 hover:shadow-lg transition-all duration-300"
-              >
-                <img 
-                  src={client.logo}
-                  alt={client.name}
-                  className="max-h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
-          </div>
+          {/* Client Logos Marquee - Two rows, opposite directions */}
+          <ClientMarquee />
         </div>
       </section>
 
@@ -432,7 +483,6 @@ export default function AboutPageClient() {
           </h2>
 
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute top-0 bottom-0 left-[20px] lg:left-1/2 w-[3px] bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
             
             <div className="space-y-12">
@@ -443,7 +493,6 @@ export default function AboutPageClient() {
                   data-index={i}
                   className={`relative flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
                 >
-                  {/* Animated Dot */}
                   <div 
                     className={`absolute left-[12px] lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-700 ${
                       visibleTimeline.includes(i) 
@@ -452,7 +501,6 @@ export default function AboutPageClient() {
                     }`}
                   />
                   
-                  {/* Content */}
                   <div 
                     className={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'} transition-all duration-700 ${
                       visibleTimeline.includes(i)
@@ -474,38 +522,40 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== LEADERSHIP TEAM ==================== */}
-      <section className="py-20 bg-[#1D342F]">
+      {/* ==================== LEADERSHIP TEAM - Light Green Background ==================== */}
+      <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-white font-bold text-lg uppercase tracking-[0.1em]">
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
               Leadership
             </span>
           </div>
 
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
             Meet Our Directors
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {directors.map((director, i) => (
-              <div key={i} className="bg-[#2a4a43] rounded-2xl overflow-hidden border border-[#4E9141]/20 hover:border-[#4E9141]/50 transition-all group">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all group">
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={director.image}
                     alt={director.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white">{director.name}</h3>
+                    <p className="text-[#C2DDB4] font-medium">{director.role}</p>
+                  </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-1">{director.name}</h3>
-                  <p className="text-[#4E9141] font-medium mb-3">{director.role}</p>
-                  <p className="text-white/70 text-sm leading-relaxed mb-4">{director.bio}</p>
+                  <p className="text-[#47635D] text-sm leading-relaxed mb-4">{director.bio}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {director.credentials.map((cred, j) => (
-                      <span key={j} className="px-3 py-1 bg-[#4E9141]/20 text-[#C2DDB4] text-xs rounded-full">
+                      <span key={j} className="px-3 py-1 bg-[#F7FFF5] text-[#4E9141] text-xs font-medium rounded-full border border-[#C2DDB4]/50">
                         {cred}
                       </span>
                     ))}
@@ -514,7 +564,7 @@ export default function AboutPageClient() {
                     href={director.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#C2DDB4] transition-colors"
+                    className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#3d7334] transition-colors"
                   >
                     <Linkedin className="w-5 h-5" />
                     <span className="text-sm font-medium">Connect on LinkedIn</span>
@@ -527,7 +577,7 @@ export default function AboutPageClient() {
       </section>
 
       {/* ==================== LOCATIONS CAROUSEL ==================== */}
-      <section className="py-20 bg-[#F7FFF5]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 mb-8">
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
@@ -550,7 +600,6 @@ export default function AboutPageClient() {
           </div>
         </div>
         
-        {/* Full-width carousel */}
         <LocationsCarousel />
         
         <div className="max-w-7xl mx-auto px-6 mt-8 md:hidden">
@@ -565,7 +614,7 @@ export default function AboutPageClient() {
       </section>
 
       {/* ==================== AFFILIATIONS ==================== */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
@@ -593,11 +642,11 @@ export default function AboutPageClient() {
                 href={affiliation.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[#F7FFF5] rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141] hover:shadow-xl transition-all duration-300"
+                className="group bg-white rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141] hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center border border-[#C2DDB4]/30 flex-shrink-0">
-                    <Handshake className="w-8 h-8 text-[#4E9141]" />
+                  <div className="w-16 h-16 bg-[#F7FFF5] rounded-xl flex items-center justify-center border border-[#C2DDB4]/30 flex-shrink-0 group-hover:bg-[#4E9141] transition-colors">
+                    <Handshake className="w-8 h-8 text-[#4E9141] group-hover:text-white transition-colors" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">

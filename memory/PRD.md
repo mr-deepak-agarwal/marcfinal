@@ -31,14 +31,17 @@ Recreate and enhance the MARC Glocal consultancy website based on the user's Git
    - Footer: Twitter icon → X (logo) icon
    - Added site-wide floating WhatsApp button
 
-4. **About Page** - Verified working with:
-   - Professional hero section with stock imagery
-   - Stats section (14+ years, 500+ projects, etc.)
-   - Vision & Mission cards
-   - Timeline (company history)
-   - Leadership team with professional photos
-   - Client logos
-   - Global locations
+4. **About Page - Complete Redesign**
+   - **Light green color scheme** (matching homepage) with dark green accents only
+   - **Animated Team Carousel** in hero section (like insights page animation)
+   - **"Trusted by 500+ Companies"** section with stats (500+ Clients, 30+ Countries, 98% Satisfaction)
+   - **Client logos grid** (The Park, Kineco, Magsons, EIP, Danlaw, Isha Yoga, Marriott, Taj)
+   - **Vision & Mission** cards
+   - **Animated Journey Timeline** with scroll-triggered animations (2010-2024)
+   - **Leadership Team** section with director profiles
+   - **Moving Locations Carousel** with 10 offices (Panaji, Delaware, Mumbai, Pune, Kolkata, Kochi, Indore, Ahmedabad, Mangaluru, Agartala)
+   - **Global Affiliations** section (Mundi Consulting, Research 8020, Clearview Partners, Electronica Finance)
+   - CTA section
 
 5. **Code Cleanup**
    - Deleted old `/insights` folder

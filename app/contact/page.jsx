@@ -435,15 +435,15 @@ export default function ContactPage() {
           </p>
 
           {/* Office Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {offices.map((office, i) => (
               <div 
                 key={i}
                 className="group bg-white rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
                 data-testid={`office-card-${i}`}
               >
-                <div className="flex items-start justify-between mb-5">
-                  <span className="text-4xl">{office.flag}</span>
+                <div className="flex items-start justify-between mb-4">
+                  <span className="text-3xl">{office.flag}</span>
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                     office.type === 'Headquarters' 
                       ? 'bg-[#4E9141]/10 text-[#4E9141]' 
@@ -458,17 +458,39 @@ export default function ContactPage() {
                 <h3 className="text-xl font-bold text-[#1D342F] mb-1 group-hover:text-[#4E9141] transition-colors">
                   {office.city}
                 </h3>
-                <p className="text-[#47635D] text-sm mb-4">{office.country}</p>
-                <p className="text-[#47635D] text-sm mb-5 line-clamp-2">{office.address}</p>
+                <p className="text-[#4E9141] text-sm font-medium mb-3">{office.state}</p>
+                <p className="text-[#47635D] text-sm mb-4 min-h-[60px]">{office.address}</p>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30 group-hover:border-[#4E9141]/30 transition-colors">
-                  <a href={`mailto:${office.email}`} className="text-[#4E9141] text-sm font-medium hover:text-[#3d7334] transition-colors">
+                {/* Contact Info */}
+                <div className="space-y-2 mb-4">
+                  <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
+                    <Phone className="w-4 h-4" />
+                    {office.phone}
+                  </a>
+                  {office.phone2 && (
+                    <a href={`tel:${office.phone2.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
+                      <Phone className="w-4 h-4" />
+                      {office.phone2}
+                    </a>
+                  )}
+                  <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors">
+                    <Mail className="w-4 h-4" />
                     {office.email}
                   </a>
-                  <div className="w-8 h-8 bg-[#4E9141]/10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                    <ArrowUpRight className="w-4 h-4 text-[#4E9141]" />
-                  </div>
                 </div>
+                
+                {/* Find Us Link */}
+                <a 
+                  href={office.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30 group-hover:border-[#4E9141]/30 transition-colors"
+                >
+                  <span className="text-[#4E9141] text-sm font-semibold">Find us on Map</span>
+                  <div className="w-8 h-8 bg-[#4E9141]/10 rounded-full flex items-center justify-center group-hover:bg-[#4E9141] transition-all">
+                    <ArrowUpRight className="w-4 h-4 text-[#4E9141] group-hover:text-white transition-colors" />
+                  </div>
+                </a>
               </div>
             ))}
           </div>

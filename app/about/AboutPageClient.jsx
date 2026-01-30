@@ -75,19 +75,19 @@ const clientsRow1 = [
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
-  { name: 'EIP', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-2.png' },
-  { name: 'Danlaw', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-3.png' },
   { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
-]
-
-// Row 2 - scrolls opposite direction
-const clientsRow2 = [
   { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
   { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
-  { name: 'Adani', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/adani.png' },
-  { name: 'Godrej', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/godrej.png' },
-  { name: 'L&T', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/lt.png' },
-  { name: 'Tata', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/tata.png' },
+]
+
+// Row 2 - scrolls opposite direction (duplicated for more logos)
+const clientsRow2 = [
+  { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
+  { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
+  { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
+  { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
+  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
+  { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
 ]
 
 const affiliations = [

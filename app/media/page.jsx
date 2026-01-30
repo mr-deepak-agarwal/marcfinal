@@ -492,7 +492,7 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Animated Milestones Journey Section - Connected Path Animation */}
+      {/* Animated Milestones Journey Section - Staggered Flip Cards */}
       <section 
         id="milestones"
         ref={el => observerRefs.current[2] = el}
@@ -509,202 +509,115 @@ export default function MediaPage() {
             Milestones & Recognition
           </h2>
 
-          <div className="relative">
-            {/* SVG Path that draws itself */}
-            <svg 
-              className="absolute left-8 top-0 w-4 h-full pointer-events-none"
-              style={{ transform: 'translateX(-50%)' }}
-            >
-              <defs>
-                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#4E9141" />
-                  <stop offset="50%" stopColor="#C2DDB4" />
-                  <stop offset="100%" stopColor="#4E9141" />
-                </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-              {/* Main path line */}
-              <path
-                d="M 8 0 L 8 100%"
-                stroke="url(#pathGradient)"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                className="milestone-path"
-                filter="url(#glow)"
-              />
-              {/* Animated particles */}
-              {[0, 1, 2, 3, 4].map((i) => (
-                <circle
-                  key={i}
-                  r="4"
-                  fill="#4E9141"
-                  className="milestone-particle"
+          {/* Flip Cards Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {milestones.map((item, index) => (
+              <div 
+                key={index}
+                data-milestone-item
+                data-index={index}
+                className="perspective-1000"
+                style={{ 
+                  perspective: '1000px',
+                  transitionDelay: `${index * 150}ms` 
+                }}
+              >
+                <div 
+                  className={`relative w-full h-[280px] transition-all duration-700 preserve-3d cursor-pointer group ${
+                    visibleMilestones.includes(index)
+                      ? 'flip-card-flipped'
+                      : ''
+                  }`}
                   style={{
-                    animation: `particleFlow 3s linear infinite`,
-                    animationDelay: `${i * 0.6}s`,
+                    transformStyle: 'preserve-3d',
+                    transform: visibleMilestones.includes(index) ? 'rotateY(0deg)' : 'rotateY(180deg)',
                   }}
                 >
-                  <animateMotion
-                    dur="3s"
-                    repeatCount="indefinite"
-                    begin={`${i * 0.6}s`}
-                    path="M 8 0 L 8 1000"
-                  />
-                </circle>
-              ))}
-            </svg>
-
-            <div className="space-y-8">
-              {milestones.map((item, index) => (
-                <div 
-                  key={index} 
-                  data-milestone-item
-                  data-index={index}
-                  className={`relative pl-20 transition-all duration-700 ${
-                    visibleMilestones.includes(index)
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 -translate-x-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  {/* Milestone Node with ripple effect */}
-                  <div className="absolute left-8 -translate-x-1/2 flex items-center justify-center">
-                    {/* Outer ripple rings */}
-                    {visibleMilestones.includes(index) && (
-                      <>
-                        <span 
-                          className="absolute w-12 h-12 rounded-full border-2 border-[#4E9141]/30"
-                          style={{
-                            animation: 'ripple 2s ease-out infinite',
-                            animationDelay: '0s',
-                          }}
-                        />
-                        <span 
-                          className="absolute w-12 h-12 rounded-full border-2 border-[#4E9141]/20"
-                          style={{
-                            animation: 'ripple 2s ease-out infinite',
-                            animationDelay: '0.5s',
-                          }}
-                        />
-                      </>
-                    )}
-                    {/* Main node */}
-                    <div 
-                      className={`relative w-6 h-6 rounded-full border-4 border-white shadow-lg transition-all duration-500 z-10 ${
-                        visibleMilestones.includes(index)
-                          ? 'bg-[#4E9141] scale-110'
-                          : 'bg-[#C2DDB4] scale-100'
-                      }`}
-                    >
-                      {visibleMilestones.includes(index) && (
-                        <span 
-                          className="absolute inset-0 rounded-full bg-[#4E9141]"
-                          style={{
-                            animation: 'pulse 1.5s ease-in-out infinite',
-                          }}
-                        />
-                      )}
-                      {/* Inner glow */}
-                      <span className={`absolute inset-1 rounded-full bg-white/50 transition-opacity duration-500 ${
-                        visibleMilestones.includes(index) ? 'opacity-100' : 'opacity-0'
-                      }`} />
+                  {/* Front of card (shown after flip) */}
+                  <div 
+                    className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden"
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="h-full bg-gradient-to-br from-[#F7FFF5] to-white border border-[#C2DDB4]/30 rounded-2xl p-6 flex flex-col hover:shadow-2xl hover:shadow-[#4E9141]/10 hover:border-[#4E9141]/50 transition-all duration-300 hover:-translate-y-2">
+                      {/* Year Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="px-5 py-2 bg-[#4E9141] text-white text-xl font-bold rounded-full shadow-lg shadow-[#4E9141]/30">
+                          {item.year}
+                        </span>
+                        <div className="w-12 h-12 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
+                          <Award className="w-6 h-6 text-[#4E9141]" />
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-grow">
+                        <h3 className="text-xl font-bold text-[#1D342F] mb-3 group-hover:text-[#4E9141] transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-[#47635D] leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                      
+                      {/* Bottom decoration */}
+                      <div className="mt-4 pt-4 border-t border-[#C2DDB4]/30">
+                        <div className="flex items-center gap-2">
+                          <span className="h-1 flex-grow bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-transparent rounded-full" />
+                          <span className="w-2 h-2 rounded-full bg-[#4E9141] animate-pulse" />
+                        </div>
+                      </div>
+                      
+                      {/* Shimmer effect on hover */}
+                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none rounded-2xl" />
                     </div>
                   </div>
                   
-                  {/* Milestone Card with enhanced hover */}
-                  <div className={`p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141] hover:shadow-2xl hover:shadow-[#4E9141]/10 transition-all duration-500 group transform hover:-translate-y-1 ${
-                    visibleMilestones.includes(index) ? 'milestone-card-visible' : ''
-                  }`}>
-                    {/* Year badge */}
-                    <div className="flex items-center gap-4 mb-3">
-                      <span className="px-4 py-1.5 bg-[#4E9141] text-white text-lg font-bold rounded-full shadow-lg shadow-[#4E9141]/30 group-hover:scale-105 transition-transform">
-                        {item.year}
-                      </span>
-                      <span className="h-[2px] flex-grow bg-gradient-to-r from-[#4E9141] to-transparent group-hover:from-[#4E9141] group-hover:via-[#C2DDB4] group-hover:to-transparent transition-all" />
-                    </div>
-                    <h3 className="text-xl font-bold text-[#1D342F] mb-2 group-hover:text-[#4E9141] transition-colors">{item.title}</h3>
-                    <p className="text-[#47635D] leading-relaxed">{item.desc}</p>
-                    
-                    {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#4E9141]/10 to-transparent transform rotate-45 translate-x-8 -translate-y-8" />
+                  {/* Back of card (shown before flip - loading state) */}
+                  <div 
+                    className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden"
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)'
+                    }}
+                  >
+                    <div className="h-full bg-[#4E9141] rounded-2xl flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="w-16 h-16 mx-auto mb-4 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span className="text-white/80 text-sm font-medium">Loading milestone...</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* CSS for connected path animations */}
-            <style jsx>{`
-              @keyframes ripple {
-                0% {
-                  transform: scale(0.8);
-                  opacity: 1;
-                }
-                100% {
-                  transform: scale(2);
-                  opacity: 0;
-                }
-              }
-              @keyframes pulse {
-                0%, 100% {
-                  transform: scale(1);
-                  opacity: 0.5;
-                }
-                50% {
-                  transform: scale(1.2);
-                  opacity: 0;
-                }
-              }
-              @keyframes particleFlow {
-                0% {
-                  opacity: 0;
-                  transform: translateY(0);
-                }
-                10% {
-                  opacity: 1;
-                }
-                90% {
-                  opacity: 1;
-                }
-                100% {
-                  opacity: 0;
-                  transform: translateY(100vh);
-                }
-              }
-              .milestone-path {
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 1000;
-                animation: drawPath 2s ease-out forwards;
-              }
-              @keyframes drawPath {
-                to {
-                  stroke-dashoffset: 0;
-                }
-              }
-              .milestone-particle {
-                filter: drop-shadow(0 0 6px rgba(78, 145, 65, 0.8));
-              }
-              .milestone-card-visible {
-                animation: cardReveal 0.6s ease-out forwards;
-              }
-              @keyframes cardReveal {
-                0% {
-                  clip-path: inset(0 100% 0 0);
-                }
-                100% {
-                  clip-path: inset(0 0 0 0);
-                }
-              }
-            `}</style>
+              </div>
+            ))}
           </div>
+
+          {/* CSS for flip card animations */}
+          <style jsx>{`
+            .perspective-1000 {
+              perspective: 1000px;
+            }
+            .preserve-3d {
+              transform-style: preserve-3d;
+            }
+            .backface-hidden {
+              backface-visibility: hidden;
+            }
+            @keyframes flipIn {
+              0% {
+                transform: rotateY(180deg) scale(0.8);
+                opacity: 0;
+              }
+              50% {
+                transform: rotateY(90deg) scale(0.9);
+                opacity: 0.5;
+              }
+              100% {
+                transform: rotateY(0deg) scale(1);
+                opacity: 1;
+              }
+            }
+          `}</style>
         </div>
       </section>
 

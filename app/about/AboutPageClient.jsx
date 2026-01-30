@@ -1,19 +1,38 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
   ArrowRight, Eye, Compass, Award, Users,
-  MapPin, Linkedin, Briefcase, Globe, Target
+  MapPin, Linkedin, Briefcase, Globe, Target,
+  Building2, Phone, Mail, ExternalLink, Handshake
 } from 'lucide-react'
 
+// Team images for animated carousel
+const teamImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1551135049-8a33b5883817?w=800',
+    title: 'Strategy Planning',
+  },
+  {
+    url: 'https://images.unsplash.com/flagged/photo-1551135049-83f3419288d0c?w=800',
+    title: 'Client Meetings',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1565688527174-775059ac429c?w=800',
+    title: 'Collaborative Work',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800',
+    title: 'Team Brainstorming',
+  },
+]
+
 const stats = [
-  { value: '14+', label: 'Years Experience', icon: Award },
-  { value: '500+', label: 'Projects Delivered', icon: Briefcase },
-  { value: '30+', label: 'Countries Served', icon: Globe },
-  { value: '100+', label: 'Expert Consultants', icon: Users },
+  { value: '500+', label: 'Clients Worldwide' },
+  { value: '30+', label: 'Countries Served' },
+  { value: '98%', label: 'Client Satisfaction' },
 ]
 
 const directors = [
@@ -52,50 +71,249 @@ const timeline = [
 ]
 
 const clients = [
-  { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
-  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
-  { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
+  { name: 'EIP', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-2.png' },
+  { name: 'Danlaw', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo6-3.png' },
+  { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
+  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
+  { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
+]
+
+const affiliations = [
+  {
+    name: 'Mundi Consulting',
+    description: 'International consulting company providing services for strategic and operational management, human resources, and international procurement.',
+    website: 'https://www.mundiconsulting.net/en/',
+    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/mundi-consulting.png',
+  },
+  {
+    name: 'Research 8020 Limited',
+    description: 'Full range of qualitative and quantitative research solutions across sub-Saharan Africa for Government and NGOs.',
+    website: 'https://research8020.com/',
+    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/research-8020.png',
+  },
+  {
+    name: 'Clearview Consulting Partners',
+    description: 'Multi-locational management consulting with expertise in M&A advisory, strategy, and business advisory services.',
+    website: 'https://www.clearviewpartners.in/',
+    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/clearview.png',
+  },
+  {
+    name: 'Electronica Finance Limited',
+    description: 'Pioneer in Machine Finance with 50+ offices across India, serving 7500+ customers with AUM exceeding Rs.1250 crores.',
+    website: 'https://www.efl.co.in/',
+    logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/efl.png',
+  },
 ]
 
 const locations = [
-  { city: 'Panaji', country: 'India', type: 'Headquarters' },
-  { city: 'Delaware', country: 'USA', type: 'USA Office' },
-  { city: 'Lisbon', country: 'Portugal', type: 'Partner Office' },
-  { city: 'Mumbai', country: 'India', type: 'Branch' },
-  { city: 'Pune', country: 'India', type: 'Branch' },
-  { city: 'Kolkata', country: 'India', type: 'Branch' },
+  { city: 'Panaji, Goa', type: 'Headquarters', address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém', phone: '+91-93596 28675' },
+  { city: 'Delaware, USA', type: 'USA Office', address: '16192 Coastal Highway, Lewes, Delaware 19958', phone: '+91-93596 28675' },
+  { city: 'Mumbai', type: 'Branch', address: 'B/509, Satyam Apartments, Link Road, Borivali West', phone: '+91-90295 03690' },
+  { city: 'Pune', type: 'Branch', address: '2nd Floor, Flat No. 5, Godawari Apartment, Karve Road', phone: '+91-91194 59098' },
+  { city: 'Kolkata', type: 'Branch', address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor', phone: '+91-83368 25469' },
+  { city: 'Kochi', type: 'Branch', address: '1st Floor, Chanraprabha, Near Coopmart, Perumbavoor', phone: '+91-98461 67761' },
+  { city: 'Indore', type: 'Branch', address: '201, Saubhagyashree Building, 16 Janki Nagar Ave.', phone: '+91-98605 29838' },
+  { city: 'Ahmedabad', type: 'Branch', address: 'B-403, Samudra Complex, C G Road, Navrangpura', phone: '+91-90295 03690' },
+  { city: 'Mangaluru', type: 'Branch', address: 'Vertex one Workspace, Gateway Building, M G Road', phone: '+91-82963 47983' },
+  { city: 'Agartala', type: 'Branch', address: 'Opposite Modern Club, Shibnagar, Dhaleswar', phone: '+91-72008 21023' },
 ]
 
+// Animated Team Carousel Component
+function TeamCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % teamImages.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="relative w-full h-[450px]">
+      {/* Stacked cards animation like insights page */}
+      <div className="relative w-full h-full">
+        {teamImages.map((image, index) => {
+          const isActive = index === currentIndex
+          const isPrev = index === (currentIndex - 1 + teamImages.length) % teamImages.length
+          const isNext = index === (currentIndex + 1) % teamImages.length
+          
+          let transform = 'translateX(100%) scale(0.8)'
+          let opacity = 0
+          let zIndex = 0
+          
+          if (isActive) {
+            transform = 'translateX(0) scale(1)'
+            opacity = 1
+            zIndex = 30
+          } else if (isPrev) {
+            transform = 'translateX(-30%) scale(0.85) rotateY(15deg)'
+            opacity = 0.5
+            zIndex = 20
+          } else if (isNext) {
+            transform = 'translateX(30%) scale(0.85) rotateY(-15deg)'
+            opacity = 0.5
+            zIndex = 20
+          }
+          
+          return (
+            <div
+              key={index}
+              className="absolute inset-0 transition-all duration-700 ease-out"
+              style={{ transform, opacity, zIndex }}
+            >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="px-4 py-2 bg-white/90 text-[#1D342F] text-sm font-semibold rounded-full">
+                    {image.title}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      
+      {/* Dots indicator */}
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+        {teamImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'w-6 bg-[#4E9141]' : 'bg-[#C2DDB4]'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Locations Carousel Component
+function LocationsCarousel() {
+  const scrollRef = useRef(null)
+  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current
+    if (!scrollContainer || isPaused) return
+
+    let animationId
+    const scroll = () => {
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+        scrollContainer.scrollLeft = 0
+      } else {
+        scrollContainer.scrollLeft += 1
+      }
+      animationId = requestAnimationFrame(scroll)
+    }
+    
+    animationId = requestAnimationFrame(scroll)
+    return () => cancelAnimationFrame(animationId)
+  }, [isPaused])
+
+  // Double the locations for infinite scroll effect
+  const doubledLocations = [...locations, ...locations]
+
+  return (
+    <div 
+      className="overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div 
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-hidden"
+        style={{ scrollBehavior: 'auto' }}
+      >
+        {doubledLocations.map((loc, i) => (
+          <div 
+            key={i}
+            className="flex-shrink-0 w-[320px] bg-white rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300 group"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 bg-[#F7FFF5] rounded-xl flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
+                <MapPin className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#1D342F] text-lg">{loc.city}</h4>
+                <span className="inline-block px-3 py-1 bg-[#4E9141]/10 text-[#4E9141] text-xs font-medium rounded-full mt-1">
+                  {loc.type}
+                </span>
+              </div>
+            </div>
+            <p className="text-sm text-[#47635D] leading-relaxed mb-3">{loc.address}</p>
+            <div className="flex items-center gap-2 text-[#4E9141]">
+              <Phone className="w-4 h-4" />
+              <span className="text-sm font-medium">{loc.phone}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function AboutPageClient() {
+  const [visibleTimeline, setVisibleTimeline] = useState([])
+
+  useEffect(() => {
+    // Animate timeline items on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index)
+            setVisibleTimeline((prev) => [...new Set([...prev, index])])
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    document.querySelectorAll('[data-timeline-item]').forEach((el) => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="bg-white min-h-screen" data-testid="about-page">
       
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="pt-32 pb-20 bg-[#1D342F] relative overflow-hidden">
-        {/* Background decorations */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#5D9F94]/10 rounded-full blur-[120px]" />
+      {/* ==================== HERO SECTION - Light Background ==================== */}
+      <section className="pt-32 pb-20 bg-[#F7FFF5] relative overflow-hidden">
+        {/* Subtle background decorations */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <span className="w-12 h-[3px] bg-[#B45309]" />
-                <span className="text-[#B45309] font-bold text-lg uppercase tracking-[0.1em]">
+                <span className="w-12 h-[3px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
                   About Us
                 </span>
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
                 We Shape Decisions
                 <span className="text-[#4E9141]"> For the Better</span>
               </h1>
               
-              <p className="text-xl text-white/70 leading-relaxed mb-8">
+              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
                 MARC is a global strategy consultancy helping business leaders 
                 seize competitive advantage through data-driven insights and 
                 expert advisory services.
@@ -111,53 +329,52 @@ export default function AboutPageClient() {
                 </Link>
                 <Link 
                   href="/insights"
-                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all"
                 >
                   View Our Insights
                 </Link>
               </div>
             </div>
 
-            {/* Right - Image */}
+            {/* Right - Animated Team Carousel */}
             <div className="relative hidden lg:block">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?w=800"
-                  alt="MARC Team Collaboration"
-                  className="w-full h-[450px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 to-transparent" />
-              </div>
-              
-              {/* Floating card */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl max-w-xs">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center">
-                    <Target className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-[#1D342F]">Our Mission</div>
-                    <div className="text-sm text-[#47635D]">Enabling better decisions</div>
-                  </div>
-                </div>
-              </div>
+              <TeamCarousel />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== STATS SECTION ==================== */}
-      <section className="py-16 bg-white">
+      {/* ==================== TRUSTED BY 500+ COMPANIES ==================== */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, i) => (
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F] mb-8">
+              Trusted by 500+ Companies
+            </h2>
+            
+            {/* Stats Row */}
+            <div className="flex flex-wrap justify-center gap-12 lg:gap-24 mb-16">
+              {stats.map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-5xl lg:text-6xl font-bold text-[#1D342F] mb-2">{stat.value}</div>
+                  <div className="text-[#47635D] font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Client Logos Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            {clients.map((client, i) => (
               <div 
                 key={i}
-                className="bg-[#F7FFF5] rounded-2xl p-6 text-center border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+                className="flex items-center justify-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/30 hover:shadow-lg transition-all duration-300"
               >
-                <stat.icon className="w-8 h-8 text-[#4E9141] mx-auto mb-3" />
-                <div className="text-4xl lg:text-5xl font-bold text-[#4E9141] mb-2">{stat.value}</div>
-                <div className="text-[#47635D] font-medium">{stat.label}</div>
+                <img 
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                />
               </div>
             ))}
           </div>
@@ -165,10 +382,10 @@ export default function AboutPageClient() {
       </section>
 
       {/* ==================== VISION & MISSION ==================== */}
-      <section className="py-16 bg-[#F7FFF5]">
+      <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
             <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
               Our Purpose
             </span>
@@ -200,34 +417,52 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== JOURNEY TIMELINE ==================== */}
-      <section className="py-16 bg-white">
+      {/* ==================== ANIMATED JOURNEY TIMELINE ==================== */}
+      <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
             <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
               Our Journey
             </span>
           </div>
 
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-16">
             From Local Roots to Global Reach
           </h2>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute top-0 bottom-0 left-[20px] lg:left-1/2 w-[2px] bg-[#C2DDB4]" />
+            <div className="absolute top-0 bottom-0 left-[20px] lg:left-1/2 w-[3px] bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
             
-            <div className="space-y-8">
+            <div className="space-y-12">
               {timeline.map((item, i) => (
-                <div key={i} className={`relative flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  {/* Dot */}
-                  <div className="absolute left-[12px] lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 bg-[#4E9141] rounded-full border-4 border-white shadow-md z-10" />
+                <div 
+                  key={i}
+                  data-timeline-item
+                  data-index={i}
+                  className={`relative flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                >
+                  {/* Animated Dot */}
+                  <div 
+                    className={`absolute left-[12px] lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-700 ${
+                      visibleTimeline.includes(i) 
+                        ? 'bg-[#4E9141] scale-125' 
+                        : 'bg-[#C2DDB4] scale-100'
+                    }`}
+                  />
                   
                   {/* Content */}
-                  <div className={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'}`}>
-                    <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-lg transition-all">
-                      <span className="text-[#4E9141] font-bold text-2xl">{item.year}</span>
+                  <div 
+                    className={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'} transition-all duration-700 ${
+                      visibleTimeline.includes(i)
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ transitionDelay: `${i * 100}ms` }}
+                  >
+                    <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-300 group">
+                      <span className="text-[#4E9141] font-bold text-3xl group-hover:scale-110 inline-block transition-transform">{item.year}</span>
                       <h4 className="text-xl font-bold text-[#1D342F] mt-2">{item.title}</h4>
                       <p className="text-[#47635D] mt-1">{item.desc}</p>
                     </div>
@@ -240,10 +475,10 @@ export default function AboutPageClient() {
       </section>
 
       {/* ==================== LEADERSHIP TEAM ==================== */}
-      <section className="py-16 bg-[#1D342F]">
+      <section className="py-20 bg-[#1D342F]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
             <span className="text-white font-bold text-lg uppercase tracking-[0.1em]">
               Leadership
             </span>
@@ -291,64 +526,92 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== CLIENTS ==================== */}
-      <section id="clients" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ==================== LOCATIONS CAROUSEL ==================== */}
+      <section className="py-20 bg-[#F7FFF5]">
+        <div className="max-w-7xl mx-auto px-6 mb-8">
           <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#B45309]" />
-            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
-              Our Clients
-            </span>
-          </div>
-
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
-            Trusted by Industry Leaders
-          </h2>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8">
-            {clients.map((client, i) => (
-              <div 
-                key={i}
-                className="flex items-center justify-center p-4 bg-[#F7FFF5] rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all"
-              >
-                <img 
-                  src={client.logo}
-                  alt={client.name}
-                  className="max-h-12 object-contain grayscale hover:grayscale-0 transition-all"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== LOCATIONS ==================== */}
-      <section className="py-16 bg-[#F7FFF5]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
             <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
               Global Presence
             </span>
           </div>
 
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
-            Our Locations
-          </h2>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F]">
+              Our Worldwide Offices
+            </h2>
+            <Link 
+              href="/contact"
+              className="hidden md:inline-flex items-center gap-2 text-[#4E9141] font-semibold hover:gap-3 transition-all"
+            >
+              View All Locations
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+        
+        {/* Full-width carousel */}
+        <LocationsCarousel />
+        
+        <div className="max-w-7xl mx-auto px-6 mt-8 md:hidden">
+          <Link 
+            href="/contact"
+            className="inline-flex items-center gap-2 text-[#4E9141] font-semibold"
+          >
+            View All Locations
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {locations.map((loc, i) => (
-              <div 
+      {/* ==================== AFFILIATIONS ==================== */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
+              Our Affiliations
+            </span>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6 mb-12">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
+                Global Consulting Partnerships
+              </h2>
+              <p className="text-lg text-[#47635D] leading-relaxed">
+                MARC carries out its vision of circumventing global markets by connecting those who need with those who want. 
+                Our strong affiliations enable stakeholders to receive end-to-end solutions.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {affiliations.map((affiliation, i) => (
+              <a
                 key={i}
-                className="bg-white rounded-xl p-5 text-center border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all"
+                href={affiliation.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-[#F7FFF5] rounded-2xl p-6 border border-[#C2DDB4]/30 hover:border-[#4E9141] hover:shadow-xl transition-all duration-300"
               >
-                <MapPin className="w-6 h-6 text-[#4E9141] mx-auto mb-2" />
-                <h4 className="font-bold text-[#1D342F]">{loc.city}</h4>
-                <p className="text-sm text-[#47635D]">{loc.country}</p>
-                <span className="inline-block mt-2 px-3 py-1 bg-[#4E9141]/10 text-[#4E9141] text-xs font-medium rounded-full">
-                  {loc.type}
-                </span>
-              </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center border border-[#C2DDB4]/30 flex-shrink-0">
+                    <Handshake className="w-8 h-8 text-[#4E9141]" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-xl font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
+                        {affiliation.name}
+                      </h3>
+                      <ExternalLink className="w-4 h-4 text-[#4E9141] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <p className="text-[#47635D] text-sm leading-relaxed">
+                      {affiliation.description}
+                    </p>
+                  </div>
+                </div>
+              </a>
             ))}
           </div>
         </div>

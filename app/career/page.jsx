@@ -33,7 +33,7 @@ import {
   Quote
 } from 'lucide-react'
 
-// Employee Testimonials Data (Placeholders)
+// Employee Testimonials Data
 const employeeTestimonials = [
   {
     id: 1,
@@ -82,35 +82,35 @@ const applicationSteps = [
   {
     step: 1,
     title: "Apply Online",
-    description: "Submit your resume and cover letter through our careers portal. We review every application.",
+    description: "Submit your resume and cover letter through our careers portal.",
     duration: "Day 1",
     icon: Send
   },
   {
     step: 2,
     title: "Initial Screening",
-    description: "Our HR team reviews your profile and reaches out for a brief phone conversation.",
+    description: "Our HR team reviews your profile and reaches out for a brief call.",
     duration: "Days 3-5",
     icon: FileText
   },
   {
     step: 3,
     title: "Case Interview",
-    description: "Demonstrate your problem-solving skills through a real-world business case study.",
+    description: "Demonstrate your problem-solving skills through a business case.",
     duration: "Week 2",
     icon: MessageSquare
   },
   {
     step: 4,
     title: "Panel Interview",
-    description: "Meet with senior team members to discuss your experience and cultural fit.",
+    description: "Meet with senior team members to discuss experience and fit.",
     duration: "Week 2-3",
     icon: UserCheck
   },
   {
     step: 5,
     title: "Final Decision",
-    description: "Receive your offer letter with complete compensation and benefits details.",
+    description: "Receive your offer letter with compensation details.",
     duration: "Week 3-4",
     icon: Handshake
   }
@@ -118,17 +118,17 @@ const applicationSteps = [
 
 // Benefits Data
 const benefits = [
-  { icon: HeartPulse, title: "Health Insurance", description: "Comprehensive medical coverage for you and your family" },
-  { icon: GraduationCap, title: "Learning Budget", description: "Annual allowance for courses, certifications & conferences" },
-  { icon: Wallet, title: "Performance Bonus", description: "Competitive bonuses tied to individual and team performance" },
-  { icon: Plane, title: "Travel Opportunities", description: "Work with clients across India and international exposure" },
-  { icon: Baby, title: "Parental Leave", description: "Generous maternity and paternity leave policies" },
-  { icon: Coffee, title: "Flexible Work", description: "Hybrid work model with work-from-home flexibility" },
-  { icon: BookOpen, title: "Mentorship Program", description: "1-on-1 mentoring from senior consultants and partners" },
-  { icon: Dumbbell, title: "Wellness Programs", description: "Gym memberships, mental health support & wellness days" },
+  { icon: HeartPulse, title: "Health Insurance", description: "Comprehensive medical coverage for you and family" },
+  { icon: GraduationCap, title: "Learning Budget", description: "Annual allowance for courses & certifications" },
+  { icon: Wallet, title: "Performance Bonus", description: "Competitive bonuses tied to performance" },
+  { icon: Plane, title: "Travel Opportunities", description: "Work with clients across India & abroad" },
+  { icon: Baby, title: "Parental Leave", description: "Generous maternity and paternity leave" },
+  { icon: Coffee, title: "Flexible Work", description: "Hybrid work model with WFH flexibility" },
+  { icon: BookOpen, title: "Mentorship Program", description: "1-on-1 mentoring from senior consultants" },
+  { icon: Dumbbell, title: "Wellness Programs", description: "Gym memberships & mental health support" },
 ]
 
-// Job Openings Data (Expanded)
+// Job Openings Data
 const jobOpenings = [
   {
     id: "business-development-executive",
@@ -213,6 +213,7 @@ const cultureValues = [
 
 export default function CareersPage() {
   const [isVisible, setIsVisible] = useState({})
+  const [visibleSteps, setVisibleSteps] = useState([])
   const observerRefs = useRef([])
 
   useEffect(() => {
@@ -233,67 +234,124 @@ export default function CareersPage() {
     return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
+  // Animate application steps
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index)
+            setVisibleSteps((prev) => [...new Set([...prev, index])])
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    document.querySelectorAll('[data-step-item]').forEach((el) => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="min-h-screen bg-[#F7FFF5]" data-testid="careers-page">
+    <div className="min-h-screen bg-white" data-testid="careers-page">
 
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 bg-[#4E9141]">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }} />
+      {/* ==================== HERO SECTION - Matching About/Industries Style ==================== */}
+      <section className="relative pt-32 pb-20 bg-[#F7FFF5] overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-8">
-              <Briefcase className="w-4 h-4" />
-              <span>Join Our Team</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-12 h-[3px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+                  Careers
+                </span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
+                Build Your Career
+                <span className="text-[#4E9141]"> With MARC</span>
+              </h1>
+              
+              <p className="text-xl text-[#47635D] leading-relaxed mb-8 max-w-xl">
+                At MARC, you'll help clients expand across India, conduct due diligence 
+                for major acquisitions, and build market entry strategies—from day one.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a 
+                  href="#openings" 
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group"
+                  data-testid="view-openings-btn"
+                >
+                  View Open Positions
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a 
+                  href="#process" 
+                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all"
+                >
+                  How to Apply
+                </a>
+              </div>
             </div>
-            
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-              Build Your Career
-              <span className="block mt-2 text-[#C2DDB4]">With MARC</span>
-            </h1>
-            
-            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
-              At MARC, you'll help a hospitality client expand across South India, 
-              conduct due diligence for ₹500Cr acquisitions, and build market entry 
-              strategies for emerging brands — from day one.
-            </p>
 
-            <div className="flex flex-wrap gap-4">
-              <a 
-                href="#openings" 
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                data-testid="view-openings-btn"
-              >
-                View Open Positions
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
-                href="#process" 
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full backdrop-blur-sm border border-white/20 transition-all duration-300"
-              >
-                How to Apply
-              </a>
+            {/* Stats Grid - Matching Industries Style */}
+            <div className="hidden lg:grid grid-cols-2 gap-4">
+              {[
+                { num: '500+', label: 'Projects Delivered' },
+                { num: '14+', label: 'Years Experience' },
+                { num: '8', label: 'Offices in India' },
+                { num: '30+', label: 'Countries Served' }
+              ].map((stat, i) => (
+                <div 
+                  key={i}
+                  className="aspect-square rounded-2xl bg-white border border-[#C2DDB4]/30 p-6 flex flex-col items-center justify-center hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+                >
+                  <span className="text-4xl font-bold text-[#4E9141]">{stat.num}</span>
+                  <span className="text-sm font-medium text-[#47635D] text-center mt-2">{stat.label}</span>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Stats */}
-          <div className="absolute bottom-10 right-10 hidden lg:flex gap-6">
-            {[
-              { num: '500+', label: 'Projects' },
-              { num: '14+', label: 'Years' },
-              { num: '8', label: 'Offices' }
-            ].map((stat, i) => (
-              <div key={i} className="text-center px-6 py-4 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20">
-                <div className="text-3xl font-bold text-white">{stat.num}</div>
-                <div className="text-sm text-white/70">{stat.label}</div>
+      {/* ==================== CULTURE VALUES ==================== */}
+      <section 
+        ref={el => observerRefs.current[0] = el}
+        className="py-16 bg-white"
+      >
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+              Our Culture
+            </span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
+            Built on <span className="text-[#4E9141]">4 Pillars</span>
+          </h2>
+          <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl mb-12">
+            Our values guide everything we do—from how we work with clients to how we support each other.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cultureValues.map((value, index) => (
+              <div 
+                key={index}
+                className="group bg-[#F7FFF5] rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-[#4E9141] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <value.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1D342F] mb-3">{value.title}</h3>
+                <p className="text-[#47635D] text-sm leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -302,32 +360,28 @@ export default function CareersPage() {
 
       {/* ==================== EMPLOYEE TESTIMONIALS ==================== */}
       <section 
-        ref={el => observerRefs.current[0] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-white"
+        ref={el => observerRefs.current[1] = el}
+        className="py-16 bg-[#F7FFF5]"
       >
-        <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">Our People</span>
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F] leading-tight">
-              Hear From Our Team
-            </h2>
-            <p className="mt-4 text-lg text-[#47635D] max-w-2xl mx-auto">
-              Real stories from real people who've built their careers at MARC.
-            </p>
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+              Our People
+            </span>
           </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
+            Hear From Our Team
+          </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {employeeTestimonials.map((employee, index) => (
               <div 
                 key={employee.id}
-                className="group relative bg-[#F7FFF5] rounded-3xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500"
+                className="group relative bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
                 data-testid={`employee-testimonial-${index}`}
               >
-                <Quote className="absolute top-6 right-6 w-10 h-10 text-[#4E9141]/20" />
+                <Quote className="absolute top-6 right-6 w-10 h-10 text-[#4E9141]/10" />
                 
                 <div className="flex items-start gap-4 mb-6">
                   <img 
@@ -356,73 +410,99 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== APPLICATION PROCESS ==================== */}
+      {/* ==================== APPLICATION PROCESS - Timeline Style ==================== */}
       <section 
         id="process"
-        ref={el => observerRefs.current[1] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-[#1D342F]"
+        ref={el => observerRefs.current[2] = el}
+        className="py-20 bg-white overflow-hidden"
       >
-        <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">How To Apply</span>
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Your Journey Starts Here
-            </h2>
-            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
-              Our hiring process typically takes 3-4 weeks. Here's what to expect.
-            </p>
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+              How To Apply
+            </span>
           </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-16">
+            Your Journey Starts Here
+          </h2>
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-[#4E9141]/30 -translate-y-1/2" />
-            
-            <div className="grid lg:grid-cols-5 gap-8">
+            <div className="absolute left-8 top-0 bottom-0 w-1 overflow-hidden">
+              <div 
+                className="w-full h-full bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]"
+                style={{ animation: 'pathFlow 3s linear infinite' }}
+              />
+            </div>
+
+            <div className="space-y-8">
               {applicationSteps.map((step, index) => (
                 <div 
                   key={step.step}
-                  className="relative text-center"
+                  data-step-item
+                  data-index={index}
+                  className={`relative pl-20 transition-all duration-700 ${
+                    visibleSteps.includes(index)
+                      ? 'opacity-100 translate-x-0'
+                      : 'opacity-0 -translate-x-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
                   data-testid={`application-step-${index}`}
                 >
                   {/* Step Circle */}
-                  <div className="relative z-10 w-20 h-20 mx-auto mb-6 rounded-full bg-[#4E9141] flex items-center justify-center shadow-lg shadow-[#4E9141]/30">
-                    <step.icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  {/* Step Number */}
-                  <div className="absolute top-0 right-1/2 translate-x-12 -translate-y-2 w-6 h-6 rounded-full bg-[#B45309] text-white text-xs font-bold flex items-center justify-center">
-                    {step.step}
+                  <div className={`absolute left-6 w-5 h-5 rounded-full border-4 border-white shadow-lg -translate-x-1/2 transition-all duration-500 ${
+                    visibleSteps.includes(index)
+                      ? 'bg-[#4E9141] scale-110'
+                      : 'bg-[#C2DDB4] scale-100'
+                  }`}>
+                    {visibleSteps.includes(index) && (
+                      <span className="absolute inset-0 rounded-full bg-[#4E9141] animate-ping opacity-30" />
+                    )}
                   </div>
 
-                  <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-white/60 text-sm mb-3 leading-relaxed">{step.description}</p>
-                  <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-xs font-medium text-[#C2DDB4]">
-                    {step.duration}
-                  </span>
+                  <div className="p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300 group">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="w-12 h-12 rounded-xl bg-[#4E9141] flex items-center justify-center">
+                        <step.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-semibold text-[#4E9141] uppercase tracking-wider">Step {step.step}</span>
+                        <h3 className="text-xl font-bold text-[#1D342F]">{step.title}</h3>
+                      </div>
+                      <span className="ml-auto px-3 py-1 bg-[#4E9141]/10 rounded-full text-xs font-medium text-[#4E9141]">
+                        {step.duration}
+                      </span>
+                    </div>
+                    <p className="text-[#47635D] ml-16">{step.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
+
+            <style jsx>{`
+              @keyframes pathFlow {
+                0% { background-position: 0 0; }
+                100% { background-position: 0 100px; }
+              }
+            `}</style>
           </div>
 
           {/* Tips Box */}
-          <div className="mt-16 p-8 rounded-2xl bg-white/5 border border-white/10">
-            <h3 className="text-xl font-bold text-white mb-4">Tips for Success</h3>
+          <div className="mt-12 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
+            <h3 className="text-xl font-bold text-[#1D342F] mb-4">Tips for Success</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm">Research MARC's recent projects and industry focus areas before your interview.</p>
+                <p className="text-[#47635D] text-sm">Research MARC's recent projects and industry focus areas before your interview.</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm">Prepare for case studies using structured frameworks (MECE, Porter's Five Forces).</p>
+                <p className="text-[#47635D] text-sm">Prepare for case studies using structured frameworks (MECE, Porter's Five Forces).</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm">Be ready to discuss specific examples of problem-solving from your experience.</p>
+                <p className="text-[#47635D] text-sm">Be ready to discuss specific examples of problem-solving from your experience.</p>
               </div>
             </div>
           </div>
@@ -431,17 +511,19 @@ export default function CareersPage() {
 
       {/* ==================== BENEFITS ==================== */}
       <section 
-        ref={el => observerRefs.current[2] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-white"
+        ref={el => observerRefs.current[3] = el}
+        className="py-16 bg-[#F7FFF5]"
       >
-        <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-[2px] bg-[#B45309]" />
-                <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">Benefits & Perks</span>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="w-12 h-[3px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+                  Benefits & Perks
+                </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F] leading-tight mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-6">
                 We Take Care of Our People
               </h2>
               <p className="text-lg text-[#47635D] leading-relaxed mb-8">
@@ -451,7 +533,7 @@ export default function CareersPage() {
               
               <a 
                 href="#openings"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 group"
               >
                 Explore Opportunities
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -462,7 +544,7 @@ export default function CareersPage() {
               {benefits.map((benefit, index) => (
                 <div 
                   key={index}
-                  className="group p-5 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300"
+                  className="group p-5 rounded-2xl bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
                   data-testid={`benefit-${index}`}
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#4E9141] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -477,60 +559,25 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== CULTURE VALUES ==================== */}
-      <section 
-        ref={el => observerRefs.current[3] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-[#F0F8F6]"
-      >
-        <div className={`max-w-7xl mx-auto transition-all duration-1000 ${isVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">Our Culture</span>
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F]">
-              Built on <span className="text-[#4E9141]">4 Pillars</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cultureValues.map((value, index) => (
-              <div 
-                key={index}
-                className="group relative bg-white rounded-3xl p-8 shadow-sm border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-500"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-[#4E9141] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <value.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1D342F] mb-3">{value.title}</h3>
-                <p className="text-[#47635D] text-sm leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ==================== JOB OPENINGS ==================== */}
       <section 
         id="openings"
         ref={el => observerRefs.current[4] = el}
-        className="py-24 lg:py-32 px-6 lg:px-8 bg-white"
+        className="py-16 bg-white"
       >
-        <div className={`max-w-5xl mx-auto transition-all duration-1000 ${isVisible[4] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">Open Positions</span>
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F]">
-              Current Openings
-            </h2>
-            <p className="mt-4 text-lg text-[#47635D]">
-              Find your perfect role and take the next step in your career.
-            </p>
+        <div className={`max-w-5xl mx-auto px-6 transition-all duration-1000 ${isVisible[4] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+              Open Positions
+            </span>
           </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
+            Current Openings
+          </h2>
+          <p className="text-lg text-[#47635D] mb-12">
+            Find your perfect role and take the next step in your career.
+          </p>
 
           <div className="space-y-4">
             {jobOpenings.map((job, index) => (
@@ -582,14 +629,14 @@ export default function CareersPage() {
           </div>
 
           {/* Don't see a fit */}
-          <div className="mt-12 text-center p-8 rounded-3xl bg-gradient-to-br from-[#4E9141] to-[#3d7334] text-white">
-            <h3 className="text-2xl font-bold mb-2">Don't see a role that fits?</h3>
-            <p className="text-white/80 mb-6">
+          <div className="mt-12 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 text-center">
+            <h3 className="text-2xl font-bold text-[#1D342F] mb-2">Don't see a role that fits?</h3>
+            <p className="text-[#47635D] mb-6">
               We're always looking for talented individuals. Send us your resume!
             </p>
             <a 
               href="mailto:careers@marcglocal.com" 
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300"
               data-testid="send-resume-cta"
             >
               <Send className="w-5 h-5" />
@@ -599,28 +646,27 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== FINAL CTA ==================== */}
-      <section className="py-24 lg:py-32 px-6 lg:px-8 bg-[#4E9141]">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+      {/* ==================== CTA SECTION ==================== */}
+      <section className="py-20 bg-[#4E9141]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             Ready to Make an Impact?
           </h2>
-          <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            Join MARC and be part of a team that's shaping business decisions 
-            across India. Your next career milestone starts here.
+          <p className="text-xl text-white/80 mb-8">
+            Join MARC and be part of a team that's shaping business decisions across India.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="#openings" 
-              className="inline-flex items-center gap-2 px-10 py-5 bg-white text-[#4E9141] font-bold text-lg rounded-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group"
               data-testid="final-cta-explore"
             >
               Explore Opportunities
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="mailto:careers@marcglocal.com" 
-              className="inline-flex items-center gap-2 px-10 py-5 bg-transparent text-white font-bold text-lg rounded-full border-2 border-white/40 hover:border-white hover:bg-white/10 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all"
             >
               Contact Recruiting
             </a>

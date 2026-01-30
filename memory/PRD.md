@@ -33,12 +33,12 @@ Recreate and enhance the MARC Glocal consultancy website based on the user's Git
 
 4. **About Page - Complete Redesign**
    - **Light green color scheme** (matching homepage) with dark green accents only
-   - **Animated Team Carousel** in hero section (like insights page animation)
+   - **Animated Team Carousel** in hero section (like insights page animation) - fixed broken image URLs
    - **"Trusted by 500+ Companies"** section with stats (500+ Clients, 30+ Countries, 98% Satisfaction)
-   - **Client logos grid** (The Park, Kineco, Magsons, EIP, Danlaw, Isha Yoga, Marriott, Taj)
+   - **Client logos marquee** - Two rows scrolling in OPPOSITE directions (The Park, Kineco, Magsons, Taj, Isha Yoga, Marriott)
    - **Vision & Mission** cards
    - **Animated Journey Timeline** with scroll-triggered animations (2010-2024)
-   - **Leadership Team** section with director profiles
+   - **Leadership Team** section - NOW with LIGHT GREEN background (was dark)
    - **Moving Locations Carousel** with 10 offices (Panaji, Delaware, Mumbai, Pune, Kolkata, Kochi, Indore, Ahmedabad, Mangaluru, Agartala)
    - **Global Affiliations** section (Mundi Consulting, Research 8020, Clearview Partners, Electronica Finance)
    - CTA section

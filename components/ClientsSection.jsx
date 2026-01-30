@@ -19,16 +19,16 @@ const ClientsSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* ===== HEADER ===== */}
         <div className="max-w-3xl mb-14">
-          <div 
-            data-testid="clients-badge"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
-          >
-            Our Clients
+          <div className="flex items-center gap-4 mb-6">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg lg:text-xl uppercase tracking-[0.1em]">
+              Our Clients
+            </span>
           </div>
 
           <h2 
             data-testid="clients-heading"
-            className="text-4xl lg:text-5xl font-bold text-[#212427] mb-4 leading-tight"
+            className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-4 leading-[1.1] tracking-tight"
           >
             Trusted Partners in Business Consulting
           </h2>

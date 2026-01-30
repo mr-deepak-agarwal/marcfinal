@@ -269,11 +269,6 @@ export default function Header() {
                         </div>
                       )}
                     </div>
-                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[#4E9141]/10 to-transparent" />
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 ) : (
                   <Link

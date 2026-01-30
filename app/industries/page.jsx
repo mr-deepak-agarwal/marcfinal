@@ -289,11 +289,11 @@ export default function IndustriesPage() {
       {activeIndustry && (
         <section 
           id={`industry-detail-${activeIndustry}`}
-          className="relative py-20 px-6 overflow-hidden"
+          className="relative py-24 lg:py-32 px-6 overflow-hidden"
         >
           {industries.filter(ind => ind.id === activeIndustry).map((industry) => (
             <div key={industry.id} className="relative">
-              {/* Background Image */}
+              {/* Background Image - More transparent */}
               <div className="absolute inset-0 z-0">
                 <img 
                   src={`https://images.unsplash.com/photo-${
@@ -312,40 +312,41 @@ export default function IndustriesPage() {
                   alt={industry.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/95 via-[#1D342F]/80 to-[#1D342F]/60" />
+                {/* Darker overlay for better content visibility */}
+                <div className="absolute inset-0 bg-[#1D342F]/90" />
               </div>
 
-              {/* Content */}
+              {/* Content - More padding */}
               <div className="relative z-10 max-w-7xl mx-auto">
-                <div className="max-w-2xl">
-                  <div className="flex items-center gap-4 mb-4">
+                <div className="max-w-2xl py-8">
+                  <div className="flex items-center gap-4 mb-6">
                     <span className="w-12 h-[3px] bg-[#4E9141]" />
                     <span className="text-[#4E9141] font-bold uppercase tracking-[0.1em]">
                       Industry
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-16 h-16 rounded-2xl bg-[#4E9141] flex items-center justify-center">
                       <industry.icon className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-white">{industry.title}</h2>
+                    <h2 className="text-3xl lg:text-5xl font-bold text-white">{industry.title}</h2>
                   </div>
                   
-                  <p className="text-lg text-white/80 leading-relaxed mb-8">
+                  <p className="text-xl text-white/90 leading-relaxed mb-10">
                     {industry.fullDesc}
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-8">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-                      <div className="text-4xl font-bold text-[#4E9141]">{industry.stat}</div>
-                      <div className="text-sm text-white/70">{industry.statLabel}</div>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6 border border-white/20">
+                      <div className="text-5xl font-bold text-[#4E9141]">{industry.stat}</div>
+                      <div className="text-sm text-white/80 mt-1">{industry.statLabel}</div>
                     </div>
                     <Link 
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all text-lg"
                     >
                       Get Consultation
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-5 h-5" />
                     </Link>
                   </div>
                 </div>

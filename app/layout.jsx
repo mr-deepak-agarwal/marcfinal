@@ -2,6 +2,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
+import WhatsAppButton from '@/components/WhatsAppButton'
 import { LoadingProvider } from '@/components/loading-store'
 
 const poppins = Poppins({ 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           <RouteLoader />
           <Header />
           {children}
+          <WhatsAppButton phoneNumber="919876543210" />
         </LoadingProvider>
     </body>
     </html>

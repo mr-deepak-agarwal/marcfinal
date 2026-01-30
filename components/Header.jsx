@@ -234,82 +234,135 @@ export default function Header() {
               </Link>
             </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            data-testid="mobile-menu-toggle"
-            className="lg:hidden p-2 text-[#1D342F] hover:bg-[#F7FFF5] rounded-lg transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <div className="relative w-6 h-6">
-              <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-3' : ''}`} />
-              <span className={`absolute left-0 top-3 w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`absolute left-0 top-5 w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-3' : ''}`} />
-            </div>
-          </button>
+            {/* Mobile Menu Button with enhanced animation */}
+            <button
+              data-testid="mobile-menu-toggle"
+              className={`lg:hidden relative p-2 rounded-xl transition-all duration-300 z-10 ${
+                isMobileMenuOpen ? 'bg-[#4E9141]/10' : 'hover:bg-[#F7FFF5]'
+              }`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <div className="relative w-6 h-6">
+                <span className={`absolute left-0 w-6 h-0.5 bg-[#1D342F] transition-all duration-300 origin-center ${
+                  isMobileMenuOpen ? 'rotate-45 top-3 bg-[#4E9141]' : 'top-1'
+                }`} />
+                <span className={`absolute left-0 top-3 w-6 h-0.5 bg-[#1D342F] transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0 scale-0' : ''
+                }`} />
+                <span className={`absolute left-0 w-6 h-0.5 bg-[#1D342F] transition-all duration-300 origin-center ${
+                  isMobileMenuOpen ? '-rotate-45 top-3 bg-[#4E9141]' : 'top-5'
+                }`} />
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full screen overlay with glassmorphism */}
       <div 
-        className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="bg-white border-t border-gray-100 px-6 py-4 space-y-1">
-          {navLinks.map((link) =>
-            link.children ? (
-              <div key={link.label}>
-                <button
-                  onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
-                  className="w-full flex justify-between items-center px-4 py-3 text-[#1D342F] font-medium hover:bg-[#F7FFF5] rounded-lg transition-colors"
+        {/* Backdrop */}
+        <div 
+          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 ${
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Menu panel */}
+        <div 
+          className={`absolute top-20 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-[#4E9141]/10 shadow-2xl transition-all duration-500 ${
+            isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}
+        >
+          <div className="max-h-[calc(100vh-5rem)] overflow-y-auto px-6 py-6 space-y-2">
+            {navLinks.map((link, index) =>
+              link.children ? (
+                <div 
+                  key={link.label}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`transition-all duration-300 ${
+                    isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+                  }`}
                 >
-                  {link.label}
-                  <ChevronDown
-                    className={`transition-transform duration-300 ${
-                      activeDropdown === link.label ? 'rotate-180' : ''
-                    }`}
-                    size={16}
-                  />
-                </button>
+                  <button
+                    onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+                    className="w-full flex justify-between items-center px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300"
+                  >
+                    {link.label}
+                    <ChevronDown
+                      className={`transition-transform duration-300 ${
+                        activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''
+                      }`}
+                      size={16}
+                    />
+                  </button>
 
-                <div className={`overflow-hidden transition-all duration-300 ${
-                  activeDropdown === link.label ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
-                  <div className="ml-4 py-1 space-y-1">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        onClick={() => handleClick(child.href)}
-                        className="block px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#F7FFF5] rounded-lg transition-colors"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className={`overflow-hidden transition-all duration-400 ${
+                    activeDropdown === link.label ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="ml-4 py-2 space-y-1 border-l-2 border-[#4E9141]/20">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => handleClick(child.href)}
+                          className="block px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => handleClick(link.href)}
-                className="block px-4 py-3 text-[#1D342F] font-medium hover:bg-[#F7FFF5] rounded-lg transition-colors"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => handleClick(link.href)}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`block px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300 ${
+                    isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
 
-          <div className="pt-3">
-            <Link href="/contact" onClick={() => handleClick('/contact')}>
-              <button className="w-full py-3 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-colors">
-                Get in Touch
-              </button>
-            </Link>
+            <div className="pt-4">
+              <Link href="/contact" onClick={() => handleClick('/contact')}>
+                <button className="w-full py-3.5 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 shadow-lg shadow-[#4E9141]/20">
+                  Get in Touch
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </header>
+
+      {/* CSS for header animations */}
+      <style jsx global>{`
+        @keyframes shimmerLine {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        @keyframes gradientShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 200% 50%;
+          }
+        }
+      `}</style>
+    </>
   )
 }

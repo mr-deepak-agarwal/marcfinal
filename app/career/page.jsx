@@ -410,7 +410,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== APPLICATION PROCESS - Timeline Style ==================== */}
+      {/* ==================== APPLICATION PROCESS - Horizontal Steps ==================== */}
       <section 
         id="process"
         ref={el => observerRefs.current[2] = el}
@@ -423,73 +423,72 @@ export default function CareersPage() {
               How To Apply
             </span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
             Your Journey Starts Here
           </h2>
+          <p className="text-lg text-[#47635D] mb-16 max-w-2xl">
+            Our hiring process typically takes 3-4 weeks. Here's what to expect.
+          </p>
 
+          {/* Horizontal Steps */}
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 overflow-hidden">
-              <div 
-                className="w-full h-full bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]"
-                style={{ animation: 'pathFlow 3s linear infinite' }}
-              />
-            </div>
-
-            <div className="space-y-8">
+            {/* Timeline Line - Hidden on mobile */}
+            <div className="hidden lg:block absolute top-10 left-0 right-0 h-[2px] bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
               {applicationSteps.map((step, index) => (
                 <div 
                   key={step.step}
                   data-step-item
                   data-index={index}
-                  className={`relative pl-20 transition-all duration-700 ${
+                  className={`relative text-center transition-all duration-700 ${
                     visibleSteps.includes(index)
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 -translate-x-8'
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  style={{ transitionDelay: `${index * 200}ms` }}
                   data-testid={`application-step-${index}`}
                 >
-                  {/* Step Circle */}
-                  <div className={`absolute left-6 w-5 h-5 rounded-full border-4 border-white shadow-lg -translate-x-1/2 transition-all duration-500 ${
-                    visibleSteps.includes(index)
-                      ? 'bg-[#4E9141] scale-110'
-                      : 'bg-[#C2DDB4] scale-100'
-                  }`}>
+                  {/* Step Circle with Icon */}
+                  <div className="relative z-10 mx-auto mb-6">
+                    <div className={`w-20 h-20 mx-auto rounded-full bg-[#4E9141] flex items-center justify-center shadow-lg transition-all duration-500 ${
+                      visibleSteps.includes(index) ? 'shadow-[#4E9141]/30 scale-100' : 'shadow-none scale-90'
+                    }`}>
+                      <step.icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    {/* Step Number Badge */}
+                    <div className={`absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#1D342F] text-white text-xs font-bold flex items-center justify-center transition-all duration-500 ${
+                      visibleSteps.includes(index) ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                    }`} style={{ transitionDelay: `${index * 200 + 300}ms` }}>
+                      {step.step}
+                    </div>
+
+                    {/* Pulse ring animation */}
                     {visibleSteps.includes(index) && (
-                      <span className="absolute inset-0 rounded-full bg-[#4E9141] animate-ping opacity-30" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="absolute w-20 h-20 rounded-full border-2 border-[#4E9141]/30 animate-ping" style={{ animationDuration: '2s' }} />
+                      </div>
                     )}
                   </div>
 
-                  <div className="p-6 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300 group">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="w-12 h-12 rounded-xl bg-[#4E9141] flex items-center justify-center">
-                        <step.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <span className="text-xs font-semibold text-[#4E9141] uppercase tracking-wider">Step {step.step}</span>
-                        <h3 className="text-xl font-bold text-[#1D342F]">{step.title}</h3>
-                      </div>
-                      <span className="ml-auto px-3 py-1 bg-[#4E9141]/10 rounded-full text-xs font-medium text-[#4E9141]">
-                        {step.duration}
-                      </span>
-                    </div>
-                    <p className="text-[#47635D] ml-16">{step.description}</p>
+                  {/* Content */}
+                  <div className={`transition-all duration-500 ${
+                    visibleSteps.includes(index) ? 'opacity-100' : 'opacity-0'
+                  }`} style={{ transitionDelay: `${index * 200 + 200}ms` }}>
+                    <h3 className="text-lg font-bold text-[#1D342F] mb-2">{step.title}</h3>
+                    <p className="text-sm text-[#47635D] leading-relaxed mb-3 min-h-[48px]">{step.description}</p>
+                    <span className="inline-block px-4 py-1.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-full text-xs font-semibold text-[#4E9141]">
+                      {step.duration}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
-
-            <style jsx>{`
-              @keyframes pathFlow {
-                0% { background-position: 0 0; }
-                100% { background-position: 0 100px; }
-              }
-            `}</style>
           </div>
 
           {/* Tips Box */}
-          <div className="mt-12 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
+          <div className="mt-16 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
             <h3 className="text-xl font-bold text-[#1D342F] mb-4">Tips for Success</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="flex items-start gap-3">

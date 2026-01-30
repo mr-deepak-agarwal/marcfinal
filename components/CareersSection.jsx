@@ -40,16 +40,9 @@ const CareersSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* ================= LEFT CONTENT ================= */}
           <div>
-            <div 
-              data-testid="careers-badge"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
-            >
-              Join Our Team
-            </div>
-
             <h2 
               data-testid="careers-heading"
-              className="text-4xl lg:text-5xl font-bold text-[#212427] mb-6 leading-tight tracking-tight"
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
             >
               Build Your Career <br />
               <span className="text-[#4E9141]">With MARC</span>

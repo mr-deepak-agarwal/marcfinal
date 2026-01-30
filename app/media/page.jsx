@@ -5,6 +5,105 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { ArrowRight, ExternalLink, Newspaper, FileText, Mail, Download, Calendar, ChevronRight, Award } from 'lucide-react'
 
+// Media images for animated carousel
+const mediaImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1768508950408-d59387d4dcd1?w=800&q=80',
+    title: 'Corporate Events',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1713948412932-aad419b13f5e?w=800&q=80',
+    title: 'Business News',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1677640724372-adb865d29aa8?w=800&q=80',
+    title: 'Awards & Recognition',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1758691737538-220c1902b1ca?w=800&q=80',
+    title: 'Team Celebrations',
+  },
+]
+
+// Animated Media Carousel Component
+function MediaCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % mediaImages.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="relative w-full h-[450px]" data-testid="media-carousel">
+      {/* Stacked cards animation */}
+      <div className="relative w-full h-full">
+        {mediaImages.map((image, index) => {
+          const isActive = index === currentIndex
+          const isPrev = index === (currentIndex - 1 + mediaImages.length) % mediaImages.length
+          const isNext = index === (currentIndex + 1) % mediaImages.length
+          
+          let transform = 'translateX(100%) scale(0.8)'
+          let opacity = 0
+          let zIndex = 0
+          
+          if (isActive) {
+            transform = 'translateX(0) scale(1)'
+            opacity = 1
+            zIndex = 30
+          } else if (isPrev) {
+            transform = 'translateX(-30%) scale(0.85) rotateY(15deg)'
+            opacity = 0.5
+            zIndex = 20
+          } else if (isNext) {
+            transform = 'translateX(30%) scale(0.85) rotateY(-15deg)'
+            opacity = 0.5
+            zIndex = 20
+          }
+          
+          return (
+            <div
+              key={index}
+              className="absolute inset-0 transition-all duration-700 ease-out"
+              style={{ transform, opacity, zIndex }}
+            >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="px-4 py-2 bg-white/90 text-[#1D342F] text-sm font-semibold rounded-full">
+                    {image.title}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      
+      {/* Dots indicator */}
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+        {mediaImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'w-6 bg-[#4E9141]' : 'bg-[#C2DDB4]'
+            }`}
+            data-testid={`carousel-dot-${index}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const newsArticles = [
   {
     date: 'Sept 1, 2023',

@@ -18,7 +18,7 @@ const navLinks = [
     ],
   },
   { label: 'Industries', href: '/industries' },
-  { label: 'Insights', href: '/insights' },
+  { label: 'Insights', href: '/insights-v2' },
   { label: 'Media', href: '/media' },
   { label: 'Careers', href: '/career' },
   { label: 'Contact', href: '/contact' },
@@ -141,7 +141,7 @@ export default function Header() {
                 data-testid="header-cta"
                 className="ml-6 px-6 py-2.5 bg-[#4E9141] text-white text-sm font-semibold rounded-full transition-all duration-300 hover:bg-[#3d7334] hover:shadow-lg hover:shadow-[#4E9141]/25 hover:-translate-y-0.5 active:translate-y-0"
               >
-                Get in Touch
+                Contact
               </button>
             </Link>
           </nav>

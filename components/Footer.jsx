@@ -14,7 +14,7 @@ import {
 } from 'lucide-react'
 
 const companyLinks = [
-  { label: 'Insights', href: '/insights' },
+  { label: 'Insights', href: '/insights-v2' },
   { label: 'About Us', href: '/about' },
   { label: 'Industries', href: '/industries' },
   { label: 'Media', href: '/media' },

@@ -10,12 +10,117 @@ import {
 } from 'lucide-react'
 
 const offices = [
-  { type: 'Headquarters', city: 'Panaji', country: 'India', address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourem, Goa 403001', phone: '+91-93596 28675', email: 'contact@marcglocal.com', flag: '🇮🇳' },
-  { type: 'USA Office', city: 'Delaware', country: 'USA', address: '16192 Coastal Highway, Lewes, Delaware 19958, County of Sussex', phone: '+91-93596 28675', email: 'contact@marcglocal.com', flag: '🇺🇸' },
-  { type: 'Branch', city: 'Mumbai', country: 'India', address: 'B/509, Satyam Apartments, Link Road, Borivali West, Mumbai 400091', phone: '+91-90295 03690', email: 'mumbai@marcglocal.com', flag: '🇮🇳' },
-  { type: 'Branch', city: 'Pune', country: 'India', address: '2nd Floor, Flat No. 5, Godawari Apartment, Karve Road, Pune 411004', phone: '+91-91194 59098', email: 'pune@marcglocal.com', flag: '🇮🇳' },
-  { type: 'Branch', city: 'Kolkata', country: 'India', address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor, Kolkata 700052', phone: '+91-83368 25469', email: 'kolkata@marcglocal.com', flag: '🇮🇳' },
-  { type: 'Branch', city: 'Ahmedabad', country: 'India', address: 'B-403, Samudra Complex, C G Road, Navrangpura, Ahmedabad 380009', phone: '+91-90295 03690', email: 'ahmedabad@marcglocal.com', flag: '🇮🇳' },
+  { 
+    type: 'Headquarters', 
+    city: 'Panaji', 
+    state: 'Goa',
+    country: 'India', 
+    address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém, Panaji, Goa 403001', 
+    phone: '+91-93596 28675', 
+    email: 'contact@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://www.google.com/maps/place/MARC+(Mangal+Analytics+and+Research+Consulting)'
+  },
+  { 
+    type: 'USA Office', 
+    city: 'Delaware', 
+    state: 'USA',
+    country: 'USA', 
+    address: '16192 Coastal Highway, Lewes, Delaware 19958, County of Sussex, USA', 
+    phone: '+91-93596 28675', 
+    email: 'contact@marcglocal.com', 
+    flag: '🇺🇸',
+    mapLink: 'https://goo.gl/maps/g3A7FCm2JwucYNwMA'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Mumbai', 
+    state: 'Maharashtra',
+    country: 'India', 
+    address: 'B/509, Satyam Apartments, Link Road, Near Don Bosco School, Borivali West, Mumbai, Maharashtra 400091', 
+    phone: '+91-90295 03690', 
+    email: 'mumbai@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://goo.gl/maps/jmu1AvPqTXbxGTpd9'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Pune', 
+    state: 'Maharashtra',
+    country: 'India', 
+    address: '2nd Floor, Flat No. 5, Godawari Apartment, Karve Road, Pune, Maharashtra 411004', 
+    phone: '+91-91194 59098', 
+    phone2: '+91-96500 68123',
+    email: 'pune@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://goo.gl/maps/k58iKNPJ99NcEzh89'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Kolkata', 
+    state: 'West Bengal',
+    country: 'India', 
+    address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor, Office No. 10, Kolkata, West Bengal 700052', 
+    phone: '+91-83368 25469', 
+    email: 'kolkata@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://g.page/Income-tax-service-North-Kolkata'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Ahmedabad', 
+    state: 'Gujarat',
+    country: 'India', 
+    address: 'B-403, Samudra Complex, C G Road, Mithakhali, Navrangpura, Ahmedabad 380009', 
+    phone: '+91-90295 03690', 
+    email: 'ahmedabad@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://goo.gl/maps/pWr7yC277upKPF9E6'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Kochi', 
+    state: 'Kerala',
+    country: 'India', 
+    address: '1st Floor, Chanraprabha, Near Coopmart, Bypass Jn, AM Road, Perumbavoor 683542', 
+    phone: '+91-98461 67761', 
+    email: 'kochi@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://maps.app.goo.gl/UuSeFbAY5kCFDS5n6'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Indore', 
+    state: 'Madhya Pradesh',
+    country: 'India', 
+    address: '201, Saubhagyashree Building, 16 Janki Nagar Ave., Indore, Madhya Pradesh 452001', 
+    phone: '+91-98605 29838', 
+    email: 'indore@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://g.page/ruchi-jindal-associates'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Agartala', 
+    state: 'Tripura',
+    country: 'India', 
+    address: 'Opposite Modern Club, Shibnagar, Dhaleswar, Agartala, Tripura 799007', 
+    phone: '+91-72008 21023', 
+    email: 'agartala@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'https://www.google.co.in/maps/place/Varsha+Chopra+%26+Co.'
+  },
+  { 
+    type: 'Branch', 
+    city: 'Mangaluru', 
+    state: 'Karnataka',
+    country: 'India', 
+    address: 'Vertex One Workspace, Gateway Building, M G Road, Ballalbagh, Mangalore, Karnataka 575003', 
+    phone: '+91-82963 47983', 
+    email: 'mangaluru@marcglocal.com', 
+    flag: '🇮🇳',
+    mapLink: 'http://rb.gy/xazkk9'
+  },
 ]
 
 const services = ['Market Research', 'Due Diligence', 'Valuation Advisory', 'Strategy Consulting', 'Financial Modelling', 'Internationalization', 'Other']

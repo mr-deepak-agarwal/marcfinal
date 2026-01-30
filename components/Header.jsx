@@ -338,7 +338,8 @@ export default function Header() {
         >
           <div className="max-h-[calc(100vh-5rem)] overflow-y-auto px-6 py-6 space-y-2">
             {navLinks.map((link, index) =>
-              link.children ? (
+              link.hasServicesMenu ? (
+                /* Services Accordion */
                 <div 
                   key={link.label}
                   style={{ animationDelay: `${index * 50}ms` }}
@@ -347,37 +348,72 @@ export default function Header() {
                   }`}
                 >
                   <button
-                    onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+                    onClick={() => setActiveDropdown(activeDropdown === 'Services' ? null : 'Services')}
                     className="w-full flex justify-between items-center px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300"
                   >
-                    {link.label}
+                    Services
                     <ChevronDown
                       className={`transition-transform duration-300 ${
-                        activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''
+                        activeDropdown === 'Services' ? 'rotate-180 text-[#4E9141]' : ''
                       }`}
                       size={16}
                     />
                   </button>
 
                   <div className={`overflow-hidden transition-all duration-400 ${
-                    activeDropdown === link.label ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                    activeDropdown === 'Services' ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                    <div className="ml-4 py-2 space-y-1 border-l-2 border-[#4E9141]/20">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          onClick={() => handleClick(child.href)}
-                          className="block px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300"
-                        >
-                          {child.label}
-                        </Link>
+                    <div className="py-2 space-y-4">
+                      {serviceCategories.map((category, catIdx) => (
+                        <div key={catIdx}>
+                          {/* Category Header */}
+                          <div className="px-4 mb-2">
+                            <span className="text-xs font-semibold text-[#4E9141] uppercase tracking-wider">{category.label}</span>
+                          </div>
+                          {/* Services List */}
+                          <div className="ml-4 space-y-1 border-l-2 border-[#4E9141]/20">
+                            {category.services.map((service, svcIdx) => (
+                              <Link
+                                key={svcIdx}
+                                href={service.href}
+                                onClick={() => handleClick(service.href)}
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300"
+                              >
+                                <service.icon className="w-4 h-4 text-[#4E9141]" />
+                                {service.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
                 </div>
               ) : (
                 <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => handleClick(link.href)}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`block px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300 ${
+                    isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+
+            <div className="pt-4">
+              <Link href="/contact" onClick={() => handleClick('/contact')}>
+                <button className="w-full py-3.5 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 shadow-lg shadow-[#4E9141]/20">
+                  Get in Touch
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
                   key={link.label}
                   href={link.href}
                   onClick={() => handleClick(link.href)}

@@ -255,60 +255,6 @@ export default function Header() {
                     </div>
                   </div>
                 ) : (
-                                    <div className="space-y-1">
-                                      {category.children.map((subItem, subIdx) => (
-                                        <Link
-                                          key={subIdx}
-                                          href={subItem.href}
-                                          onClick={() => handleClick(subItem.href)}
-                                          className="group flex items-center gap-2 py-2 text-sm text-[#47635D] hover:text-[#4E9141] transition-colors"
-                                        >
-                                          <span className="w-1 h-1 rounded-full bg-[#C2DDB4] group-hover:bg-[#4E9141] transition-colors" />
-                                          {subItem.label}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  </>
-                                ) : (
-                                  <Link
-                                    href={category.href}
-                                    onClick={() => handleClick(category.href)}
-                                    className="flex items-center gap-2 py-2 text-[#4E9141] font-semibold text-sm uppercase tracking-wider hover:text-[#3d7334] transition-colors"
-                                  >
-                                    {category.label}
-                                    <ArrowRight size={14} />
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        /* Standard Dropdown for other menus */
-                        <div className="w-64 bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/10 border border-[#4E9141]/10 overflow-hidden">
-                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-[#4E9141] to-transparent rounded-full" />
-                          
-                          {link.children.map((child, idx) => (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              onClick={() => handleClick(child.href)}
-                              className="group flex items-center justify-between px-5 py-4 text-sm text-[#1D342F] hover:bg-[#4E9141]/5 transition-all duration-300 relative overflow-hidden"
-                              style={{ animationDelay: `${idx * 50}ms` }}
-                            >
-                              <span className="relative z-10 group-hover:text-[#4E9141] transition-colors">{child.label}</span>
-                              <ArrowRight 
-                                size={14} 
-                                className="text-[#4E9141] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" 
-                              />
-                              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[#4E9141]/10 to-transparent" />
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ) : (
                   <Link
                     key={link.label}
                     href={link.href}

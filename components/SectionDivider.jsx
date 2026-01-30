@@ -3,15 +3,17 @@
 import React from 'react'
 
 const SectionDivider = ({ title, variant = 'default' }) => {
-  // Option B: Subtle line with side text
+  // Option B: Modern insights-style with orange label
   if (variant === 'line-text') {
     return (
-      <div className="w-full py-10 px-6">
-        <div className="max-w-7xl mx-auto flex items-center gap-6">
-          <span className="text-[#1D342F] font-bold text-xl lg:text-2xl tracking-wide uppercase whitespace-nowrap">
-            {title}
-          </span>
-          <div className="flex-1 h-[3px] bg-gradient-to-r from-[#4E9141] via-[#92400E] to-transparent rounded-full" />
+      <div className="w-full py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-[2px] bg-[#B45309]" />
+            <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">
+              {title}
+            </span>
+          </div>
         </div>
       </div>
     )

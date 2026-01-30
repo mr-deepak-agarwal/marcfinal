@@ -9,12 +9,38 @@ const navLinks = [
   { label: 'About', href: '/about' },
   {
     label: 'Services',
-    href: '/#services',
+    href: '/services',
     children: [
-      { label: 'Market Research', href: '/s1' },
-      { label: 'Growth Strategy', href: '/s2' },
-      { label: 'Mergers & Acquisitions', href: '/s1' },
-      { label: 'Internationalization', href: '/s2' },
+      { 
+        label: 'Market Research', 
+        href: '/services/market-research',
+        children: [
+          { label: 'Market Research', href: '/services/market-research' },
+          { label: 'Feasibility Study', href: '/services/feasibility-study' },
+        ]
+      },
+      { 
+        label: 'Growth Strategy', 
+        href: '/services/strategy-consulting',
+        children: [
+          { label: 'Strategy Consulting', href: '/services/strategy-consulting' },
+          { label: 'Standard Operating Procedure', href: '/services/sop' },
+          { label: 'Profit and Loss Analysis', href: '/services/profit-loss-analysis' },
+          { label: 'Management Information Systems', href: '/services/mis' },
+          { label: 'Financial Modelling', href: '/services/financial-modelling' },
+          { label: 'HR Advisory', href: '/services/hr-advisory' },
+        ]
+      },
+      { 
+        label: 'Mergers & Acquisitions', 
+        href: '/services/mergers-acquisitions',
+        children: [
+          { label: 'Due Diligence', href: '/services/due-diligence' },
+          { label: 'Valuation', href: '/services/valuation' },
+          { label: 'Deal Advisory', href: '/services/deal-advisory' },
+        ]
+      },
+      { label: 'Internationalization', href: '/services/internationalization' },
     ],
   },
   { label: 'Industries', href: '/industries' },

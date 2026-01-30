@@ -47,13 +47,6 @@ const IndustriesSection = () => {
           
           {/* Left Content */}
           <div className="lg:sticky lg:top-32">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-[2px] bg-[#B45309]" />
-              <span className="text-[#B45309] font-semibold text-sm uppercase tracking-[0.2em]">
-                Industries We Serve
-              </span>
-            </div>
-
             <h2 
               data-testid="industries-heading"
               className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-6"

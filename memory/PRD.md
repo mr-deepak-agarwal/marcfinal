@@ -1,106 +1,71 @@
-# MARC Glocal Website - Product Requirements Document
+# MARC Glocal Website - Project Documentation
 
 ## Original Problem Statement
-Recreate and enhance the MARC Glocal consultancy website based on the user's GitHub repository (`https://github.com/mr-deepak-agarwal/marcfinal`) and live site (`https://marcfinal.vercel.app`). The goal is to modernize the design with a minimalist aesthetic inspired by Big 4 consultancy websites while maintaining brand consistency.
+- Clone and continue development of MARC Glocal website (Next.js) from GitHub repo
+- Add animated carousel to Media page hero section (like About page)
+- Enhance Milestones & Recognition section with connected path animation
+- Enhance navbar with glassmorphism + blur transition effects
+- Modify Career page to match About/Industries design language
 
 ## Tech Stack
-- **Framework**: Next.js 14 (App Router)
-- **UI**: React (Server and Client Components)
+- **Framework**: Next.js 15.1.6
 - **Styling**: Tailwind CSS
-- **Components**: Shadcn UI
-- **Animations**: CSS Animations & Transitions
-- **Database**: None (Static marketing site)
+- **Icons**: Lucide React
+- **Animations**: CSS animations, IntersectionObserver
 
-## Completed Features ✅
+## What's Been Implemented
 
-### Session 1 (Jan 30, 2025)
-1. **New Insights Page** - Created modern `/insights` page with:
-   - Animated card stack hero section
-   - Symmetrical grid layout for reports
-   - Statistics section (65+ reports, 50k+ downloads, etc.)
-   - Featured reports section
+### Jan 30, 2026
+1. **Media Page Hero Carousel**
+   - Added animated image carousel with 4 media-related images
+   - Auto-rotation every 3 seconds
+   - 3D stacked cards effect with perspective
+   - Dot indicators for navigation
 
-2. **Homepage Redesign**
-   - New consistent section divider component (`SectionDivider.jsx`)
-   - Updated typography across all homepage sections
-   - Removed inconsistent orange styling from contact icons
-   - Standardized "Our Clients" section header
+2. **Enhanced Navbar (Glassmorphism)**
+   - Floating pill-shaped hover indicator
+   - Glassmorphism blur effect on scroll
+   - Logo zoom effect when scrolled
+   - Animated shimmer accent line at bottom
+   - Enhanced dropdown menus with glassmorphism
 
-3. **Navigation & CTA Updates**
-   - Header: "Contact" link styled as green button
-   - Footer: Twitter icon → X (logo) icon
-   - Added site-wide floating WhatsApp button
+3. **Milestones Animation (Connected Path)**
+   - Animated gradient path line
+   - Pulsing dots with ping animation
+   - Staggered reveal on scroll
+   - Clean timeline layout
 
-4. **About Page - Complete Redesign**
-   - **Light green color scheme** (matching homepage) with dark green accents only
-   - **Animated Team Carousel** in hero section (like insights page animation) - fixed broken image URLs
-   - **"Trusted by 500+ Companies"** section with stats (500+ Clients, 30+ Countries, 98% Satisfaction)
-   - **Client logos marquee** - Two rows scrolling in OPPOSITE directions (The Park, Kineco, Magsons, Taj, Isha Yoga, Marriott)
-   - **Vision & Mission** cards
-   - **Animated Journey Timeline** with scroll-triggered animations (2010-2024)
-   - **Leadership Team** section - NOW with LIGHT GREEN background (was dark)
-   - **Moving Locations Carousel** with 10 offices (Panaji, Delaware, Mumbai, Pune, Kolkata, Kochi, Indore, Ahmedabad, Mangaluru, Agartala)
-   - **Global Affiliations** section (Mundi Consulting, Research 8020, Clearview Partners, Electronica Finance)
-   - CTA section
+4. **Career Page Redesign**
+   - Matched About/Industries design language
+   - Consistent typography and color palette
+   - Stats grid in hero section
+   - Timeline-style application process
+   - 4 pillars culture section
+   - Job openings with department tags
 
-5. **Code Cleanup**
-   - Deleted old `/insights` folder
-   - Renamed `/insights-v2` to `/insights`
-   - Updated all internal links to point to `/insights`
+## Backups
+- `/app/backups/media_page_backup.jsx` - Original media page
+- `/app/backups/Header_backup.jsx` - Original header
 
-### Session 2 (Jan 30, 2025)
-6. **Header Navigation Fix**
-   - Removed duplicate "Contact" link from navigation
-   - Kept only the green "Contact" button
+## Color Palette
+- Primary Green: #4E9141
+- Light Green: #C2DDB4
+- Background Green: #F7FFF5
+- Dark Text: #1D342F
+- Body Text: #47635D
 
-7. **Industries Page Redesign**
-   - Reduced hero section whitespace
-   - Left-aligned "Industries We Serve" section with green line
-   - Fixed card hover states (e-commerce, healthcare, manufacturing) - text now visible on green hover background
-   - Left-aligned "Success Stories" section with green line
-   - Removed excessive whitespace
-   - Green CTA section matching other pages
-   - **Fixed scroll behavior** - clicking on industry card now scrolls to correct position (not cutting content)
-   - **Industry Detail section with image background** - each industry now shows relevant stock photo with dark gradient overlay instead of plain green box
+## Key Files Modified
+- `/app/app/media/page.jsx`
+- `/app/components/Header.jsx`
+- `/app/app/career/page.jsx`
 
-## File Structure
-```
-/app
-├── app/
-│   ├── about/
-│   │   ├── page.jsx
-│   │   └── AboutPageClient.jsx
-│   ├── insights/
-│   │   └── page.jsx (new modern design)
-│   ├── career/
-│   ├── contact/
-│   └── ...
-├── components/
-│   ├── Header.jsx (updated nav + Contact button)
-│   ├── Footer.jsx (X icon)
-│   ├── SectionDivider.jsx
-│   ├── WhatsAppButton.jsx
-│   └── ...
-├── public/
-└── tailwind.config.js
-```
+## Next Action Items
+- Add more employee testimonials (currently placeholder text)
+- Integrate job application form functionality
+- Add page transition animations
 
-## Key Components Modified
-- `/app/components/Header.jsx` - Navigation links, Contact button styling
-- `/app/components/Footer.jsx` - X (Twitter) icon, link updates
-- `/app/components/WhatsAppButton.jsx` - Floating CTA
-- `/app/app/layout.jsx` - Global WhatsApp button inclusion
-- `/app/app/about/AboutPageClient.jsx` - Updated links
-- `/app/app/insights/page.jsx` - Complete redesign
-
-## Backlog / Future Enhancements (P2)
-- Add more animations/micro-interactions
-- Implement dark mode toggle
-- Add blog/article detail pages
-- SEO optimization
-- Performance optimization (image lazy loading, etc.)
-
-## Notes
-- All content is hardcoded (static marketing site)
-- User focused on visual details - prepare for iterative UI feedback
-- Ready for GitHub push → Vercel deployment
+## Future/Backlog
+- P1: Job detail pages for each opening
+- P1: Contact form integration
+- P2: Blog/Insights page enhancements
+- P2: Mobile menu improvements

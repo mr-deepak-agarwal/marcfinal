@@ -12,17 +12,10 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl mb-16">
-          <div 
-            data-testid="services-badge"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C2DDB4] text-[#4E9141] text-sm font-semibold mb-6"
-          >
-            Our Services
-          </div>
-
-          {/* Heading */}
+          {/* Large Heading - Insights Style */}
           <h2 
             data-testid="services-heading"
-            className="text-4xl lg:text-5xl font-bold text-[#212427] mb-6 leading-tight tracking-tight"
+            className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
             Comprehensive Business Solutions
           </h2>

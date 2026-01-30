@@ -285,17 +285,39 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* Industry Detail Section */}
+      {/* Industry Detail Section - Image Background */}
       {activeIndustry && (
-        <section className="py-16 px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            {industries.filter(ind => ind.id === activeIndustry).map((industry) => (
-              <div 
-                key={industry.id}
-                id={`industry-detail-${industry.id}`}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div>
+        <section 
+          id={`industry-detail-${activeIndustry}`}
+          className="relative py-20 px-6 overflow-hidden"
+        >
+          {industries.filter(ind => ind.id === activeIndustry).map((industry) => (
+            <div key={industry.id} className="relative">
+              {/* Background Image */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`https://images.unsplash.com/photo-${
+                    industry.id === 'automobile' ? '1492144534655-ae79c964c9d7' :
+                    industry.id === 'textile' ? '1558171813-4c2e0d6e3d08' :
+                    industry.id === 'construction' ? '1504307651254-35680f356dfd' :
+                    industry.id === 'consumer' ? '1556742049-0cfed4f6a45d' :
+                    industry.id === 'ecommerce' ? '1556742111-a301076d9d18' :
+                    industry.id === 'education' ? '1523050854058-8df90110c9f1' :
+                    industry.id === 'food' ? '1414235077428-338989a2e8c0' :
+                    industry.id === 'healthcare' ? '1576091160399-112ba8d25d1d' :
+                    industry.id === 'hospitality' ? '1566073771259-6a8506099945' :
+                    industry.id === 'manufacturing' ? '1581091226825-a6a2a5aee158' :
+                    '1518770660439-4636190af475'
+                  }?w=1920&q=80`}
+                  alt={industry.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/95 via-[#1D342F]/80 to-[#1D342F]/60" />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="max-w-2xl">
                   <div className="flex items-center gap-4 mb-4">
                     <span className="w-12 h-[3px] bg-[#4E9141]" />
                     <span className="text-[#4E9141] font-bold uppercase tracking-[0.1em]">
@@ -303,20 +325,20 @@ export default function IndustriesPage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-[#F7FFF5] flex items-center justify-center">
-                      <industry.icon className="w-8 h-8 text-[#4E9141]" />
+                    <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                      <industry.icon className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F]">{industry.title}</h2>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-white">{industry.title}</h2>
                   </div>
                   
-                  <p className="text-lg text-[#47635D] leading-relaxed mb-8">
+                  <p className="text-lg text-white/80 leading-relaxed mb-8">
                     {industry.fullDesc}
                   </p>
 
-                  <div className="flex items-center gap-8">
-                    <div>
+                  <div className="flex flex-wrap items-center gap-8">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
                       <div className="text-4xl font-bold text-[#4E9141]">{industry.stat}</div>
-                      <div className="text-sm text-[#47635D]">{industry.statLabel}</div>
+                      <div className="text-sm text-white/70">{industry.statLabel}</div>
                     </div>
                     <Link 
                       href="/contact"
@@ -327,13 +349,9 @@ export default function IndustriesPage() {
                     </Link>
                   </div>
                 </div>
-
-                <div className="aspect-video rounded-3xl bg-[#4E9141] p-8 flex items-center justify-center">
-                  <industry.icon className="w-32 h-32 text-white/30" />
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </section>
       )}
 

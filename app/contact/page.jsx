@@ -141,6 +141,7 @@ const quickInfo = [
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '' })
   const [isVisible, setIsVisible] = useState({})
+  const [selectedOffice, setSelectedOffice] = useState(0) // Default to headquarters
   const observerRefs = useRef([])
 
   useEffect(() => {

@@ -34,7 +34,7 @@ const resourceLinks = [
 ]
 
 const socialLinks = [
-  { icon: Twitter, href: 'https://twitter.com/Marcglocal', label: 'Twitter' },
+  { icon: XIcon, href: 'https://twitter.com/Marcglocal', label: 'X' },
   { icon: Facebook, href: 'https://www.facebook.com/MARCGlocal/', label: 'Facebook' },
   { icon: Instagram, href: 'https://www.instagram.com/marc_glocal/', label: 'Instagram' },
   { icon: Linkedin, href: 'https://www.linkedin.com/company/marcglocal/', label: 'LinkedIn' },

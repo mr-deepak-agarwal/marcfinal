@@ -1,19 +1,19 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
   ArrowRight, Eye, Compass, Award, Users,
-  MapPin, Linkedin, ExternalLink, Briefcase
+  MapPin, Linkedin, Briefcase, Globe, Target
 } from 'lucide-react'
 
 const stats = [
-  { value: '14+', label: 'Years', icon: Award },
-  { value: '500+', label: 'Clients', icon: Users },
-  { value: '10+', label: 'Locations', icon: MapPin },
-  { value: '100+', label: 'Experts', icon: Briefcase },
+  { value: '14+', label: 'Years Experience', icon: Award },
+  { value: '500+', label: 'Projects Delivered', icon: Briefcase },
+  { value: '30+', label: 'Countries Served', icon: Globe },
+  { value: '100+', label: 'Expert Consultants', icon: Users },
 ]
 
 const directors = [
@@ -22,15 +22,15 @@ const directors = [
     role: 'Founder & Managing Director',
     image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=800',
     linkedin: 'https://www.linkedin.com/in/ashutoshkharangate/',
-    bio: 'Part of PWC Financial Advisory Division for 4 years. Expert in Due Diligence and Valuations in M&A across sectors including Hospitality, Healthcare, Manufacturing, and more.',
-    credentials: ['Chartered Accountant (ICAI)', 'PWC Alumni', 'M&A Expert'],
+    bio: 'Part of PWC Financial Advisory Division for 4 years. Expert in Due Diligence and Valuations in M&A across sectors.',
+    credentials: ['Chartered Accountant', 'PWC Alumni', 'M&A Expert'],
   },
   {
     name: 'Satish Shinde',
     role: 'Co-Founder & Director',
     image: 'https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?w=800',
     linkedin: 'https://www.linkedin.com/in/satish-shinde-06962047/',
-    bio: 'MD of Astra Metals Group with over 30 years of experience in the manufacturing arena. Leading the Marketing and Finance Division.',
+    bio: 'MD of Astra Metals Group with over 30 years of experience in the manufacturing arena.',
     credentials: ['30+ Years Experience', 'Manufacturing Expert', 'Finance Leader'],
   },
   {
@@ -38,17 +38,17 @@ const directors = [
     role: 'Director',
     image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?w=800',
     linkedin: 'https://www.linkedin.com/in/anita-ganti/',
-    bio: 'Former Senior Vice President at Wipro. Ex Texas Instruments and Flex Executive with deep expertise in global operations.',
+    bio: 'Former Senior Vice President at Wipro. Ex Texas Instruments and Flex Executive.',
     credentials: ['Wharton MBA', 'Wipro SVP', 'Global Operations'],
   },
 ]
 
 const timeline = [
   { year: '2010', title: 'Founded', desc: 'Started as Mangal Advisory Services' },
-  { year: '2014', title: 'Global', desc: 'Partnership with Mundi Consulting' },
-  { year: '2015', title: 'MARC', desc: 'Rebranded with expanded services' },
-  { year: '2020', title: 'Pan-India', desc: '8+ cities across India' },
-  { year: '2024', title: 'USA', desc: 'MARC Glocal Inc, Delaware' },
+  { year: '2014', title: 'Global Expansion', desc: 'Partnership with Mundi Consulting' },
+  { year: '2015', title: 'Rebranded to MARC', desc: 'Expanded service offerings' },
+  { year: '2020', title: 'Pan-India Presence', desc: '8+ cities across India' },
+  { year: '2024', title: 'USA Operations', desc: 'MARC Glocal Inc, Delaware' },
 ]
 
 const clients = [
@@ -58,477 +58,328 @@ const clients = [
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
-  { name: 'E P Kamat', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Kamat.png' },
-  { name: 'Danlow', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-32.png' },
 ]
 
 const locations = [
-  { city: 'Panaji', country: 'India', type: 'Headquarters', flag: '🇮🇳', badgeClass: 'badge-hq' },
-  { city: 'Delaware', country: 'USA', type: 'USA Office', flag: '🇺🇸', badgeClass: 'badge-usa' },
-  { city: 'Lisbon', country: 'Portugal', type: 'Partner', flag: '🇵🇹', badgeClass: 'badge-partner' },
-  { city: 'Mumbai', country: 'India', type: 'Branch', flag: '🇮🇳', badgeClass: 'badge-branch' },
-  { city: 'Pune', country: 'India', type: 'Branch', flag: '🇮🇳', badgeClass: 'badge-branch' },
-  { city: 'Kolkata', country: 'India', type: 'Branch', flag: '🇮🇳', badgeClass: 'badge-branch' },
+  { city: 'Panaji', country: 'India', type: 'Headquarters' },
+  { city: 'Delaware', country: 'USA', type: 'USA Office' },
+  { city: 'Lisbon', country: 'Portugal', type: 'Partner Office' },
+  { city: 'Mumbai', country: 'India', type: 'Branch' },
+  { city: 'Pune', country: 'India', type: 'Branch' },
+  { city: 'Kolkata', country: 'India', type: 'Branch' },
 ]
 
-const sectionThemes = {
-  hero: 'dark',
-  journey: 'dark',
-  team: 'dark',
-  clients: 'light',
-  locations: 'dark',
-  cta: 'dark',
-}
-
-const sections = ['hero', 'journey', 'team', 'clients', 'locations', 'cta']
-
-const NavigationDots = ({ activeSection, onNavigate }) => {
-  const currentSectionName = sections[activeSection] || 'hero'
-  const isLightBg = sectionThemes[currentSectionName] === 'light'
-  
+export default function AboutPageClient() {
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-      {sections.map((section, i) => (
-        <button
-          key={section}
-          onClick={() => onNavigate(section)}
-          className="group relative flex items-center justify-end"
-          aria-label={`Go to ${section}`}
-        >
-          <span className={`absolute right-10 px-4 py-2 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap capitalize shadow-lg ${isLightBg ? 'bg-white text-#1D342F' : 'bg-#1D342F text-white'}`}>
-            {section === 'cta' ? 'Contact' : section}
-          </span>
-          <div className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-            activeSection === i 
-              ? 'scale-150 bg-#4E9141 ring-4 ring-#4E9141/30' 
-              : isLightBg 
-                ? 'bg-#5D9F94 hover:bg-#47635D hover:scale-125' 
-                : 'bg-white/50 hover:bg-white hover:scale-125'
-          }`} />
-        </button>
-      ))}
-    </div>
-  )
-}
-
-const HeroBentoSection = () => {
-  return (
-    <section id="hero" className="snap-section bg-mesh relative overflow-hidden px-6 lg:px-8">
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-#4E9141/20 rounded-full blur-[150px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-#5D9F94/15 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+    <div className="bg-white min-h-screen" data-testid="about-page">
       
-      <div className="max-w-7xl w-full mx-auto relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 auto-rows-[140px] lg:auto-rows-[160px]">
-          
-          <div className="col-span-2 row-span-2 bg-gradient-to-br from-#4E9141 via-#3d7334 to-#1D342F rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-700">
-              <Image
-                src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg"
-                alt="Business consulting"
-                fill
-                className="object-cover"
-                priority
-                quality={75}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-#1D342F/80 via-transparent to-transparent" />
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-#C2DDB4 text-sm font-medium mb-5">
-                <span className="w-2 h-2 bg-#5FBB46 rounded-full animate-pulse" />
-                About MARC
+      {/* ==================== HERO SECTION ==================== */}
+      <section className="pt-32 pb-20 bg-[#1D342F] relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#5D9F94]/10 rounded-full blur-[120px]" />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-12 h-[3px] bg-[#B45309]" />
+                <span className="text-[#B45309] font-bold text-lg uppercase tracking-[0.1em]">
+                  About Us
+                </span>
               </div>
-              <h1 className="font-serif text-4xl lg:text-6xl font-medium text-white leading-tight tracking-tight">
-                We Shape<br />
-                <span className="text-#8CC978">Decisions</span><br />
-                For the Better
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+                We Shape Decisions
+                <span className="text-[#4E9141]"> For the Better</span>
               </h1>
-            </div>
-            
-            <p className="text-#C2DDB4/80 text-lg relative z-10 hidden lg:block">
-              Global strategy consultancy working with business leaders to seize competitive advantage.
-            </p>
-          </div>
+              
+              <p className="text-xl text-white/70 leading-relaxed mb-8">
+                MARC is a global strategy consultancy helping business leaders 
+                seize competitive advantage through data-driven insights and 
+                expert advisory services.
+              </p>
 
-          {stats.map((stat, i) => (
-            <div 
-              key={i} 
-              className="col-span-1 row-span-1 bg-#1D342F rounded-2xl p-5 flex flex-col justify-center items-center border border-#2a4a43 hover:border-#4E9141/50 transition-all duration-500 group hover:scale-105 cursor-pointer"
-            >
-              <stat.icon className="w-7 h-7 text-#5FBB46 mb-2 group-hover:scale-110 transition-transform" />
-              <span className="text-4xl lg:text-5xl font-serif font-medium text-white">{stat.value}</span>
-              <span className="text-#47635D text-sm mt-1">{stat.label}</span>
-            </div>
-          ))}
-
-          <div className="col-span-1 lg:col-span-2 row-span-1 bg-#1D342F rounded-2xl p-5 lg:p-6 border border-#2a4a43 hover:border-#4E9141/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
-            <div className="w-14 h-14 bg-#4E9141/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Eye className="w-7 h-7 text-#5FBB46 group-hover:scale-110 transition-transform" />
-            </div>
-            <div>
-              <h3 className="text-xl font-serif text-white mb-1">Our Vision</h3>
-              <p className="text-#47635D text-sm leading-relaxed hidden lg:block">Creating an ecosystem of financial awareness for an improved economy.</p>
-            </div>
-          </div>
-
-          <div className="col-span-1 lg:col-span-2 row-span-1 bg-#1D342F rounded-2xl p-5 lg:p-6 border border-#2a4a43 hover:border-#4E9141/30 transition-all duration-500 group cursor-pointer flex items-center gap-4">
-            <div className="w-14 h-14 bg-#4E9141/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Compass className="w-7 h-7 text-#5FBB46 group-hover:scale-110 transition-transform" />
-            </div>
-            <div>
-              <h3 className="text-xl font-serif text-white mb-1">Our Mission</h3>
-              <p className="text-#47635D text-sm leading-relaxed hidden lg:block">Partner with clients at all stages to deliver excellence.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-#5D9F94 text-sm mb-3">Scroll to explore</p>
-          <div className="w-8 h-14 border-2 border-#5D9F94 rounded-full mx-auto flex justify-center pt-3">
-            <div className="w-1.5 h-3 bg-#4E9141 rounded-full animate-bounce" />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const JourneySection = () => {
-  return (
-    <section id="journey" className="snap-section bg-#1D342F relative overflow-hidden px-6 lg:px-8">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-      </div>
-      
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="text-center mb-14">
-          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Our Journey</span>
-          <h2 className="font-serif text-5xl lg:text-7xl font-medium text-white mt-4">
-            14 Years of <span className="text-#5FBB46">Excellence</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
-          {timeline.map((item, i) => (
-            <div 
-              key={i} 
-              className="rounded-2xl p-6 lg:p-7 transform hover:scale-105 transition-all duration-500 cursor-pointer bg-gradient-to-br from-#4E9141 to-#3d7334 hover:from-#4E9141 hover:to-#3d7334 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="text-5xl lg:text-6xl font-serif font-bold text-white/30">{item.year}</span>
-              <h3 className="text-2xl font-serif text-white mt-2">{item.title}</h3>
-              <p className="text-white/80 text-sm mt-2">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="hidden lg:block relative h-1.5 bg-gradient-to-r from-#1D342F via-#4E9141 to-#8CC978 rounded-full mt-10 mx-8" />
-      </div>
-    </section>
-  )
-}
-
-const TeamSection = ({ selectedMember, setSelectedMember }) => {
-  return (
-    <section id="team" className="snap-section bg-gradient-to-br from-#1D342F via-#1D342F to-#2a4a43 relative overflow-hidden px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="text-center mb-10">
-          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Our People</span>
-          <h2 className="font-serif text-5xl lg:text-6xl font-medium text-white mt-4">
-            Leadership <span className="text-#5FBB46">Team</span>
-          </h2>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="order-2 lg:order-1">
-            {selectedMember !== null ? (
-              <div className="bg-#2a4a43/50 rounded-3xl p-8 border border-#47635D backdrop-blur-sm">
-                <div className="flex items-start gap-6">
-                  <div className="relative w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0">
-                    <Image
-                      src={directors[selectedMember].image}
-                      alt={directors[selectedMember].name}
-                      fill
-                      className="object-cover"
-                      sizes="112px"
-                      quality={85}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-serif text-2xl text-white">{directors[selectedMember].name}</h3>
-                    <p className="text-#5FBB46 font-medium text-lg mb-3">{directors[selectedMember].role}</p>
-                    <a 
-                      href={directors[selectedMember].linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-#47635D hover:text-#5FBB46 transition-colors text-sm"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                      LinkedIn Profile
-                    </a>
-                  </div>
-                </div>
-                
-                <p className="text-#B4DAD3 text-base leading-relaxed mt-6">{directors[selectedMember].bio}</p>
-                
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {directors[selectedMember].credentials.map((cred, i) => (
-                    <span key={i} className="px-4 py-2 bg-#4E9141/20 text-#8CC978 rounded-full text-sm font-medium">
-                      {cred}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="bg-#2a4a43/30 rounded-3xl p-10 border border-#47635D/50 text-center backdrop-blur-sm">
-                <div className="w-20 h-20 bg-#4E9141/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-10 h-10 text-#5FBB46" />
-                </div>
-                <h3 className="font-serif text-2xl text-white mb-3">Meet Our Leaders</h3>
-                <p className="text-#47635D text-lg">Click on a team member to view their profile.</p>
-              </div>
-            )}
-          </div>
-
-          <div className="order-1 lg:order-2">
-            <div className="grid grid-cols-3 gap-4">
-              {directors.map((director, i) => (
-                <div
-                  key={i}
-                  onClick={() => setSelectedMember(selectedMember === i ? null : i)}
-                  className={`relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 ${selectedMember === i ? 'ring-4 ring-#4E9141 scale-105' : 'hover:scale-105 hover:ring-2 hover:ring-#4E9141/50'}`}
+              <div className="flex flex-wrap gap-4">
+                <Link 
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all group"
                 >
-                  <div className="relative aspect-[3/4]">
-                    <Image
-                      src={director.image}
-                      alt={director.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 33vw, 20vw"
-                      quality={85}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-#1D342F via-#1D342F/40 to-transparent" />
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h4 className="font-serif text-lg text-white leading-tight">{director.name}</h4>
-                      <p className="text-#5FBB46 text-sm">{director.role}</p>
-                    </div>
+                  Work With Us
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link 
+                  href="/insights-v2"
+                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
+                >
+                  View Our Insights
+                </Link>
+              </div>
+            </div>
 
-                    {selectedMember === i && (
-                      <div className="absolute top-3 right-3 w-8 h-8 bg-#4E9141 rounded-full flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                    )}
+            {/* Right - Image */}
+            <div className="relative hidden lg:block">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?w=800"
+                  alt="MARC Team Collaboration"
+                  className="w-full h-[450px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 to-transparent" />
+              </div>
+              
+              {/* Floating card */}
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl max-w-xs">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-[#4E9141] rounded-xl flex items-center justify-center">
+                    <Target className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-[#1D342F]">Our Mission</div>
+                    <div className="text-sm text-[#47635D]">Enabling better decisions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== STATS SECTION ==================== */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, i) => (
+              <div 
+                key={i}
+                className="bg-[#F7FFF5] rounded-2xl p-6 text-center border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+              >
+                <stat.icon className="w-8 h-8 text-[#4E9141] mx-auto mb-3" />
+                <div className="text-4xl lg:text-5xl font-bold text-[#4E9141] mb-2">{stat.value}</div>
+                <div className="text-[#47635D] font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== VISION & MISSION ==================== */}
+      <section className="py-16 bg-[#F7FFF5]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
+              Our Purpose
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:shadow-lg transition-all">
+              <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mb-6">
+                <Eye className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#1D342F] mb-4">Our Vision</h3>
+              <p className="text-lg text-[#47635D] leading-relaxed">
+                Creating an ecosystem of financial awareness for an improved economy, 
+                empowering businesses to make informed decisions that drive sustainable growth.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:shadow-lg transition-all">
+              <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mb-6">
+                <Compass className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#1D342F] mb-4">Our Mission</h3>
+              <p className="text-lg text-[#47635D] leading-relaxed">
+                To partner with clients at all stages of their journey, delivering excellence 
+                through actionable insights and strategic advisory services.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== JOURNEY TIMELINE ==================== */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
+              Our Journey
+            </span>
+          </div>
+
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
+            From Local Roots to Global Reach
+          </h2>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute top-0 bottom-0 left-[20px] lg:left-1/2 w-[2px] bg-[#C2DDB4]" />
+            
+            <div className="space-y-8">
+              {timeline.map((item, i) => (
+                <div key={i} className={`relative flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                  {/* Dot */}
+                  <div className="absolute left-[12px] lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 bg-[#4E9141] rounded-full border-4 border-white shadow-md z-10" />
+                  
+                  {/* Content */}
+                  <div className={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'}`}>
+                    <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-lg transition-all">
+                      <span className="text-[#4E9141] font-bold text-2xl">{item.year}</span>
+                      <h4 className="text-xl font-bold text-[#1D342F] mt-2">{item.title}</h4>
+                      <p className="text-[#47635D] mt-1">{item.desc}</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  )
-}
+      </section>
 
-const ClientsSection = () => {
-  const duplicatedClients = [...clients, ...clients, ...clients]
-  
-  return (
-    <section id="clients" className="snap-section bg-white relative overflow-hidden px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="text-center mb-10">
-          <span className="text-#4E9141 text-sm tracking-[0.3em] uppercase font-medium">Our Clients</span>
-          <h2 className="font-serif text-5xl lg:text-6xl font-medium text-#1D342F mt-4">
-            Trusted by <span className="text-#4E9141">500+</span> Companies
+      {/* ==================== LEADERSHIP TEAM ==================== */}
+      <section className="py-16 bg-[#1D342F]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-white font-bold text-lg uppercase tracking-[0.1em]">
+              Leadership
+            </span>
+          </div>
+
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-12">
+            Meet Our Directors
           </h2>
-        </div>
 
-        <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mb-12">
-          {[
-            { value: '500+', label: 'Clients Worldwide' },
-            { value: '30+', label: 'Countries Served' },
-            { value: '98%', label: 'Client Satisfaction' },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="font-serif text-5xl lg:text-6xl font-medium text-#4E9141">{stat.value}</div>
-              <div className="text-#5D9F94 text-base mt-1">{stat.label}</div>
-            </div>
-          ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            {directors.map((director, i) => (
+              <div key={i} className="bg-[#2a4a43] rounded-2xl overflow-hidden border border-[#4E9141]/20 hover:border-[#4E9141]/50 transition-all group">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={director.image}
+                    alt={director.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F] to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-1">{director.name}</h3>
+                  <p className="text-[#4E9141] font-medium mb-3">{director.role}</p>
+                  <p className="text-white/70 text-sm leading-relaxed mb-4">{director.bio}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {director.credentials.map((cred, j) => (
+                      <span key={j} className="px-3 py-1 bg-[#4E9141]/20 text-[#C2DDB4] text-xs rounded-full">
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                  <a 
+                    href={director.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#C2DDB4] transition-colors"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                    <span className="text-sm font-medium">Connect on LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="overflow-hidden py-4">
-          <div className="flex gap-8 animate-marquee">
-            {duplicatedClients.map((client, i) => (
+      {/* ==================== CLIENTS ==================== */}
+      <section id="clients" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
+              Our Clients
+            </span>
+          </div>
+
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
+            Trusted by Industry Leaders
+          </h2>
+
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-8">
+            {clients.map((client, i) => (
               <div 
-                key={i} 
-                className="flex-shrink-0 w-48 h-24 bg-#F7FFF5 rounded-xl flex items-center justify-center p-5 border border-#C2DDB4 hover:border-#5FBB46 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                key={i}
+                className="flex items-center justify-center p-4 bg-[#F7FFF5] rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all"
               >
                 <img 
-                  src={client.logo} 
+                  src={client.logo}
                   alt={client.name}
-                  className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300"
-                  loading="lazy"
+                  className="max-h-12 object-contain grayscale hover:grayscale-0 transition-all"
                 />
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        <div className="overflow-hidden py-4">
-          <div className="flex gap-8 animate-marquee" style={{ animationDirection: 'reverse', animationDuration: '40s' }}>
-            {[...duplicatedClients].reverse().map((client, i) => (
+      {/* ==================== LOCATIONS ==================== */}
+      <section className="py-16 bg-[#F7FFF5]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#B45309]" />
+            <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
+              Global Presence
+            </span>
+          </div>
+
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
+            Our Locations
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {locations.map((loc, i) => (
               <div 
-                key={i} 
-                className="flex-shrink-0 w-48 h-24 bg-#F7FFF5 rounded-xl flex items-center justify-center p-5 border border-#C2DDB4 hover:border-#5FBB46 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                key={i}
+                className="bg-white rounded-xl p-5 text-center border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all"
               >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300"
-                  loading="lazy"
-                />
+                <MapPin className="w-6 h-6 text-[#4E9141] mx-auto mb-2" />
+                <h4 className="font-bold text-[#1D342F]">{loc.city}</h4>
+                <p className="text-sm text-[#47635D]">{loc.country}</p>
+                <span className="inline-block mt-2 px-3 py-1 bg-[#4E9141]/10 text-[#4E9141] text-xs font-medium rounded-full">
+                  {loc.type}
+                </span>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
-  )
-}
+      </section>
 
-const LocationsSection = () => {
-  return (
-    <section id="locations" className="snap-section bg-gradient-to-br from-#1D342F via-#1D342F to-#1D342F relative overflow-hidden px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="text-center mb-12">
-          <span className="text-#5FBB46 text-sm tracking-[0.3em] uppercase font-medium">Global Presence</span>
-          <h2 className="font-serif text-5xl lg:text-6xl font-medium text-white mt-4">
-            Across <span className="text-#5FBB46">3 Continents</span>
+      {/* ==================== CTA ==================== */}
+      <section className="py-20 bg-[#4E9141]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Business?
           </h2>
-          <p className="text-#C2DDB4/60 mt-4 max-w-2xl mx-auto text-lg">
-            Our local presence gives us an edge with regional expertise and professional knowledge.
+          <p className="text-xl text-white/80 mb-8">
+            Let's discuss how MARC can help you make better decisions and achieve your strategic goals.
           </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {locations.map((loc, i) => (
-            <div 
-              key={i}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10 hover:border-#5FBB46/50 hover:bg-white/15 transition-all duration-300 cursor-pointer"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group"
             >
-              <span className="text-4xl mb-3 block">{loc.flag}</span>
-              <h4 className="font-serif text-xl text-white mb-1">{loc.city}</h4>
-              <p className="text-#5FBB46 text-sm mb-3">{loc.country}</p>
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${loc.type === 'Headquarters' ? 'bg-#4E9141' : loc.type === 'USA Office' ? 'bg-blue-500' : loc.type === 'Partner' ? 'bg-purple-500' : 'bg-#5D9F94'}`}>
-                {loc.type}
-              </span>
-            </div>
-          ))}
+              Schedule a Consultation
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/insights-v2"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all"
+            >
+              Explore Our Insights
+            </Link>
+          </div>
         </div>
-      </div>
-    </section>
-  )
-}
-
-const CTASection = () => {
-  return (
-    <section id="cta" className="snap-section bg-mesh relative overflow-hidden px-6 lg:px-8">
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-#4E9141/20 rounded-full blur-[180px] animate-pulse-glow" />
-      </div>
-      
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h2 className="font-serif text-5xl lg:text-7xl font-medium text-white mb-6 leading-tight">
-          Ready to make<br />
-          <span className="text-#5FBB46">better decisions?</span>
-        </h2>
-        <p className="text-#47635D text-xl lg:text-2xl mb-12 max-w-2xl mx-auto">
-          Let us help you solve your toughest challenges and realize your greatest ambitions.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-          <Link
-            href="/#contact"
-            className="w-full sm:w-auto px-12 py-5 bg-#4E9141 text-white rounded-2xl font-semibold text-lg hover:bg-#5FBB46 transition-all duration-300 shadow-xl shadow-#4E9141/30 hover:shadow-#4E9141/50 hover:-translate-y-1 flex items-center justify-center gap-3 group"
-          >
-            Schedule Consultation
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <a
-            href="https://marcglocal.com/wp-content/uploads/2025/06/MARC-Credentials-2025.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto px-12 py-5 border-2 border-white/30 text-white rounded-2xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 flex items-center justify-center gap-3"
-          >
-            Download Credentials
-            <ExternalLink className="w-5 h-5" />
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export default function AboutPageClient() {
-  const [selectedMember, setSelectedMember] = useState(null)
-  const [activeSection, setActiveSection] = useState(0)
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('.snap-section')
-      const scrollPosition = container.scrollTop + window.innerHeight / 2
-
-      sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop
-        const sectionBottom = sectionTop + section.offsetHeight
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          setActiveSection(index)
-        }
-      })
-    }
-
-    // Initial check
-    handleScroll()
-
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const navigateToSection = (sectionId) => {
-    const sectionIndex = sections.indexOf(sectionId)
-    if (containerRef.current) {
-      containerRef.current.scrollTo({
-        top: sectionIndex * window.innerHeight,
-        behavior: 'smooth'
-      })
-    }
-  }
-
-  return (
-    <div className="h-screen bg-#1D342F overflow-hidden">
-
-      
-      <div ref={containerRef} className="snap-container scrollbar-hide">
-        <NavigationDots activeSection={activeSection} onNavigate={navigateToSection} />
-        
-        <HeroBentoSection />
-        <JourneySection />
-        <TeamSection selectedMember={selectedMember} setSelectedMember={setSelectedMember} />
-        <ClientsSection />
-        <LocationsSection />
-        <CTASection />
-      </div>
+      </section>
 
       <Footer />
     </div>

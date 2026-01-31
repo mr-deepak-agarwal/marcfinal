@@ -41,11 +41,27 @@ const serviceCategories = [
   },
 ]
 
+// Insights submenu data
+const insightsItems = [
+  { 
+    label: 'Insight Reports', 
+    href: '/insights', 
+    icon: FileBarChart,
+    description: 'Industry research & analysis'
+  },
+  { 
+    label: 'Blogs', 
+    href: '/blog', 
+    icon: BookOpen,
+    description: 'Expert articles & trends'
+  },
+]
+
 const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services', hasServicesMenu: true },
   { label: 'Industries', href: '/industries' },
-  { label: 'Insights', href: '/insights' },
+  { label: 'Insights', href: '/insights', hasInsightsMenu: true },
   { label: 'Media', href: '/media' },
   { label: 'Careers', href: '/career' },
 ]

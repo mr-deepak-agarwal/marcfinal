@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Download, Lightbulb } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
 // Services data with icons for the grid menu

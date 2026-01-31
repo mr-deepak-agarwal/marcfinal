@@ -1,20 +1,20 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
-  Search, Calendar, Clock, ArrowRight, ArrowUpRight, User, Tag, ChevronRight,
-  TrendingUp, BookOpen, Bookmark, Sparkles, Quote, Filter, X, ChevronDown
+  Search, Calendar, Clock, ArrowRight, ArrowUpRight, User, ChevronRight,
+  BookOpen, Bookmark, Sparkles, X, ChevronDown
 } from 'lucide-react'
 
 const categories = [
-  { id: 'all', label: 'All Articles', count: 20 },
+  { id: 'all', label: 'All', count: 15 },
   { id: 'finance', label: 'Finance', count: 5 },
   { id: 'market-research', label: 'Market Research', count: 4 },
-  { id: 'strategy', label: 'Strategy', count: 4 },
-  { id: 'due-diligence', label: 'Due Diligence', count: 3 },
-  { id: 'industry', label: 'Industry Trends', count: 4 },
+  { id: 'strategy', label: 'Strategy', count: 2 },
+  { id: 'due-diligence', label: 'Due Diligence', count: 2 },
+  { id: 'industry', label: 'Industry', count: 4 },
 ]
 
 // Blog posts from original MARC website
@@ -32,7 +32,7 @@ const blogs = [
   },
   {
     id: 2,
-    title: 'SME IPO Readiness: A Complete 3-Year Preparation Roadmap for Successful Listing',
+    title: 'SME IPO Readiness: A Complete 3-Year Preparation Roadmap',
     excerpt: 'Planning an SME IPO? Our expert 3-year roadmap guides you from foundational readiness to a successful listing with actionable milestones.',
     category: 'finance',
     author: 'MARC Advisory',
@@ -43,8 +43,8 @@ const blogs = [
   },
   {
     id: 3,
-    title: 'Unlocking Sustainable Growth: Why a Robust MIS Is Essential for Profitability',
-    excerpt: 'In 2025, Management Information Systems will no longer be limited to back-office reporting. Discover how MIS drives profitability and monthly oversight.',
+    title: 'Unlocking Sustainable Growth: Why a Robust MIS Is Essential',
+    excerpt: 'In 2025, Management Information Systems will no longer be limited to back-office reporting. Discover how MIS drives profitability.',
     category: 'strategy',
     author: 'MARC Team',
     date: 'December 2025',
@@ -53,8 +53,8 @@ const blogs = [
   },
   {
     id: 4,
-    title: 'Competitive Benchmarking: Unleashing Growth Strategy For Your Business',
-    excerpt: "What if your competitors aren't ahead, but they've spotted something you haven't? Learn how competitive benchmarking can transform your growth strategy.",
+    title: 'Competitive Benchmarking: Unleashing Growth Strategy',
+    excerpt: "What if your competitors aren't ahead, but they've spotted something you haven't? Learn how competitive benchmarking transforms growth.",
     category: 'market-research',
     author: 'MARC Research',
     date: 'December 2025',
@@ -63,7 +63,7 @@ const blogs = [
   },
   {
     id: 5,
-    title: 'The Year-End Crunch: Why a Strong Internal Audit Function Is Your Best Defence',
+    title: 'The Year-End Crunch: Why Internal Audit Is Your Best Defence',
     excerpt: 'As the financial year draws to a close, now is the time to ensure your internal audit function is robust and effective.',
     category: 'finance',
     author: 'MARC Advisory',
@@ -74,7 +74,7 @@ const blogs = [
   {
     id: 6,
     title: 'The Future of Due Diligence: Trends to Watch in 2025',
-    excerpt: 'Due Diligence in 2025: Faster, Smarter, and More Strategic. Discover the emerging trends reshaping how businesses evaluate opportunities.',
+    excerpt: 'Due Diligence in 2025: Faster, Smarter, and More Strategic. Discover the emerging trends reshaping opportunity evaluation.',
     category: 'due-diligence',
     author: 'MARC M&A Team',
     date: 'November 2025',
@@ -83,7 +83,7 @@ const blogs = [
   },
   {
     id: 7,
-    title: 'Mastering Peak Season: A Hospitality Strategy to Manage High Guest Footfall',
+    title: 'Mastering Peak Season: A Hospitality Strategy Guide',
     excerpt: 'Every hospitality leader knows that peak season can test even the most efficient operation. Here\'s how to master the challenge.',
     category: 'industry',
     author: 'MARC Hospitality',
@@ -103,7 +103,7 @@ const blogs = [
   },
   {
     id: 9,
-    title: 'Why Market Research & Consulting Are the Beating Heart of Every Successful Project',
+    title: 'Why Market Research Is the Heart of Every Successful Project',
     excerpt: "In today's fast-changing world, market research and consulting have become the foundation of every successful business venture.",
     category: 'market-research',
     author: 'MARC Research',
@@ -113,8 +113,8 @@ const blogs = [
   },
   {
     id: 10,
-    title: 'How a Strong CIM Drives Faster Deals and Higher Valuations in M&A',
-    excerpt: "In today's competitive capital-raising landscape, a well-crafted Confidential Information Memorandum can make all the difference.",
+    title: 'How a Strong CIM Drives Faster Deals in M&A',
+    excerpt: "In today's competitive capital-raising landscape, a well-crafted Confidential Information Memorandum makes all the difference.",
     category: 'due-diligence',
     author: 'MARC M&A Team',
     date: 'October 2025',
@@ -123,8 +123,8 @@ const blogs = [
   },
   {
     id: 11,
-    title: 'Navigating the Storm: The Impact of 2025 U.S. Tariffs on India\'s Textile Industry',
-    excerpt: 'The global textile industry, a powerhouse valued at over $2 trillion, faces new challenges with the 2025 U.S. tariff changes.',
+    title: 'Impact of 2025 U.S. Tariffs on India\'s Textile Industry',
+    excerpt: 'The global textile industry, valued at over $2 trillion, faces new challenges with the 2025 U.S. tariff changes.',
     category: 'industry',
     author: 'MARC Industry',
     date: 'October 2025',
@@ -133,7 +133,7 @@ const blogs = [
   },
   {
     id: 12,
-    title: 'How AI Is Quietly Transforming the Business of Consulting in India',
+    title: 'How AI Is Transforming Consulting in India',
     excerpt: 'Artificial Intelligence is not replacing consultants; it\'s reshaping how they work. Discover the AI revolution in consulting.',
     category: 'industry',
     author: 'MARC Team',
@@ -143,8 +143,8 @@ const blogs = [
   },
   {
     id: 13,
-    title: 'Global Expansion Strategies: The Critical Role of Market Research',
-    excerpt: 'Every business has a primary aim to expand globally. Learn how market research and predictive analytics drive successful expansion.',
+    title: 'Global Expansion: The Role of Market Research',
+    excerpt: 'Every business aims to expand globally. Learn how market research and predictive analytics drive successful expansion.',
     category: 'market-research',
     author: 'MARC Global',
     date: 'September 2025',
@@ -153,7 +153,7 @@ const blogs = [
   },
   {
     id: 14,
-    title: 'The Role of Financial Modelling in Risk Assessment and Decision-Making',
+    title: 'Financial Modelling in Risk Assessment',
     excerpt: 'In businesses, every decision comes with certain risks. What if you could predict and mitigate them effectively?',
     category: 'finance',
     author: 'MARC Finance',
@@ -163,8 +163,8 @@ const blogs = [
   },
   {
     id: 15,
-    title: 'Decoding Market Entry in India: 2024 Feasibility Study Insights',
-    excerpt: "India's economy is growing and buzzing with new opportunities. Our feasibility study insights help you decode market entry.",
+    title: 'Decoding Market Entry in India: Feasibility Insights',
+    excerpt: "India's economy is growing with new opportunities. Our feasibility study insights help you decode market entry.",
     category: 'market-research',
     author: 'MARC Research',
     date: 'August 2025',
@@ -173,15 +173,10 @@ const blogs = [
   },
 ]
 
-const popularTags = [
-  'Financial Modelling', 'Due Diligence', 'Market Entry', 'IPO', 'MIS', 
-  'Consulting', 'Strategy', 'M&A', 'Growth'
-]
-
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [visibleSections, setVisibleSections] = useState({})
+  const [visibleCards, setVisibleCards] = useState({})
   const [showAllPosts, setShowAllPosts] = useState(false)
 
   useEffect(() => {
@@ -189,19 +184,19 @@ export default function BlogPage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleSections(prev => ({ ...prev, [entry.target.id]: true }))
+            setVisibleCards(prev => ({ ...prev, [entry.target.dataset.index]: true }))
           }
         })
       },
       { threshold: 0.1 }
     )
 
-    document.querySelectorAll('section[id]').forEach((section) => {
-      observer.observe(section)
+    document.querySelectorAll('[data-index]').forEach((el) => {
+      observer.observe(el)
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [activeCategory, searchQuery, showAllPosts])
 
   const filteredBlogs = blogs.filter(blog => {
     const matchesCategory = activeCategory === 'all' || blog.category === activeCategory
@@ -210,131 +205,84 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch
   })
 
-  const featuredPosts = blogs.filter(b => b.featured)
-  const regularPosts = filteredBlogs.filter(b => !b.featured)
-  const displayedPosts = showAllPosts ? regularPosts : regularPosts.slice(0, 6)
+  const displayedPosts = showAllPosts ? filteredBlogs : filteredBlogs.slice(0, 9)
 
   return (
-    <div className="bg-[#FAFAF8] min-h-screen" data-testid="blog-page">
+    <div className="bg-[#F0F4F0] min-h-screen" data-testid="blog-page">
       
-      {/* Hero Section - Editorial Style with Split Layout */}
-      <section id="hero" className="relative pt-32 pb-20 bg-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[180px]" />
+      {/* Hero Section - Clean & Minimal */}
+      <section className="relative pt-32 pb-16 bg-white border-b border-[#C2DDB4]/30">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            {/* Left - Title & Description */}
-            <div className={`lg:col-span-5 lg:sticky lg:top-32 transition-all duration-700 ${visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
-                <BookOpen className="w-4 h-4 text-[#4E9141]" />
-                <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
-              </div>
-              
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-                Insights & Trends for
-                <span className="text-[#4E9141]"> Modern Businesses</span>
-              </h1>
-              
-              <p className="text-[#47635D] text-lg leading-relaxed mb-8">
-                Stay up-to-date with knowledgeable insights and the latest trends that are transforming industries and businesses across the world.
-              </p>
-
-              {/* Quick Stats */}
-              <div className="flex gap-8 py-6 border-t border-b border-[#C2DDB4]/30">
-                <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">80+</div>
-                  <div className="text-[#47635D] text-sm">Articles</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">15+</div>
-                  <div className="text-[#47635D] text-sm">Expert Authors</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
-                  <div className="text-[#47635D] text-sm">Monthly Readers</div>
-                </div>
-              </div>
-
-              {/* Popular Tags */}
-              <div className="mt-8">
-                <p className="text-sm font-medium text-[#47635D] mb-4">Popular Topics:</p>
-                <div className="flex flex-wrap gap-2">
-                  {popularTags.slice(0, 6).map((tag, i) => (
-                    <button 
-                      key={i}
-                      className="px-4 py-2 bg-[#F7FFF5] text-[#47635D] text-sm rounded-full border border-[#C2DDB4]/50 hover:border-[#4E9141] hover:text-[#4E9141] transition-all"
-                    >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
+              <BookOpen className="w-4 h-4 text-[#4E9141]" />
+              <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
             </div>
+            
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
+              Insights & Trends for
+              <span className="text-[#4E9141]"> Modern Businesses</span>
+            </h1>
+            
+            <p className="text-[#47635D] text-lg leading-relaxed max-w-2xl mx-auto">
+              Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
+            </p>
 
-            {/* Right - Featured Posts Stack */}
-            <div className={`lg:col-span-7 space-y-6 transition-all duration-700 delay-200 ${visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              {featuredPosts.map((post, i) => (
-                <Link 
-                  key={post.id} 
-                  href="#"
-                  className="group block bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500"
-                  data-testid={`featured-post-${i}`}
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full">
-                          Featured
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 text-sm text-[#47635D] mb-4">
-                        <span className="text-[#4E9141] font-medium capitalize">{post.category.replace('-', ' ')}</span>
-                        <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                        <span>{post.readTime} read</span>
-                      </div>
-                      <h2 className="text-xl lg:text-2xl font-bold text-[#1D342F] leading-tight mb-4 group-hover:text-[#4E9141] transition-colors">
-                        {post.title}
-                      </h2>
-                      <p className="text-[#47635D] mb-6 line-clamp-2">{post.excerpt}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                            <User className="w-5 h-5 text-[#4E9141]" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-[#1D342F]">{post.author}</p>
-                            <p className="text-xs text-[#47635D]">{post.date}</p>
-                          </div>
-                        </div>
-                        <ArrowUpRight className="w-5 h-5 text-[#4E9141] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+            {/* Quick Stats */}
+            <div className="flex justify-center gap-12 mt-10 pt-8 border-t border-[#C2DDB4]/30">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#4E9141]">80+</div>
+                <div className="text-[#47635D] text-sm">Articles</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#4E9141]">15+</div>
+                <div className="text-[#47635D] text-sm">Authors</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
+                <div className="text-[#47635D] text-sm">Readers</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Search & Filter Bar */}
-      <section className="py-6 bg-white border-y border-[#C2DDB4]/30 sticky top-0 z-40">
+      {/* Search & Filter Section */}
+      <section className="py-8 bg-white border-b border-[#C2DDB4]/30 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Search */}
-            <div className="relative w-full lg:w-96">
+          {/* Category Filters - Single Row */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? 'bg-[#4E9141] text-white shadow-md shadow-[#4E9141]/20'
+                    : 'bg-[#F7FFF5] text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
+                }`}
+                data-testid={`category-${cat.id}`}
+              >
+                {cat.label}
+                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                  activeCategory === cat.id ? 'bg-white/20' : 'bg-white'
+                }`}>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Search Bar - Centered Below */}
+          <div className="max-w-lg mx-auto">
+            <div className="relative">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#47635D]" />
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full pl-14 pr-6 py-4 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all text-[#1D342F]"
+                className="w-full pl-14 pr-12 py-4 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-2xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all text-[#1D342F]"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 data-testid="search-input"
@@ -342,143 +290,123 @@ export default function BlogPage() {
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-[#C2DDB4]/30 rounded-full"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-[#C2DDB4]/30 rounded-full transition-colors"
                 >
                   <X className="w-4 h-4 text-[#47635D]" />
                 </button>
               )}
             </div>
-
-            {/* Category Pills */}
-            <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0 w-full lg:w-auto">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-5 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                    activeCategory === cat.id
-                      ? 'bg-[#4E9141] text-white'
-                      : 'bg-[#F7FFF5] text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
-                  }`}
-                  data-testid={`category-${cat.id}`}
-                >
-                  {cat.label}
-                  <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                    activeCategory === cat.id ? 'bg-white/20' : 'bg-white'
-                  }`}>
-                    {cat.count}
-                  </span>
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Blog Grid - Bento Style */}
-      <section id="posts" className="py-20 bg-[#FAFAF8]">
+      {/* Blog Grid - Symmetrical Cards */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className={`flex items-center justify-between mb-12 transition-all duration-700 ${visibleSections.posts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div>
-              <h2 className="text-3xl font-bold text-[#1D342F]">Latest Articles</h2>
-              <p className="text-[#47635D] mt-2">Expert insights on business strategy, finance, and market research</p>
-            </div>
+          {/* Results Count */}
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-2xl font-bold text-[#1D342F]">Latest Articles</h2>
             <p className="text-[#47635D]">
               Showing <span className="font-semibold text-[#1D342F]">{filteredBlogs.length}</span> articles
             </p>
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedPosts.map((post, i) => {
-              // Create visual variety with different card sizes
-              const isLarge = i === 0 || i === 5
-              const isWide = i === 3
-              
-              return (
-                <Link 
-                  key={post.id}
-                  href="#"
-                  className={`group block ${isLarge ? 'lg:row-span-2' : ''} ${isWide ? 'lg:col-span-2' : ''}`}
-                  data-testid={`blog-post-${post.id}`}
-                >
-                  <article className={`h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 ${
-                    visibleSections.posts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          {/* Symmetrical Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {displayedPosts.map((post, i) => (
+              <Link 
+                key={post.id}
+                href="#"
+                data-index={i}
+                className="group block"
+                data-testid={`blog-post-${post.id}`}
+              >
+                <article 
+                  className={`h-full bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500 ${
+                    visibleCards[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${i * 50}ms` }}
-                  >
-                    {/* Image */}
-                    <div className={`relative overflow-hidden ${isLarge ? 'aspect-[4/3]' : isWide ? 'aspect-[21/9]' : 'aspect-[16/10]'}`}>
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      
-                      {/* Category Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-[#47635D] text-xs font-semibold rounded-full shadow-sm capitalize">
-                          {post.category.replace('-', ' ')}
+                >
+                  {/* Image - Fixed Aspect Ratio */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1.5 bg-white text-[#4E9141] text-xs font-semibold rounded-full shadow-md capitalize">
+                        {post.category.replace('-', ' ')}
+                      </span>
+                    </div>
+
+                    {/* Featured Badge */}
+                    {post.featured && (
+                      <div className="absolute top-4 right-4">
+                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
+                          Featured
                         </span>
                       </div>
+                    )}
 
-                      {/* Bookmark */}
-                      <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-sm">
-                        <Bookmark className="w-5 h-5 text-[#47635D]" />
-                      </button>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Arrow on hover */}
+                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <ArrowRight className="w-5 h-5 text-[#4E9141]" />
                     </div>
+                  </div>
 
-                    {/* Content */}
-                    <div className={`p-6 ${isLarge ? 'p-8' : ''}`}>
-                      {/* Meta */}
-                      <div className="flex items-center gap-3 text-sm text-[#47635D] mb-4">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          {post.date}
-                        </div>
-                        <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          {post.readTime}
-                        </div>
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Meta */}
+                    <div className="flex items-center gap-3 text-sm text-[#47635D] mb-4">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4" />
+                        {post.date}
                       </div>
-
-                      {/* Title */}
-                      <h3 className={`font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors ${
-                        isLarge ? 'text-2xl' : isWide ? 'text-xl' : 'text-lg'
-                      }`}>
-                        {post.title}
-                      </h3>
-
-                      {/* Excerpt - only on larger cards */}
-                      {(isLarge || isWide) && (
-                        <p className="text-[#47635D] mb-4 line-clamp-2">{post.excerpt}</p>
-                      )}
-
-                      {/* Author & CTA */}
-                      <div className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                            <span className="text-[#4E9141] font-bold text-sm">{post.author.charAt(0)}</span>
-                          </div>
-                          <span className="text-sm text-[#47635D]">{post.author}</span>
-                        </div>
-                        <ArrowRight className="w-5 h-5 text-[#4E9141] group-hover:translate-x-1 transition-transform" />
+                      <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        {post.readTime}
                       </div>
                     </div>
-                  </article>
-                </Link>
-              )
-            })}
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-[#47635D] text-sm leading-relaxed mb-4 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
+                          <span className="text-[#4E9141] font-bold text-sm">{post.author.charAt(0)}</span>
+                        </div>
+                        <span className="text-sm text-[#47635D] font-medium">{post.author}</span>
+                      </div>
+                      <ArrowUpRight className="w-5 h-5 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
+                    </div>
+                  </div>
+                </article>
+              </Link>
+            ))}
           </div>
 
           {/* Load More Button */}
-          {regularPosts.length > 6 && !showAllPosts && (
+          {filteredBlogs.length > 9 && !showAllPosts && (
             <div className="text-center mt-12">
               <button 
                 onClick={() => setShowAllPosts(true)}
-                className="inline-flex items-center gap-3 px-10 py-5 bg-[#1D342F] text-white rounded-xl font-semibold hover:bg-[#2a4a43] transition-all group"
+                className="inline-flex items-center gap-3 px-10 py-4 bg-[#1D342F] text-white rounded-full font-semibold hover:bg-[#2a4a43] transition-all group"
                 data-testid="load-more-button"
               >
                 Load More Articles
@@ -486,13 +414,24 @@ export default function BlogPage() {
               </button>
             </div>
           )}
+
+          {/* No Results */}
+          {filteredBlogs.length === 0 && (
+            <div className="text-center py-20">
+              <div className="w-20 h-20 bg-[#F7FFF5] rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-10 h-10 text-[#C2DDB4]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1D342F] mb-2">No articles found</h3>
+              <p className="text-[#47635D]">Try adjusting your search or filter criteria</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Newsletter Section - Clean & Elegant */}
-      <section className="py-24 bg-[#F7FFF5]">
+      {/* Newsletter Section */}
+      <section className="py-20 bg-white border-t border-[#C2DDB4]/30">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-3xl p-10 lg:p-16 border border-[#C2DDB4]/30 shadow-xl shadow-[#4E9141]/5 text-center">
+          <div className="bg-[#F7FFF5] rounded-3xl p-10 lg:p-14 border-2 border-[#C2DDB4]/40 text-center">
             <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mx-auto mb-8">
               <Sparkles className="w-8 h-8 text-white" />
             </div>
@@ -508,7 +447,7 @@ export default function BlogPage() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-[#F7FFF5] border border-[#C2DDB4] rounded-xl text-[#1D342F] placeholder-[#47635D] focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all"
+                className="flex-1 px-6 py-4 bg-white border-2 border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D] focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all"
                 data-testid="newsletter-email"
               />
               <button 
@@ -539,7 +478,7 @@ export default function BlogPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#5ba84d] transition-all group"
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#5ba84d] transition-all group"
               data-testid="cta-contact"
             >
               Get in Touch
@@ -547,9 +486,9 @@ export default function BlogPage() {
             </Link>
             <Link 
               href="/services/market-research" 
-              className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/10 text-white border border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-all"
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-white/10 text-white border border-white/20 rounded-full font-semibold hover:bg-white/20 transition-all"
             >
-              Explore Our Services
+              Explore Services
             </Link>
           </div>
         </div>

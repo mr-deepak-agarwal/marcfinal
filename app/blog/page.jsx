@@ -173,6 +173,11 @@ const blogs = [
   },
 ]
 
+const popularTags = [
+  'Financial Modelling', 'Due Diligence', 'Market Entry', 'IPO', 'MIS', 
+  'Consulting', 'Strategy', 'M&A', 'Growth'
+]
+
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
@@ -205,45 +210,118 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch
   })
 
-  const displayedPosts = showAllPosts ? filteredBlogs : filteredBlogs.slice(0, 9)
+  // Get featured posts for hero (first 2)
+  const featuredPosts = blogs.filter(b => b.featured).slice(0, 2)
+  
+  // Get non-featured posts for the grid
+  const gridPosts = filteredBlogs.filter(b => !b.featured)
+  const displayedPosts = showAllPosts ? gridPosts : gridPosts.slice(0, 9)
 
   return (
     <div className="bg-[#F0F4F0] min-h-screen" data-testid="blog-page">
       
-      {/* Hero Section - Clean & Minimal */}
-      <section className="relative pt-32 pb-16 bg-white border-b border-[#C2DDB4]/30">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
+      {/* Hero Section - Split Layout with Featured Posts on Right */}
+      <section className="relative pt-32 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
-              <BookOpen className="w-4 h-4 text-[#4E9141]" />
-              <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
-            </div>
-            
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-              Insights & Trends for
-              <span className="text-[#4E9141]"> Modern Businesses</span>
-            </h1>
-            
-            <p className="text-[#47635D] text-lg leading-relaxed max-w-2xl mx-auto">
-              Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
-            </p>
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            {/* Left - Title & Description (Sticky) */}
+            <div className="lg:col-span-5 lg:sticky lg:top-32">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
+                <BookOpen className="w-4 h-4 text-[#4E9141]" />
+                <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
+                Insights & Trends for
+                <span className="text-[#4E9141]"> Modern Businesses</span>
+              </h1>
+              
+              <p className="text-[#47635D] text-lg leading-relaxed mb-8">
+                Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
+              </p>
 
-            {/* Quick Stats */}
-            <div className="flex justify-center gap-12 mt-10 pt-8 border-t border-[#C2DDB4]/30">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#4E9141]">80+</div>
-                <div className="text-[#47635D] text-sm">Articles</div>
+              {/* Quick Stats */}
+              <div className="flex gap-8 py-6 border-t border-b border-[#C2DDB4]/30">
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">80+</div>
+                  <div className="text-[#47635D] text-sm">Articles</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">15+</div>
+                  <div className="text-[#47635D] text-sm">Authors</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
+                  <div className="text-[#47635D] text-sm">Readers</div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#4E9141]">15+</div>
-                <div className="text-[#47635D] text-sm">Authors</div>
+
+              {/* Popular Tags */}
+              <div className="mt-8">
+                <p className="text-sm font-medium text-[#47635D] mb-4">Popular Topics:</p>
+                <div className="flex flex-wrap gap-2">
+                  {popularTags.slice(0, 6).map((tag, i) => (
+                    <button 
+                      key={i}
+                      className="px-4 py-2 bg-[#F7FFF5] text-[#47635D] text-sm rounded-full border border-[#C2DDB4]/50 hover:border-[#4E9141] hover:text-[#4E9141] transition-all"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
-                <div className="text-[#47635D] text-sm">Readers</div>
-              </div>
+            </div>
+
+            {/* Right - Two Latest Featured Posts */}
+            <div className="lg:col-span-7 space-y-6">
+              {featuredPosts.map((post, i) => (
+                <Link 
+                  key={post.id} 
+                  href="#"
+                  className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] hover:shadow-xl transition-all duration-500"
+                  data-testid={`featured-post-${i}`}
+                >
+                  <div className="grid md:grid-cols-2 gap-0">
+                    <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
+                      <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
+                          Latest
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6 lg:p-8 flex flex-col justify-center">
+                      <div className="flex items-center gap-3 text-sm text-[#47635D] mb-4">
+                        <span className="text-[#4E9141] font-medium capitalize">{post.category.replace('-', ' ')}</span>
+                        <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
+                        <span>{post.readTime} read</span>
+                      </div>
+                      <h2 className="text-xl lg:text-2xl font-bold text-[#1D342F] leading-tight mb-4 group-hover:text-[#4E9141] transition-colors">
+                        {post.title}
+                      </h2>
+                      <p className="text-[#47635D] mb-6 line-clamp-2">{post.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
+                            <User className="w-5 h-5 text-[#4E9141]" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-[#1D342F]">{post.author}</p>
+                            <p className="text-xs text-[#47635D]">{post.date}</p>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -305,7 +383,7 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Results Count */}
           <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl font-bold text-[#1D342F]">Latest Articles</h2>
+            <h2 className="text-2xl font-bold text-[#1D342F]">All Articles</h2>
             <p className="text-[#47635D]">
               Showing <span className="font-semibold text-[#1D342F]">{filteredBlogs.length}</span> articles
             </p>
@@ -341,15 +419,6 @@ export default function BlogPage() {
                         {post.category.replace('-', ' ')}
                       </span>
                     </div>
-
-                    {/* Featured Badge */}
-                    {post.featured && (
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
-                          Featured
-                        </span>
-                      </div>
-                    )}
 
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -402,7 +471,7 @@ export default function BlogPage() {
           </div>
 
           {/* Load More Button */}
-          {filteredBlogs.length > 9 && !showAllPosts && (
+          {gridPosts.length > 9 && !showAllPosts && (
             <div className="text-center mt-12">
               <button 
                 onClick={() => setShowAllPosts(true)}

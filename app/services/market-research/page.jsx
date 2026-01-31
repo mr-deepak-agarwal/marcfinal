@@ -1,62 +1,56 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
-  ArrowRight, Search, Target, TrendingUp, Shield, PieChart, Users, 
-  BarChart3, Globe, ChevronLeft, ChevronRight, Play, CheckCircle2,
-  ChevronDown, ArrowUpRight
+  ArrowRight, Search, Target, TrendingUp, PieChart, Users, 
+  BarChart3, Globe, CheckCircle2, ChevronDown, ArrowUpRight,
+  Lightbulb, FileText, Building2
 } from 'lucide-react'
 
-// Service cards data
+// Service offerings based on original content
 const services = [
   {
-    title: 'Market Sizing',
-    desc: 'Determine total addressable market, serviceable market, and growth potential.',
+    title: 'Market Sizing & Segmentation',
+    desc: 'Determine total addressable market, serviceable market, and growth potential with accurate forecasting.',
     icon: PieChart,
-    color: 'from-emerald-500 to-teal-600',
-    features: ['TAM/SAM/SOM', 'Growth Projections', 'Opportunity Maps']
+    features: ['TAM/SAM/SOM Analysis', 'Growth Projections', 'Segment Identification']
   },
   {
-    title: 'Consumer Research',
-    desc: 'Understand your audience through surveys, interviews, and behavioral analysis.',
+    title: 'Quantitative Research',
+    desc: 'We use segmentation, forecasting, and demand planning techniques to bring broad, actionable insights.',
+    icon: BarChart3,
+    features: ['Survey Design', 'Statistical Analysis', 'Demand Planning']
+  },
+  {
+    title: 'Qualitative Research',
+    desc: 'Understand your customers deeply and fill the gaps with nuanced insights from key opinion leaders.',
     icon: Users,
-    color: 'from-blue-500 to-indigo-600',
-    features: ['Survey Design', 'Focus Groups', 'Behavioral Analysis']
+    features: ['In-depth Interviews', 'Focus Groups', 'Expert Consultations']
   },
   {
     title: 'Competitive Intelligence',
-    desc: 'Map the competitive landscape including market shares and positioning.',
+    desc: 'Generate the perfect strategy based on competitor profiling and market positioning analysis.',
     icon: Target,
-    color: 'from-purple-500 to-pink-600',
-    features: ['Competitor Profiling', 'SWOT Analysis', 'Market Share']
+    features: ['Competitor Profiling', 'SWOT Analysis', 'Market Share Mapping']
+  },
+  {
+    title: 'B2B Market Research',
+    desc: 'Detailed reports on competitor analysis, consumer analysis, and thorough knowledge of distribution channels.',
+    icon: Building2,
+    features: ['Decision Maker Research', 'Channel Analysis', 'B2B Buyer Journey']
   },
   {
     title: 'Industry Analysis',
-    desc: 'Deep-dive into trends, dynamics, value chains, and future outlook.',
-    icon: BarChart3,
-    color: 'from-orange-500 to-red-600',
-    features: ['Trend Analysis', 'Value Chain', 'Regulatory Review']
-  },
-  {
-    title: 'Customer Segmentation',
-    desc: 'Identify and prioritize attractive customer segments for targeting.',
-    icon: Users,
-    color: 'from-cyan-500 to-blue-600',
-    features: ['Segment Identification', 'Persona Development', 'Targeting Strategy']
-  },
-  {
-    title: 'Global Market Research',
-    desc: 'Research capabilities spanning India and 30+ international markets.',
+    desc: 'Deep-dive into market trends, value chains, regulatory landscape, and future outlook.',
     icon: Globe,
-    color: 'from-green-500 to-emerald-600',
-    features: ['Cross-border Studies', 'Market Entry', 'Local Intelligence']
+    features: ['Trend Analysis', 'Value Chain Mapping', 'Regulatory Review']
   },
 ]
 
-// Process steps
-const processSteps = [
+// Methodology steps
+const methodology = [
   { num: '01', title: 'Discovery', desc: 'Understanding your business objectives and research questions' },
   { num: '02', title: 'Design', desc: 'Crafting the research methodology and data collection approach' },
   { num: '03', title: 'Collection', desc: 'Gathering primary and secondary data from multiple sources' },
@@ -65,192 +59,203 @@ const processSteps = [
   { num: '06', title: 'Delivery', desc: 'Presenting insights with clear strategic implications' },
 ]
 
-// Case studies
-const caseStudies = [
+// Case study from original content
+const caseStudy = {
+  title: 'Staff Augmentation Company - US Market Expansion',
+  client: 'Colombia-based Technology Company',
+  challenge: 'A staff augmentation company based in Colombia wanted to expand their reach in the US. They focus on partnering with clients in digital solutions, unified customer experiences, and process automation.',
+  approach: [
+    'Researched staff augmentation industry and key technologies',
+    'Analyzed market size of Big Data, AI, and RPA',
+    'Identified competitors across the US by services and sectors',
+    'Mapped geographical pockets and customer prospects'
+  ],
+  outcome: 'Through the study, the client was able to identify various geographical pockets, key industries and customer prospects to target with their offering.'
+}
+
+// FAQs
+const faqs = [
   {
-    title: 'Aviation Route Viability',
-    client: 'Regional Airline',
-    result: '3 new profitable routes launched',
-    image: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?w=800',
-    tags: ['Aviation', 'Demand Analysis']
+    q: 'Why is market research important for business decisions?',
+    a: 'Almost all business decisions involve huge sums of money either directly or indirectly. Thorough market research provides a simplified yet analytical synopsis of the market, helping management take initiatives that not only yield profits but also maximize them.'
   },
   {
-    title: 'FMCG Market Entry',
-    client: 'Consumer Goods Co.',
-    result: '₹200Cr revenue in Year 1',
-    image: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?w=800',
-    tags: ['FMCG', 'Market Entry']
+    q: 'What is the difference between B2B and B2C market research?',
+    a: 'B2B decision makers are fewer, harder to reach and considered more rational. Successful B2B research requires an overtoned understanding of business environments, including detailed competitor analysis, consumer analysis, product feasibility studies, and thorough knowledge of distribution channels.'
   },
   {
-    title: 'Healthcare Expansion',
-    client: 'Hospital Chain',
-    result: '5 new locations identified',
-    image: 'https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg?w=800',
-    tags: ['Healthcare', 'Expansion']
+    q: 'How much should companies invest in market research?',
+    a: 'Top performing companies spend around 5-20% of their annual revenue on market research. This investment helps mitigate risks and maximize profits through informed decision-making.'
   },
   {
-    title: 'Real Estate Feasibility',
-    client: 'Property Developer',
-    result: '40% higher ROI achieved',
-    image: 'https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?w=800',
-    tags: ['Real Estate', 'Feasibility']
+    q: 'What makes MARC different from other research firms?',
+    a: 'Our research and analytics team generates customized reports compiled from data that is both accurate and relevant. Through in-depth analysis, we present viable options to management, resulting in more informed and better decision-making.'
   },
 ]
 
 export default function MarketResearchPage() {
-  const [activeService, setActiveService] = useState(0)
-  const [activeStep, setActiveStep] = useState(0)
-  const servicesScrollRef = useRef(null)
-  const casesScrollRef = useRef(null)
+  const [openFaq, setOpenFaq] = useState(null)
+  const [visibleSections, setVisibleSections] = useState({})
 
-  // Auto-advance process steps
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % processSteps.length)
-    }, 3000)
-    return () => clearInterval(interval)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections(prev => ({ ...prev, [entry.target.id]: true }))
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    document.querySelectorAll('section[id]').forEach((section) => {
+      observer.observe(section)
+    })
+
+    return () => observer.disconnect()
   }, [])
 
-  const scrollServices = (direction) => {
-    if (servicesScrollRef.current) {
-      const scrollAmount = 350
-      servicesScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      })
-    }
-  }
-
-  const scrollCases = (direction) => {
-    if (casesScrollRef.current) {
-      const scrollAmount = 400
-      casesScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      })
-    }
-  }
-
   return (
-    <div className="bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden">
+    <div className="bg-white min-h-screen">
       
-      {/* Hero Section - Full Width with Animated Background */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#4E9141]/20 via-[#0a0a0a] to-[#1D342F]/30" />
-          <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-[#4E9141]/10 rounded-full blur-[150px] animate-pulse" />
-          <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#C2DDB4]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-        
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-10" style={{ 
-          backgroundImage: 'linear-gradient(rgba(78,145,65,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(78,145,65,0.3) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+      {/* Hero Section - Clean Corporate */}
+      <section id="hero" className="relative pt-32 pb-24 bg-[#F7FFF5] overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#4E9141]/30 bg-[#4E9141]/10 mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#4E9141] animate-pulse" />
-              <span className="text-[#4E9141] text-sm font-medium tracking-wide">Market Research Services</span>
-            </div>
-            
-            <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] mb-8">
-              Data-Driven Insights for
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]">
-                Confident Decisions
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl">
-              Comprehensive market research and analysis to help you understand your market, 
-              identify opportunities, and make strategic decisions with clarity.
-            </p>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className={`transition-all duration-700 ${visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-[2px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-medium tracking-wide uppercase text-sm">Market Research</span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-8">
+                Delivering on the Vision of a
+                <span className="text-[#4E9141]"> Data-Driven Enterprise</span>
+              </h1>
+              
+              <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-xl">
+                We take a comprehensive approach to your data challenges, helping you conquer obstacles and become an analytics leader. Our customized research enables more informed and better decision-making.
+              </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="group inline-flex items-center gap-3 px-8 py-4 bg-[#4E9141] rounded-full font-semibold hover:bg-[#3d7334] transition-all">
-                Start Your Research
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <button className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/5 transition-all">
-                <Play className="w-5 h-5" />
-                Watch Overview
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-all group" data-testid="hero-cta-button">
+                  Start Your Research
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#C2DDB4] text-[#47635D] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all" data-testid="hero-secondary-button">
+                  Our Approach
+                </a>
+              </div>
             </div>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-12 mt-16 pt-16 border-t border-white/10">
-              {[
-                { value: '500+', label: 'Research Projects' },
-                { value: '30+', label: 'Countries' },
-                { value: '98%', label: 'Client Satisfaction' },
-                { value: '14+', label: 'Years Experience' },
-              ].map((stat, i) => (
-                <div key={i}>
-                  <div className="text-4xl font-bold text-[#4E9141]">{stat.value}</div>
-                  <div className="text-gray-500 text-sm mt-1">{stat.label}</div>
+            {/* Stats Card */}
+            <div className={`relative hidden lg:block transition-all duration-700 delay-200 ${visibleSections.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="bg-white rounded-2xl shadow-xl p-10 border border-[#C2DDB4]/30">
+                <h3 className="text-2xl font-bold text-[#1D342F] mb-8">Excellence in Numbers</h3>
+                <div className="grid grid-cols-2 gap-8">
+                  {[
+                    { value: '500+', label: 'Research Projects' },
+                    { value: '30+', label: 'Countries Covered' },
+                    { value: '14+', label: 'Years Experience' },
+                    { value: '98%', label: 'Client Satisfaction' },
+                  ].map((stat, i) => (
+                    <div key={i} className="text-center">
+                      <div className="text-4xl font-bold text-[#4E9141]">{stat.value}</div>
+                      <div className="text-[#47635D] text-sm mt-1">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#C2DDB4] rounded-2xl -z-10" />
+              <div className="absolute -top-6 -left-6 w-16 h-16 border-2 border-[#C2DDB4] rounded-xl -z-10" />
             </div>
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500">
-          <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
-          <ChevronDown className="w-5 h-5 animate-bounce" />
         </div>
       </section>
 
-      {/* Services - Horizontal Scroll Section */}
-      <section className="py-24 bg-[#111]">
+      {/* Value Proposition */}
+      <section id="value" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <span className="text-[#4E9141] text-sm font-medium uppercase tracking-widest">Our Services</span>
-              <h2 className="text-4xl lg:text-5xl font-bold mt-4">What We Deliver</h2>
-            </div>
-            <div className="hidden md:flex gap-2">
-              <button 
-                onClick={() => scrollServices('left')}
-                className="p-3 rounded-full border border-white/20 hover:bg-white/5 transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button 
-                onClick={() => scrollServices('right')}
-                className="p-3 rounded-full border border-white/20 hover:bg-white/5 transition-colors"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Why Choose MARC</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
+              Quantitative & Qualitative Market Research Solutions
+            </h2>
+            <p className="text-[#47635D] text-lg">
+              Thorough market research provides a simplified yet analytical synopsis of the market, customized based on the domain and nature of your business.
+            </p>
           </div>
 
-          {/* Horizontal scrolling cards */}
-          <div 
-            ref={servicesScrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: BarChart3,
+                title: 'Revenue Assessment',
+                desc: 'With our analysis, we assess revenues, make projections, and analyze costs and profitability to develop robust financial models.'
+              },
+              {
+                icon: Target,
+                title: 'Risk Mitigation',
+                desc: 'We use financial models as tools to enable businesses to maximize profits by mitigating risks and reducing losses.'
+              },
+              {
+                icon: Lightbulb,
+                title: 'Actionable Insights',
+                desc: 'Our in-depth analysis presents viable options to management, resulting in more informed and better decision-making.'
+              },
+            ].map((item, i) => (
+              <div 
+                key={i} 
+                className={`bg-[#F7FFF5] rounded-2xl p-8 border border-[#C2DDB4]/30 hover:shadow-lg hover:border-[#4E9141]/30 transition-all duration-500 ${visibleSections.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <div className="w-14 h-14 rounded-xl bg-[#4E9141]/10 flex items-center justify-center mb-6">
+                  <item.icon className="w-7 h-7 text-[#4E9141]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1D342F] mb-3">{item.title}</h3>
+                <p className="text-[#47635D]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section id="services" className="py-24 bg-[#F7FFF5]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Our Services</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
+              Market Research Solutions & Data Analytics
+            </h2>
+            <p className="text-[#47635D] text-lg">
+              Comprehensive research capabilities spanning India and 30+ international markets.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, i) => (
               <div 
                 key={i}
-                className="flex-shrink-0 w-[320px] snap-start group"
+                className={`bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/30 transition-all duration-500 group ${visibleSections.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 50}ms` }}
+                data-testid={`service-card-${i}`}
               >
-                <div className="h-full p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-[#4E9141]/50 transition-all duration-500 hover:transform hover:-translate-y-2">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6`}>
-                    <service.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-gray-400 mb-6">{service.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {service.features.map((f, j) => (
-                      <span key={j} className="px-3 py-1 rounded-full bg-white/5 text-xs text-gray-300">
-                        {f}
-                      </span>
-                    ))}
-                  </div>
+                <div className="w-14 h-14 rounded-xl bg-[#4E9141] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <service.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1D342F] mb-3">{service.title}</h3>
+                <p className="text-[#47635D] mb-6">{service.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map((f, j) => (
+                    <span key={j} className="px-3 py-1 rounded-full bg-[#F7FFF5] text-xs text-[#4E9141] border border-[#C2DDB4]/50">
+                      {f}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -258,106 +263,164 @@ export default function MarketResearchPage() {
         </div>
       </section>
 
-      {/* Process - Animated Timeline */}
-      <section className="py-24 bg-[#0a0a0a]">
+      {/* B2B Research Section */}
+      <section id="b2b" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-[#4E9141] text-sm font-medium uppercase tracking-widest">Our Process</span>
-            <h2 className="text-4xl lg:text-5xl font-bold mt-4">How We Work</h2>
-          </div>
-
-          {/* Process timeline */}
-          <div className="relative">
-            {/* Progress bar */}
-            <div className="absolute top-8 left-0 right-0 h-1 bg-white/10 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-gradient-to-r from-[#4E9141] to-[#C2DDB4] transition-all duration-500"
-                style={{ width: `${((activeStep + 1) / processSteps.length) * 100}%` }}
-              />
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className={`transition-all duration-700 ${visibleSections.b2b ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+              <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Specialized Research</span>
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mt-4 mb-6">
+                Importance of B2B Market Research
+              </h2>
+              <p className="text-[#47635D] text-lg mb-6">
+                The fundamental differences between B2B and B2C transactions are that B2B decision makers are fewer, harder to reach, and considered to be more rational. Successful presence in B2B markets requires an overtoned understanding of business environments.
+              </p>
+              <p className="text-[#47635D] mb-8">
+                Our experts obtain sufficient information required to make a mark in the B2B market and work with clients till their business objectives are met. The research methods we use are tailor-made to suit the requirements of our clients.
+              </p>
+              
+              <ul className="space-y-4">
+                {[
+                  'Detailed competitor analysis and market mapping',
+                  'Consumer analysis and buyer journey research',
+                  'Product feasibility studies',
+                  'Distribution channel assessment',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#4E9141] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#47635D]">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-16">
-              {processSteps.map((step, i) => (
-                <div 
-                  key={i}
-                  className={`text-center cursor-pointer transition-all duration-500 ${
-                    i <= activeStep ? 'opacity-100' : 'opacity-40'
-                  }`}
-                  onClick={() => setActiveStep(i)}
-                >
-                  <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center text-xl font-bold transition-all duration-500 ${
-                    i === activeStep 
-                      ? 'bg-[#4E9141] text-white scale-110' 
-                      : i < activeStep 
-                      ? 'bg-[#4E9141]/20 text-[#4E9141]' 
-                      : 'bg-white/5 text-gray-500'
-                  }`}>
-                    {step.num}
-                  </div>
-                  <h4 className="font-bold mt-4 mb-2">{step.title}</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+            <div className={`relative transition-all duration-700 delay-200 ${visibleSections.b2b ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <div className="bg-[#F7FFF5] rounded-2xl p-10 border border-[#C2DDB4]/30">
+                <h3 className="text-2xl font-bold text-[#1D342F] mb-6">Market & Competitive Intelligence</h3>
+                <p className="text-[#47635D] mb-8">
+                  Formulating accurate competitive insights quickly can be critical for business growth. Our decade of experience enables us to provide insights that make a subtle yet impactful difference.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {['Competitor Profiling', 'Industry Analysis', 'Market Sizing', 'Strategic Partner Selection'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-[#1D342F]">
+                      <div className="w-2 h-2 rounded-full bg-[#4E9141]" />
+                      <span className="text-sm font-medium">{item}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-[#C2DDB4] rounded-2xl -z-10" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Case Studies - Horizontal Scroll */}
-      <section className="py-24 bg-[#111]">
+      {/* Methodology */}
+      <section id="methodology" className="py-24 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <span className="text-[#4E9141] text-sm font-medium uppercase tracking-widest">Case Studies</span>
-              <h2 className="text-4xl lg:text-5xl font-bold mt-4">Success Stories</h2>
-            </div>
-            <div className="hidden md:flex gap-2">
-              <button 
-                onClick={() => scrollCases('left')}
-                className="p-3 rounded-full border border-white/20 hover:bg-white/5 transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button 
-                onClick={() => scrollCases('right')}
-                className="p-3 rounded-full border border-white/20 hover:bg-white/5 transition-colors"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.methodology ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Our Approach</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
+              Rigorous, Insight-Led Methodology
+            </h2>
+            <p className="text-[#47635D] text-lg">
+              We approach our research with a view to establishing a sustainable and successful business environment — "Delivering Excellence, Partnering Success."
+            </p>
           </div>
 
-          <div 
-            ref={casesScrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {caseStudies.map((study, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {methodology.map((step, i) => (
               <div 
                 key={i}
-                className="flex-shrink-0 w-[380px] snap-start group cursor-pointer"
+                className={`bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:shadow-lg transition-all duration-500 ${visibleSections.methodology ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="relative h-[280px] rounded-2xl overflow-hidden mb-6">
-                  <img 
-                    src={study.image} 
-                    alt={study.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="flex gap-2 mb-3">
-                      {study.tags.map((tag, j) => (
-                        <span key={j} className="px-2 py-1 bg-[#4E9141]/80 rounded text-xs">{tag}</span>
-                      ))}
-                    </div>
-                    <p className="text-[#4E9141] text-sm font-medium">{study.client}</p>
-                  </div>
+                <div className="text-5xl font-bold text-[#C2DDB4] mb-4">{step.num}</div>
+                <h3 className="text-xl font-bold text-[#1D342F] mb-2">{step.title}</h3>
+                <p className="text-[#47635D]">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study */}
+      <section id="case" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.case ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Case Study</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4">
+              Real Results, Real Impact
+            </h2>
+          </div>
+
+          <div className={`bg-[#F7FFF5] rounded-3xl overflow-hidden border border-[#C2DDB4]/30 transition-all duration-700 ${visibleSections.case ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="grid lg:grid-cols-2">
+              <div className="p-10 lg:p-14">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4E9141]/10 rounded-full text-[#4E9141] text-sm font-medium mb-6">
+                  <Globe className="w-4 h-4" />
+                  US Market Expansion
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-[#4E9141] transition-colors">{study.title}</h3>
-                <p className="text-gray-400 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#4E9141]" />
-                  {study.result}
+                <h3 className="text-2xl lg:text-3xl font-bold text-[#1D342F] mb-4">{caseStudy.title}</h3>
+                <p className="text-[#47635D] text-sm mb-2">{caseStudy.client}</p>
+                <p className="text-[#47635D] mb-8">{caseStudy.challenge}</p>
+                
+                <h4 className="font-bold text-[#1D342F] mb-4">What MARC Did:</h4>
+                <ul className="space-y-3 mb-8">
+                  {caseStudy.approach.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-[#4E9141] mt-0.5 flex-shrink-0" />
+                      <span className="text-[#47635D]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-[#1D342F] p-10 lg:p-14 flex flex-col justify-center">
+                <h4 className="text-[#C2DDB4] font-medium uppercase tracking-wider text-sm mb-4">Outcome</h4>
+                <p className="text-white text-xl lg:text-2xl leading-relaxed mb-8">
+                  {caseStudy.outcome}
                 </p>
+                <Link href="/contact" className="inline-flex items-center gap-2 text-[#C2DDB4] font-semibold hover:text-white transition-colors group" data-testid="case-study-cta">
+                  Discuss Your Project
+                  <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section id="faq" className="py-24 bg-[#F7FFF5]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className={`text-center mb-16 transition-all duration-700 ${visibleSections.faq ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">FAQs</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4">
+              Common Questions
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <div 
+                key={i}
+                className={`bg-white rounded-xl border border-[#C2DDB4]/30 overflow-hidden transition-all duration-500 ${visibleSections.faq ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-[#F7FFF5] transition-colors"
+                  data-testid={`faq-button-${i}`}
+                >
+                  <span className="font-semibold text-[#1D342F] pr-8">{faq.q}</span>
+                  <ChevronDown className={`w-5 h-5 text-[#4E9141] flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                </button>
+                {openFaq === i && (
+                  <div className="px-8 pb-6">
+                    <p className="text-[#47635D] leading-relaxed">{faq.a}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -365,29 +428,18 @@ export default function MarketResearchPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4E9141] to-[#3d7334]" />
-        <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
-          backgroundSize: '32px 32px'
-        }} />
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+      <section className="py-24 bg-[#1D342F]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
             Ready to Make Data-Driven Decisions?
           </h2>
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            Partner with MARC for market research that delivers clarity, confidence, and actionable strategies.
+          <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">
+            We're ready to answer your questions and take your brand to the next level with comprehensive market research and analytics.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#4E9141] rounded-full font-bold hover:bg-gray-100 transition-all group">
-              Get Started
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 border-2 border-white/30 rounded-full font-semibold hover:bg-white/10 transition-all">
-              Schedule a Call
-            </Link>
-          </div>
+          <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-all group" data-testid="final-cta-button">
+            Contact Us Today
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
 

@@ -313,7 +313,7 @@ export default function Header() {
                           : 'opacity-0 invisible -translate-y-3'
                       }`}
                     >
-                      <div className="w-[320px] bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/10 border border-[#4E9141]/10 overflow-hidden">
+                      <div className="w-[320px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
                         {/* Top accent line */}
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
                         

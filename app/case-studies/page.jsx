@@ -1,151 +1,168 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
-  ArrowRight, ArrowUpRight, Download, Filter, Building2, TrendingUp, Award,
-  ChevronRight, ExternalLink, Sparkles, Target, BarChart3, CheckCircle2,
-  Users, Globe, Zap, Eye
+  ArrowRight, ArrowUpRight, Building2, TrendingUp, Award,
+  Target, CheckCircle2, Lightbulb, Filter
 } from 'lucide-react'
 
-const industries = ['All', 'Hospitality', 'Retail', 'Real Estate', 'Manufacturing', 'Healthcare', 'Aviation']
+const industries = [
+  { id: 'all', label: 'All', count: 6 },
+  { id: 'hospitality', label: 'Hospitality', count: 2 },
+  { id: 'retail', label: 'Retail', count: 1 },
+  { id: 'real-estate', label: 'Real Estate', count: 1 },
+  { id: 'manufacturing', label: 'Manufacturing', count: 1 },
+  { id: 'aviation', label: 'Aviation', count: 1 },
+]
 
 const caseStudies = [
   {
+    id: 1,
     title: 'Profitability Analysis for Premium Jewellery Brand',
     client: 'Abharan Jewellers',
-    industry: 'Retail',
+    industry: 'retail',
     service: 'Profitability Analysis',
-    challenge: 'Identify key factors impacting store profitability and develop actionable improvement strategies across multiple retail locations',
-    solution: 'Comprehensive cost analysis, SKU-level profitability mapping, and operational efficiency audit',
-    outcomes: ['15% margin improvement', '20% reduction in operational costs', 'Data-driven inventory strategy'],
+    challenge: 'Identify key factors impacting store profitability and develop actionable improvement strategies across multiple retail locations.',
+    solution: 'Comprehensive cost analysis, SKU-level profitability mapping, and operational efficiency audit.',
+    outcomes: ['15% margin improvement', '20% cost reduction', 'Data-driven inventory'],
     image: 'https://images.pexels.com/photos/10983783/pexels-photo-10983783.jpeg?w=800',
-    gradient: 'from-amber-400 via-orange-500 to-red-500',
-    bgGradient: 'from-amber-500/20 to-orange-500/20',
     featured: true,
   },
   {
+    id: 2,
     title: 'Revenue Optimization for Fine Dining Restaurant',
     client: 'Copper Leaf',
-    industry: 'Hospitality',
+    industry: 'hospitality',
     service: 'Strategy Consulting',
-    challenge: 'Optimize operations and enhance revenue streams for a premium dining establishment in a competitive market',
-    solution: 'Menu engineering, pricing strategy optimization, and customer experience enhancement program',
-    outcomes: ['20% revenue growth', '25% improvement in table turnover', 'Enhanced customer retention'],
+    challenge: 'Optimize operations and enhance revenue streams for a premium dining establishment in a competitive market.',
+    solution: 'Menu engineering, pricing strategy optimization, and customer experience enhancement program.',
+    outcomes: ['20% revenue growth', '25% table turnover', 'Better retention'],
     image: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?w=800',
-    gradient: 'from-#5FBB46 via-#5D9F94 to-cyan-500',
-    bgGradient: 'from-#4E9141/20 to-#5D9F94/20',
     featured: true,
   },
   {
+    id: 3,
     title: 'Turnaround Strategy for Beach Resort',
     client: 'Premium Hospitality',
-    industry: 'Hospitality',
+    industry: 'hospitality',
     service: 'Profitability Analysis',
-    challenge: 'Reverse declining profitability and optimize revenue streams across seasonal fluctuations',
-    solution: 'Seasonal pricing model, ancillary revenue development, and cost structure optimization',
-    outcomes: ['30% EBITDA improvement', 'New revenue streams identified', 'Seasonal optimization framework'],
+    challenge: 'Reverse declining profitability and optimize revenue streams across seasonal fluctuations.',
+    solution: 'Seasonal pricing model, ancillary revenue development, and cost structure optimization.',
+    outcomes: ['30% EBITDA boost', 'New revenue streams', 'Seasonal optimization'],
     image: 'https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?w=800',
-    gradient: 'from-blue-400 via-indigo-500 to-purple-500',
-    bgGradient: 'from-blue-500/20 to-indigo-500/20',
   },
   {
+    id: 4,
     title: 'Co-working Space Market Positioning',
     client: 'Vertex',
-    industry: 'Real Estate',
+    industry: 'real-estate',
     service: 'Market Research',
-    challenge: 'Define market positioning and growth strategy in an increasingly competitive co-working space market',
-    solution: 'Competitive benchmarking, customer segmentation, and pricing strategy development',
-    outcomes: ['Clear market positioning', '40% occupancy increase', 'Premium pricing justified'],
+    challenge: 'Define market positioning and growth strategy in an increasingly competitive co-working space market.',
+    solution: 'Competitive benchmarking, customer segmentation, and pricing strategy development.',
+    outcomes: ['Clear positioning', '40% occupancy up', 'Premium pricing'],
     image: 'https://images.pexels.com/photos/7070/space-desk-workspace-coworking.jpg?w=800',
-    gradient: 'from-purple-400 via-pink-500 to-rose-500',
-    bgGradient: 'from-purple-500/20 to-pink-500/20',
   },
   {
+    id: 5,
     title: 'Regional Aviation Route Feasibility',
     client: 'Fly91',
-    industry: 'Aviation',
+    industry: 'aviation',
     service: 'Feasibility Study',
-    challenge: 'Assess commercial viability of launching flights on four regional routes under UDAN scheme',
-    solution: 'Demand-supply analysis, traveller profiling, competitor assessment, and route optimization',
-    outcomes: ['Data-backed go/no-go decision', 'Optimal frequency identified', 'Risk mitigation plan'],
+    challenge: 'Assess commercial viability of launching flights on four regional routes under UDAN scheme.',
+    solution: 'Demand-supply analysis, traveller profiling, competitor assessment, and route optimization.',
+    outcomes: ['Go/no-go clarity', 'Optimal frequency', 'Risk mitigation'],
     image: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?w=800',
-    gradient: 'from-sky-400 via-blue-500 to-indigo-500',
-    bgGradient: 'from-sky-500/20 to-blue-500/20',
   },
   {
+    id: 6,
     title: 'Building Materials Market Entry',
     client: 'ACC Alcon',
-    industry: 'Manufacturing',
+    industry: 'manufacturing',
     service: 'Market Entry Strategy',
-    challenge: 'Strategic market entry and location selection for gypsum plaster segment expansion in India',
-    solution: 'Location scoring model, competitive intelligence, and go-to-market strategy development',
-    outcomes: ['Optimal location identified', 'Clear entry roadmap', '40% faster market entry'],
+    challenge: 'Strategic market entry and location selection for gypsum plaster segment expansion in India.',
+    solution: 'Location scoring model, competitive intelligence, and go-to-market strategy development.',
+    outcomes: ['Best location found', 'Clear roadmap', '40% faster entry'],
     image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?w=800',
-    gradient: 'from-#47635D via-#5D9F94 to-#5D9F94',
-    bgGradient: 'from-#5D9F94/20 to-#5D9F94/20',
   },
 ]
 
 const stats = [
   { value: '500+', label: 'Projects Delivered', icon: Award },
-  { value: '30+', label: 'Industries', icon: Building2 },
+  { value: '30+', label: 'Industries Served', icon: Building2 },
   { value: '98%', label: 'Success Rate', icon: Target },
-  { value: '3x', label: 'Avg. ROI', icon: TrendingUp },
+  { value: '3x', label: 'Avg. Client ROI', icon: TrendingUp },
+]
+
+const process = [
+  { num: '01', title: 'Discovery', desc: 'Deep dive into your business challenges and objectives' },
+  { num: '02', title: 'Research', desc: 'Comprehensive data collection and market analysis' },
+  { num: '03', title: 'Strategy', desc: 'Develop actionable recommendations and roadmap' },
+  { num: '04', title: 'Implementation', desc: 'Support execution and measure outcomes' },
 ]
 
 export default function CaseStudiesPage() {
-  const [activeIndustry, setActiveIndustry] = useState('All')
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [activeIndustry, setActiveIndustry] = useState('all')
+  const [visibleCards, setVisibleCards] = useState({})
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleCards(prev => ({ ...prev, [entry.target.dataset.index]: true }))
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    document.querySelectorAll('[data-index]').forEach((el) => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [activeIndustry])
 
   const filteredStudies = caseStudies.filter(study => 
-    activeIndustry === 'All' || study.industry === activeIndustry
+    activeIndustry === 'all' || study.industry === activeIndustry
   )
 
   const featuredStudies = caseStudies.filter(s => s.featured)
 
   return (
-    <div className="bg-[#0a0a0a] min-h-screen">
+    <div className="bg-[#F0F4F0] min-h-screen" data-testid="case-studies-page">
 
+      {/* Hero Section - Clean Light Theme */}
+      <section className="relative pt-32 pb-20 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
-      {/* Hero Section - Cinematic */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-#4E9141/20 via-#5D9F94/10 to-transparent rounded-full blur-[200px] animate-pulse" />
-          <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-cyan-500/15 via-blue-500/10 to-transparent rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-
-        <div className="max-w-7xl mx-auto px-6 py-32 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-#4E9141/10 to-#5D9F94/10 border border-#4E9141/20 backdrop-blur-sm mb-8">
-                <Sparkles className="w-5 h-5 text-#5FBB46" />
-                <span className="text-#5FBB46 font-medium">Real Results, Real Impact</span>
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
+                <Lightbulb className="w-4 h-4 text-[#4E9141]" />
+                <span className="text-[#4E9141] font-medium text-sm">Client Success Stories</span>
               </div>
 
-              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-medium text-white leading-[0.95] tracking-tight mb-8">
-                Success
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 via-#5D9F94 to-cyan-400">
-                  Stories
-                </span>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
+                Real Results,
+                <span className="text-[#4E9141]"> Real Impact</span>
               </h1>
 
-              <p className="text-#47635D text-xl leading-relaxed mb-10 max-w-lg">
+              <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-lg">
                 From challenge to triumph — discover how we deliver measurable business impact through data-driven insights and strategic expertise.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="#cases" className="group px-8 py-4 bg-gradient-to-r from-#4E9141 to-#5D9F94 text-white rounded-2xl font-semibold hover:shadow-2xl hover:shadow-#4E9141/30 transition-all flex items-center gap-2">
+                <a href="#cases" className="group px-8 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-all flex items-center gap-2">
                   Explore Cases
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link href="/contact" className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-semibold hover:bg-white/10 transition-all">
+                </a>
+                <Link href="/contact" className="px-8 py-4 border-2 border-[#C2DDB4] text-[#1D342F] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
                   Start Your Project
                 </Link>
               </div>
@@ -156,245 +173,252 @@ export default function CaseStudiesPage() {
               {stats.map((stat, i) => (
                 <div 
                   key={i}
-                  className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/[0.06] hover:border-#4E9141/30 transition-all duration-500"
+                  className="group bg-white border-2 border-[#C2DDB4]/40 rounded-2xl p-6 hover:border-[#4E9141] hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-#4E9141/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <stat.icon className="w-10 h-10 text-#5FBB46 mb-4" />
-                  <div className="font-serif text-4xl lg:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-#47635D">{stat.label}</div>
+                  <div className="w-12 h-12 bg-[#F7FFF5] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#4E9141]/10 transition-colors">
+                    <stat.icon className="w-6 h-6 text-[#4E9141]" />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-[#4E9141] mb-1">{stat.value}</div>
+                  <div className="text-[#47635D] text-sm">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-          <span className="text-#5D9F94 text-xs uppercase tracking-widest">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-#47635D rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-#4E9141 rounded-full animate-bounce" />
-          </div>
-        </div>
       </section>
 
-      {/* Featured Case Studies - Large Cards */}
-      <section className="py-24 relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-#4E9141/50 to-transparent" />
-        
+      {/* Featured Case Studies */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
+          <div className="flex items-center justify-between mb-12">
             <div>
-              <span className="text-#5FBB46 text-sm font-medium tracking-widest uppercase">Featured</span>
-              <h2 className="font-serif text-4xl text-white mt-4">Highlighted Success Stories</h2>
+              <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Featured</span>
+              <h2 className="text-3xl font-bold text-[#1D342F] mt-2">Highlighted Success Stories</h2>
             </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {featuredStudies.map((study, i) => (
-              <div 
-                key={i}
-                className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer"
-                onMouseEnter={() => setHoveredCard(`featured-${i}`)}
-                onMouseLeave={() => setHoveredCard(null)}
+              <Link 
+                key={study.id}
+                href="#"
+                className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500"
               >
-                {/* Background Image */}
-                <div className="relative aspect-[4/3]">
-                  <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-#1D342F via-#1D342F/60 to-#1D342F/20" />
+                {/* Image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img 
+                    src={study.image} 
+                    alt={study.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/70 via-transparent to-transparent" />
                   
-                  {/* Colored gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${study.gradient} opacity-0 group-hover:opacity-40 transition-all duration-500`} />
+                  {/* Badges */}
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <span className="px-4 py-1.5 bg-[#4E9141] text-white text-sm font-semibold rounded-full shadow-md">
+                      Featured
+                    </span>
+                    <span className="px-4 py-1.5 bg-white text-[#4E9141] text-sm font-semibold rounded-full shadow-md capitalize">
+                      {study.industry}
+                    </span>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg">
+                    <ArrowUpRight className="w-5 h-5 text-[#4E9141]" />
+                  </div>
+
+                  {/* Bottom content on image */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-[#C2DDB4] font-medium mb-1">{study.client}</p>
+                    <h3 className="text-xl lg:text-2xl font-bold text-white leading-tight">
+                      {study.title}
+                    </h3>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="absolute inset-0 p-8 lg:p-10 flex flex-col justify-between">
-                  {/* Top */}
-                  <div className="flex items-start justify-between">
-                    <div className="flex gap-2">
-                      <span className={`px-4 py-1.5 bg-gradient-to-r ${study.gradient} text-white text-sm font-medium rounded-full`}>
-                        {study.industry}
-                      </span>
-                      <span className="px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                        {study.service}
-                      </span>
-                    </div>
-                    <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all group-hover:scale-110">
-                      <ArrowUpRight className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Bottom */}
-                  <div>
-                    <p className="text-#5FBB46 font-medium mb-2">{study.client}</p>
-                    <h3 className="font-serif text-2xl lg:text-3xl text-white mb-4 group-hover:text-#8CC978 transition-colors">
-                      {study.title}
-                    </h3>
-                    
-                    {/* Outcomes */}
-                    <div className="flex flex-wrap gap-3">
-                      {study.outcomes.map((outcome, j) => (
-                        <div key={j} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
-                          <CheckCircle2 className="w-4 h-4 text-#5FBB46" />
-                          <span className="text-white text-sm">{outcome}</span>
-                        </div>
-                      ))}
-                    </div>
+                <div className="p-6">
+                  <p className="text-[#47635D] mb-6">{study.challenge}</p>
+                  
+                  {/* Outcomes */}
+                  <div className="flex flex-wrap gap-3">
+                    {study.outcomes.map((outcome, j) => (
+                      <div key={j} className="flex items-center gap-2 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50">
+                        <CheckCircle2 className="w-4 h-4 text-[#4E9141]" />
+                        <span className="text-[#1D342F] text-sm font-medium">{outcome}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Filter Bar */}
-      <section id="cases" className="py-6 bg-#1D342F/50 sticky top-0 z-40 backdrop-blur-xl border-y border-white/5">
+      {/* Filter & All Case Studies */}
+      <section id="cases" className="py-8 bg-white border-y border-[#C2DDB4]/30 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Filter className="w-5 h-5 text-#47635D" />
-              <span className="text-#47635D text-sm">Filter by industry:</span>
-            </div>
-            <div className="flex gap-2 overflow-x-auto">
-              {industries.map((industry) => (
-                <button
-                  key={industry}
-                  onClick={() => setActiveIndustry(industry)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                    activeIndustry === industry
-                      ? 'bg-gradient-to-r from-#4E9141 to-#5D9F94 text-white'
-                      : 'bg-white/5 text-#47635D hover:text-white hover:bg-white/10 border border-white/10'
-                  }`}
-                >
-                  {industry}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {industries.map((ind) => (
+              <button
+                key={ind.id}
+                onClick={() => setActiveIndustry(ind.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                  activeIndustry === ind.id
+                    ? 'bg-[#4E9141] text-white shadow-md shadow-[#4E9141]/20'
+                    : 'bg-[#F7FFF5] text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
+                }`}
+                data-testid={`filter-${ind.id}`}
+              >
+                {ind.label}
+                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                  activeIndustry === ind.id ? 'bg-white/20' : 'bg-white'
+                }`}>
+                  {ind.count}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* All Case Studies Grid */}
-      <section className="py-20">
+      {/* Case Studies Grid */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-2xl font-bold text-[#1D342F]">All Case Studies</h2>
+            <p className="text-[#47635D]">
+              Showing <span className="font-semibold text-[#1D342F]">{filteredStudies.length}</span> case studies
+            </p>
+          </div>
+
+          {/* Symmetrical Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStudies.map((study, i) => (
-              <div 
-                key={i}
-                className="group cursor-pointer"
-                onMouseEnter={() => setHoveredCard(i)}
-                onMouseLeave={() => setHoveredCard(null)}
+              <Link 
+                key={study.id}
+                href="#"
+                data-index={i}
+                className="group block"
+                data-testid={`case-study-${study.id}`}
               >
-                <div className={`relative bg-gradient-to-br ${study.bgGradient} rounded-3xl overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500`}>
+                <article 
+                  className={`h-full bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500 ${
+                    visibleCards[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
                   {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img 
                       src={study.image} 
-                      alt={study.title} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      alt={study.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
                     
-                    {/* Gradient line */}
-                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${study.gradient}`} />
-
-                    {/* Industry badge */}
+                    {/* Industry Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className={`px-3 py-1.5 bg-gradient-to-r ${study.gradient} text-white text-xs font-bold rounded-full shadow-lg`}>
-                        {study.industry}
+                      <span className="px-3 py-1.5 bg-white text-[#4E9141] text-xs font-semibold rounded-full shadow-md capitalize">
+                        {study.industry.replace('-', ' ')}
                       </span>
                     </div>
 
-                    {/* View icon */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <Eye className="w-5 h-5 text-white" />
-                      </div>
+                    {/* Service Badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
+                        {study.service}
+                      </span>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Arrow on hover */}
+                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <ArrowRight className="w-5 h-5 text-[#4E9141]" />
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    <p className="text-#5FBB46 text-sm font-medium mb-2">{study.client}</p>
-                    <h3 className="font-serif text-xl text-white mb-3 group-hover:text-#8CC978 transition-colors line-clamp-2">
+                    {/* Client */}
+                    <p className="text-[#4E9141] font-semibold text-sm mb-2">{study.client}</p>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-2">
                       {study.title}
                     </h3>
-                    <p className="text-#47635D text-sm mb-4 line-clamp-2">{study.challenge}</p>
-                    
-                    {/* Key outcome */}
-                    <div className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-lg">
-                      <CheckCircle2 className="w-4 h-4 text-#5FBB46 flex-shrink-0" />
-                      <span className="text-white text-sm">{study.outcomes[0]}</span>
+
+                    {/* Challenge */}
+                    <p className="text-[#47635D] text-sm leading-relaxed mb-4 line-clamp-2">
+                      {study.challenge}
+                    </p>
+
+                    {/* Key Outcome */}
+                    <div className="flex items-center gap-2 px-4 py-2.5 bg-[#F7FFF5] rounded-xl border border-[#C2DDB4]/50">
+                      <CheckCircle2 className="w-4 h-4 text-[#4E9141] flex-shrink-0" />
+                      <span className="text-[#1D342F] text-sm font-medium">{study.outcomes[0]}</span>
                     </div>
                   </div>
-                </div>
-              </div>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-gradient-to-b from-#1D342F/50 to-[#0a0a0a]">
+      <section className="py-20 bg-white border-t border-[#C2DDB4]/30">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-#5FBB46 text-sm font-medium tracking-widest uppercase">Our Approach</span>
-            <h2 className="font-serif text-4xl lg:text-5xl text-white mt-4">
-              How We Deliver <span className="text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 to-#5D9F94">Results</span>
+            <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Our Approach</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mt-4">
+              How We Deliver <span className="text-[#4E9141]">Results</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { num: '01', title: 'Discovery', desc: 'Deep dive into your business challenges and objectives' },
-              { num: '02', title: 'Research', desc: 'Comprehensive data collection and market analysis' },
-              { num: '03', title: 'Strategy', desc: 'Develop actionable recommendations and roadmap' },
-              { num: '04', title: 'Implementation', desc: 'Support execution and measure outcomes' },
-            ].map((step, i) => (
+            {process.map((step, i) => (
               <div key={i} className="text-center group">
                 <div className="w-20 h-20 mx-auto mb-6 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-#4E9141 to-#5D9F94 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
-                  <div className="absolute inset-0 bg-[#0a0a0a] rounded-2xl flex items-center justify-center">
-                    <span className="font-serif text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-#5FBB46 to-#5D9F94">{step.num}</span>
+                  <div className="absolute inset-0 bg-[#C2DDB4] rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
+                  <div className="absolute inset-0 bg-white border-2 border-[#4E9141] rounded-2xl flex items-center justify-center">
+                    <span className="text-2xl font-bold text-[#4E9141]">{step.num}</span>
                   </div>
                 </div>
-                <h3 className="font-serif text-xl text-white mb-3">{step.title}</h3>
-                <p className="text-#47635D text-sm">{step.desc}</p>
+                <h3 className="text-xl font-bold text-[#1D342F] mb-3">{step.title}</h3>
+                <p className="text-[#47635D] text-sm">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-#4E9141 via-#4E9141 to-#5D9F94" />
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[150px]" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="font-serif text-4xl lg:text-6xl font-medium text-white mb-6">
+      {/* CTA Section */}
+      <section className="py-20 bg-[#1D342F]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             Ready to Write Your Success Story?
           </h2>
-          <p className="text-#C2DDB4 text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">
             Partner with MARC to transform your business challenges into measurable achievements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-#3d7334 rounded-2xl font-semibold text-lg hover:bg-#F0F8F6 transition-all shadow-xl hover:shadow-2xl group">
-              Start Your Project
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <a 
-              href="https://marcglocal.com/wp-content/uploads/2025/06/MARC-Credentials-2025.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white/30 text-white rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all"
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#5ba84d] transition-all group"
             >
-              Download Credentials
-              <ExternalLink className="w-5 h-5" />
-            </a>
+              Start Your Project
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/insights" 
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-white/10 text-white border border-white/20 rounded-full font-semibold hover:bg-white/20 transition-all"
+            >
+              View Insights
+            </Link>
           </div>
         </div>
       </section>

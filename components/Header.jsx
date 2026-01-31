@@ -55,6 +55,12 @@ const insightsItems = [
     icon: BookOpen,
     description: 'Expert articles & trends'
   },
+  { 
+    label: 'Case Studies', 
+    href: '/case-studies', 
+    icon: Lightbulb,
+    description: 'Client success stories'
+  },
 ]
 
 const navLinks = [

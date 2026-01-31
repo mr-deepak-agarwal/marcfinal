@@ -270,6 +270,75 @@ export default function Header() {
                       </div>
                     </div>
                   </div>
+                ) : link.hasInsightsMenu ? (
+                  /* Insights Submenu */
+                  <div
+                    key={link.label}
+                    className="relative"
+                    onMouseEnter={(e) => {
+                      handleMouseEnter(e, index)
+                      setActiveDropdown(link.label)
+                    }}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => handleClick(link.href)}
+                      className={`relative px-4 py-2 flex items-center gap-1 text-sm font-medium transition-all duration-300 ${
+                        hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'
+                      }`}
+                    >
+                      <span className="relative">
+                        {link.label}
+                      </span>
+                      <ChevronDown 
+                        size={14} 
+                        className={`transition-all duration-300 ${
+                          activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''
+                        }`}
+                      />
+                    </Link>
+
+                    {/* Insights Dropdown Menu */}
+                    <div 
+                      className={`absolute -left-4 top-full pt-3 transition-all duration-400 ${
+                        activeDropdown === link.label 
+                          ? 'opacity-100 visible translate-y-0' 
+                          : 'opacity-0 invisible -translate-y-3'
+                      }`}
+                    >
+                      <div className="w-[320px] bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/10 border border-[#4E9141]/10 overflow-hidden">
+                        {/* Top accent line */}
+                        <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+                        
+                        <div className="p-4">
+                          {/* Insights Items */}
+                          <div className="space-y-2">
+                            {insightsItems.map((item, itemIdx) => (
+                              <Link
+                                key={itemIdx}
+                                href={item.href}
+                                onClick={() => handleClick(item.href)}
+                                className="group flex items-center gap-4 p-4 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300 border border-transparent hover:border-[#C2DDB4]/50"
+                              >
+                                <div className="w-12 h-12 rounded-xl bg-[#F7FFF5] group-hover:bg-[#4E9141] flex items-center justify-center transition-all duration-300 flex-shrink-0">
+                                  <item.icon className="w-6 h-6 text-[#4E9141] group-hover:text-white transition-colors" />
+                                </div>
+                                <div>
+                                  <span className="block text-sm text-[#1D342F] group-hover:text-[#4E9141] font-semibold transition-colors">
+                                    {item.label}
+                                  </span>
+                                  <span className="block text-xs text-[#47635D] mt-0.5">
+                                    {item.description}
+                                  </span>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <Link
                     key={link.label}

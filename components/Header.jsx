@@ -474,6 +474,49 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
+              ) : link.hasInsightsMenu ? (
+                /* Insights Accordion */
+                <div 
+                  key={link.label}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`transition-all duration-300 ${
+                    isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+                  }`}
+                >
+                  <button
+                    onClick={() => setActiveDropdown(activeDropdown === 'Insights' ? null : 'Insights')}
+                    className="w-full flex justify-between items-center px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300"
+                  >
+                    Insights
+                    <ChevronDown
+                      className={`transition-transform duration-300 ${
+                        activeDropdown === 'Insights' ? 'rotate-180 text-[#4E9141]' : ''
+                      }`}
+                      size={16}
+                    />
+                  </button>
+
+                  <div className={`overflow-hidden transition-all duration-400 ${
+                    activeDropdown === 'Insights' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="py-2 ml-4 space-y-1 border-l-2 border-[#4E9141]/20">
+                      {insightsItems.map((item, itemIdx) => (
+                        <Link
+                          key={itemIdx}
+                          href={item.href}
+                          onClick={() => handleClick(item.href)}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300"
+                        >
+                          <item.icon className="w-4 h-4 text-[#4E9141]" />
+                          <div>
+                            <span className="block font-medium">{item.label}</span>
+                            <span className="block text-xs text-[#47635D]/70">{item.description}</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <Link
                   key={link.label}

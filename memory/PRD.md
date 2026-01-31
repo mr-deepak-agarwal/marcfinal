@@ -30,6 +30,13 @@ Replicate and enhance a website based on `https://marcfinal.vercel.app/`. The pr
   - Off-white background with grain texture
   - Editorial layout, floating stats, asymmetric sections
 
+- **Blog Page** - NEW elegant modern design with light theme
+  - Real content crawled from marcglocal.com/blog (15 articles)
+  - Split hero layout with sticky sidebar + featured posts stack
+  - Bento-style grid with varied card sizes
+  - Category filters, search, popular tags, newsletter signup
+  - Distinctively different from Insights page (articles vs PDF reports)
+
 ### Previously Completed
 - Header with glassmorphism effect and logo zoom on scroll
 - "Icon Grid" mega menu for Services section
